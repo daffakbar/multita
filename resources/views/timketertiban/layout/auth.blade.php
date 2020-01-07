@@ -18,8 +18,8 @@
     <link rel="stylesheet" href="{{asset('admin/assets/css/demo_1/style.css')}}">
     <!-- Layout style -->
     <link rel="shortcut icon" href="{{asset('admin/assets/images/favicon.ico')}}" />
-    {{-- <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/css/bootstrap-select.min.css" /> --}}
+
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/css/select2.min.css" rel="stylesheet" />
   </head>
   <body class="header-fixed">
     <!-- partial:partials/_header.html -->
@@ -234,9 +234,18 @@
     <!-- build:js -->
     <script src="{{asset('admin/assets/js/template.js')}}"></script>
     <script src="{{asset('admin/assets/js/dashboard.js')}}"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/js/bootstrap-select.min.js"></script>
+  
+
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/js/select2.min.js"></script>
+    <script>
+      $(document).ready(function() {
+      $('.js-example-basic-single').select2();
+      });
+    </script>
+    <script>
+      $(document).ready(function() { $("#e1").select2(); });
+    </script>
+  
     <!-- endbuild -->
   </body>
 </html>
