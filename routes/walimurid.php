@@ -10,3 +10,14 @@ Route::get('/home', function () {
     return view('walimurid.home');
 })->name('home');
 
+//DASHBOARD
+
+//LAPORAN PELANGGARAN
+Route::get('/laporanpelanggaran', function () {
+	return view('siswa/laporanpelanggaran/index');
+});
+
+//LAPORAN PRESTASI
+Route::get('/laporanprestasi', function () {
+	return view('siswa/laporanprestasi/index');
+});
