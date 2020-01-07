@@ -60,8 +60,8 @@
                                     <tr>
                                         <th>No</th>
                                         <th style="text-align:left">Nama siswa</th>
-                                        <th style="text-align:left">Kategori pelanggaran</th>
-                                        <th style="text-align:left">Jenis pelanggaran</th>
+                                        <th style="text-align:left">Kategori</th>
+                                        <th style="text-align:left">Jenis</th>
                                         <th style="text-align:left">Poin</th>
                                         <th style="text-align:left">Tanggal</th>
                                         <th style="text-align:left">Action</th>

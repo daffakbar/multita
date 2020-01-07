@@ -2,75 +2,87 @@
 
 @section('content')
 <div class="container">
-    <br>
-    <div class="btn btn-success has-icon" data-toggle="modal" data-target="#exampleModal">
-        <i class="mdi mdi-clipboard-outline link-icon"></i>Tambah data
-    </div>
+   
+    <div class="content-viewport">
 
-    <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Tambah data</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
+        <div class="row">
+          <div class="col-lg-4 equel-grid">
             <div class="grid">
-                <div class="grid-body">
-                  <div class="item-wrapper">
-                    <form action="{{ url('timketertiban/mastersanksi/tambah') }}" method="POST">
-                        {{ csrf_field() }}
-                      <div class="form-group">
-                        <label for="inputEmail1">Sanksi</label>
-                        <input type="text" class="form-control" name="sanksi" placeholder="">
-                      </div>
-                  </div>
+              <p class="grid-header">Prestasi siswa</p>
+              <div class="grid-body">
+                <div class="item-wrapper">
+                  <form>
+                    <div class="form-group">
+                      <label for="inputPassword1">Nama siswa</label> 
+                      <select class="js-example-basic-single form-control">
+                        <option value="AL">Alabama</option>
+                        ...
+                        <option value="WY">Wyoming</option>
+                    </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="inputPassword1">Kategori prestasi</label>
+                      <select class="js-example-basic-single form-control">
+                        <option value="AL">Alabama</option>
+                        ...
+                        <option value="WY">Wyoming</option>
+                    </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="inputPassword1">Jenis prestasi</label>
+                      <select class="js-example-basic-single form-control">
+                        <option value="AL">Alabama</option>
+                        ...
+                        <option value="WY">Wyoming</option>
+                    </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="">Poin</label>
+                      <input type="text" class="form-control" id="inputType8" readonly="readonly" value="xxx">
+                    </div>
+                    <div class="form-group">
+                      <label for="">Tanggal</label>
+                      <input type="date" class="form-control" id="inputType8">
+                    </div>
+                    <button type="submit" class="btn btn-sm btn-primary">Simpan</button>
+                  </form>
                 </div>
               </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary">Save changes</button>
-        </form>
-        </div>
-      </div>
-    </div>
-  </div>
-
-    <br>
-    <br> 
-    <div class="content-viewport">
-        <div class="row">
-            <div class="col-lg-5">
+            </div>
+          </div>
+            <div class="col-lg-8">
                 <div class="grid">
-                    <p class="grid-header">Master data sanksi</p>
+                    <p class="grid-header">Master data prestasi</p>
                     <div class="item-wrapper">
                         <div class="table-responsive">
                             <table class="table info-table">
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th style="text-align:left">Sanksi</th>
+                                        <th style="text-align:left">Nama siswa</th>
+                                        <th style="text-align:left">Kategori </th>
+                                        <th style="text-align:left">Jenis </th>
+                                        <th style="text-align:left">Poin</th>
+                                        <th style="text-align:left">Tanggal</th>
+                                        <th style="text-align:left">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @php $no = 1 @endphp
-                                    @foreach ($sanksi as $s)
                                     <tr>
-                                        <td>{{$no++}}</td>
-                                        <td style="text-align:left">{{$s->sanksi}}</td>
+                                        <td></td>
+                                        <td style="text-align:left"></td>
+                                        <td style="text-align:left"></td>
+                                        <td style="text-align:left"></td>
+                                        <td style="text-align:left"></td>
+                                        <td style="text-align:left"></td>
                                         <td class="actions">
-                                        <a href="/timketertiban/mastersanksi/edit/{{$s->id}}" class="btn btn-rounded social-icon-btn btn-google"><i
+                                        <a href="/timketertiban/mastersanksi/edit/" class="btn btn-rounded social-icon-btn btn-google"><i
                                                 class="mdi mdi-square-edit-outline"></i></a>
-                                        <a href="/timketertiban/mastersanksi/hapus/{{$s->id}}" class="btn btn-rounded social-icon-btn btn-pinterest" onclick="return confirm('Apakah anda akan menghapus {{$s->sanksi}} ?')"><i class="mdi mdi-delete"></i></a>
+                                        <a href="/timketertiban/mastersanksi/hapus/" class="btn btn-rounded social-icon-btn btn-pinterest" onclick="return confirm('Apakah anda akan menghapus ?')"><i class="mdi mdi-delete"></i></a>
                                         </td>
                                         <td>
                                         </td>
                                     </tr>    
-                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

@@ -36,3 +36,6 @@ Route::get('/pelsiswa', function () {
 	return view('timketertiban/datapelanggaran/index');
 });
 //PRESTASI SISWA
+Route::get('/pressiswa', function () {
+	return view('timketertiban/dataprestasi/index');
+});
