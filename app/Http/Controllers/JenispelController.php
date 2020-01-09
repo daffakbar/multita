@@ -38,10 +38,13 @@ class JenispelController extends Controller
      */
     public function store(Request $request)
     {
+        $current_date_time = date('Y-m-d H:i:s');
         DB::table('master_jenispel')->insert([
             'idKategoripel'  => $request->idKategori,
             'jenisPelanggaran'  => $request->jenisPel,
-            'poin'              => $request->poin
+            'poin'              => $request->poin,
+            'created_at' => now(),
+            'updated_at' => now()
         ]);
 
         return redirect('timketertiban/masterjenispel')->with('success', 'Data Berhasil di Tambah!');
