@@ -14,9 +14,12 @@ class JenispresController extends Controller
      */
     public function index()
     {
-        $jenispres =DB::table('master_jenispres')->get();
+        $jenispres =DB::table('master_jenispres')->
+        join('master_kategoriprestasi','masterjenispres.idKategoripres','=','master_kategoriprestasi.id')->
+        orderBy('idKategoripres','desc')->
+        get();
         
-        return view('timketertiban.masterjenispres.index', ['jenispres'=> $jenispres]);
+        return view('timketertiban.masterjenispres.index',compact('jenispres'));
     }
 
     /**
@@ -38,8 +41,11 @@ class JenispresController extends Controller
     public function store(Request $request)
     {
         DB::table('master_jenispres')->insert([
-            'jenisPrestasi'  => $request->jenisPres,
-            'poin'              => $request->poin
+            'idKategoripres'    => $request->idKategoripres,
+            'jenisPrestasi'     => $request->jenisPres,
+            'poin'              => $request->poin,
+            'created_at'        =>now(),
+            'updated_at'        =>now()
         ]);
 
         return redirect('timketertiban/masterjenispres')->with('success', 'Data Berhasil di Tambah!');

@@ -16,12 +16,19 @@
         <p class="grid-header">Edit Data Jenis Pelanggaran</p>
         <div class="grid-body">
           <div class="item-wrapper">  
-            @foreach ($jenispeldit as $jp)
-                
-            
+            @foreach ($jenispeledit as $jp)
             <form action="/timketertiban/masterjenispel/update" method="POST">
               {{ csrf_field() }}
-              <input type="hidden" name="id" value="{{ $jp->id }}"> <br/>
+              <input type="hidden" name="id" value="{{ $jp->idJenispel }}"> <br/>
+              <div class="form-group">
+                <label for="kelas">Kategori Pelanggaran</label>
+                <select name="idKategoripel" class="custom-select form-control" id="">
+                  {{-- @foreach ($kategoripeledit as $kp) --}}
+                  <option placeholder="{{$jp->idKategoripel}}" >{{$jp->idKategoripel}}</option>                      
+                  {{-- @endforeach --}}
+
+                </select>
+              </div>
               <div class="form-group">
                 <label for="kelas">Jenis Pelanggaran</label>
                 <input type="text" class="form-control" name="jenispel" value="{{$jp->jenisPelanggaran}}">

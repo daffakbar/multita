@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Alert;
+
 
 class JenispelController extends Controller
 {
@@ -14,8 +16,11 @@ class JenispelController extends Controller
      */
     public function index()
     {
-        $jenispel =DB::table('master_jenispel')->join('master_kategoripelanggaran','master_jenispel.idKategoripel','=','master_kategoripelanggaran.id')->get();
-        $kategoripel =DB::table('master_kategoripelanggaran')->get();
+        $jenispel = DB::table('master_jenispel')->
+        join('master_kategoripelanggaran','master_jenispel.idKategoripel','=','master_kategoripelanggaran.id')->
+        orderBy('kategoripelanggaran','desc')->
+        get();
+        $kategoripel = DB::table('master_kategoripelanggaran')->get();
         
         return view('timketertiban.masterjenispel.index',compact('jenispel','kategoripel'));
     }
@@ -38,13 +43,12 @@ class JenispelController extends Controller
      */
     public function store(Request $request)
     {
-        $current_date_time = date('Y-m-d H:i:s');
         DB::table('master_jenispel')->insert([
-            'idKategoripel'  => $request->idKategori,
+            'idKategoripel'     => $request->idKategori,
             'jenisPelanggaran'  => $request->jenisPel,
             'poin'              => $request->poin,
-            'created_at' => now(),
-            'updated_at' => now()
+            'created_at'        => now(),
+            'updated_at'        => now()
         ]);
 
         return redirect('timketertiban/masterjenispel')->with('success', 'Data Berhasil di Tambah!');
@@ -69,9 +73,11 @@ class JenispelController extends Controller
      */
     public function edit($id)
     {
-        $jenispeldit = DB::table('master_jenispel')->where('id', $id)->get();
-
-        return view('timketertiban.masterjenispel.edit', ['jenispeldit'=> $jenispeldit]);
+        $jenispeledit = DB::table('master_jenispel')->    
+        where('idJenispel', $id)->get();
+        $kategoripeledit = DB::table('master_kategoripelanggaran')->get();
+        // dd($jenispeledit);
+        return view('timketertiban.masterjenispel.edit', compact('jenispeledit','kategoripeledit'));
     }
 
     /**
@@ -98,7 +104,7 @@ class JenispelController extends Controller
      */
     public function destroy($id)
     {
-        DB::table('master_jenispel')->where('id', $id)->delete();
+        DB::table('master_jenispel')->where('idJenispel', $id)->delete();
 
         return redirect('timketertiban/masterjenispel')->with('success', 'Data Berhasil di Hapus!');
     }

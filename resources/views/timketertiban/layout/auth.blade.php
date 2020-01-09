@@ -12,6 +12,9 @@
     <!-- inject:css -->
     <link rel="stylesheet" href="{{asset('admin/assets/css/shared/style.css')}}">
 
+    {{-- sweetalert2 --}}
+    <script src="{{asset('admin/assets/sweetalert2/sweetalert2.min.js')}}"></script>
+    <link rel="stylesheet" href="{{asset('admin/assets/sweetalert2/sweetalert2.min.css')}}">
     
     <!-- endinject -->
     <!-- Layout style -->
@@ -19,7 +22,8 @@
     <!-- Layout style -->
     <link rel="shortcut icon" href="{{asset('admin/assets/images/favicon.ico')}}" />
 
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   </head>
   <body class="header-fixed">
     <!-- partial:partials/_header.html -->
@@ -221,6 +225,7 @@
       </div>
       <!-- page content ends -->
     </div>
+    @include('sweet::alert')
     <!--page body ends -->
     <!-- SCRIPT LOADING START FORM HERE /////////////-->
     <!-- plugins:js -->
@@ -236,15 +241,8 @@
     <script src="{{asset('admin/assets/js/dashboard.js')}}"></script>
   
 
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/js/select2.min.js"></script>
-    <script>
-      $(document).ready(function() {
-      $('.js-example-basic-single').select2();
-      });
-    </script>
-    <script>
-      $(document).ready(function() { $("#e1").select2(); });
-    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/8.11.8/sweetalert2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
   
     <!-- endbuild -->
   </body>

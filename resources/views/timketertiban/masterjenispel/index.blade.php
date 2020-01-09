@@ -79,9 +79,9 @@
                                         <td style="text-align: left">{{$jp->jenisPelanggaran}}</td>
                                         <td>{{$jp->poin}}</td>
                                         <td class="actions">
-                                        <a href="/timketertiban/masterjenispel/edit/{{$jp->id}}" class="btn btn-rounded social-icon-btn btn-google"><i
+                                        <a href="/timketertiban/masterjenispel/edit/{{$jp->idJenispel}}" class="btn btn-rounded social-icon-btn btn-google"><i
                                                 class="mdi mdi-square-edit-outline"></i></a>
-                                        <a href="/timketertiban/masterjenispel/hapus/{{$jp->id}}" class="btn btn-rounded social-icon-btn btn-pinterest" onclick="return confirm('Apakah anda akan menghapus {{$jp->jenisPelanggaran}} ?')"><i class="mdi mdi-delete"></i></a>
+                                        <a href="/timketertiban/masterjenispel/hapus/{{$jp->idJenispel}}" class="btn btn-rounded social-icon-btn btn-pinterest" onclick="return confirm('Apakah anda akan menghapus {{$jp->jenisPelanggaran}} ?')"><i class="mdi mdi-delete"></i></a>
                                         </td>
                                         <td>
                                         </td>
