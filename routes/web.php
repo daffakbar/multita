@@ -41,6 +41,8 @@ Route::group(['prefix' => 'timketertiban'], function () {
   Route::post('/password/reset', 'TimketertibanAuth\ResetPasswordController@reset')->name('password.email');
   Route::get('/password/reset', 'TimketertibanAuth\ForgotPasswordController@showLinkRequestForm')->name('password.reset');
   Route::get('/password/reset/{token}', 'TimketertibanAuth\ResetPasswordController@showResetForm');
+
+  Route::post('pelsiswa/simpan','PelanggaranController@create');
 });
 
 Route::group(['prefix' => 'walimurid'], function () {

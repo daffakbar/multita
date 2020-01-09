@@ -23,6 +23,14 @@
                     <form action="{{ url('timketertiban/masterjenispel/tambah') }}" method="POST">
                         {{ csrf_field() }}
                       <div class="form-group">
+                        <label >Kategori pelanggaran</label>
+                        <select name="idKategori" class="custom-select form-control" id="">
+                          @foreach ($kategoripel as $kp)
+                          <option value="{{$kp->id}}">{{$kp->kategoripelanggaran}}</option>
+                          @endforeach
+                        </select>
+                      </div>
+                      <div class="form-group">
                         <label >Jenis Pelanggaran</label>
                         <input type="text" class="form-control" name="jenisPel" placeholder="">
                       </div>
@@ -47,7 +55,7 @@
     <br> 
     <div class="content-viewport">
         <div class="row">
-            <div class="col-lg-7">
+            <div class="col-lg-10">
                 <div class="grid">
                     <p class="grid-header">Master data jenis pelanggaran</p>
                     <div class="item-wrapper">
@@ -56,7 +64,8 @@
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th style="text-align: left">Jenis Pelanggaran</th>
+                                        <th style="text-align: left">Kategori pelanggaran</th>
+                                        <th style="text-align: left">Jenis pelanggaran</th>
                                         <th>Poin</th>
                                         <th>Action</th>
                                     </tr>
@@ -66,6 +75,7 @@
                                     @foreach ($jenispel as $jp)
                                     <tr>
                                         <td>{{$no++}}</td>
+                                        <td style="text-align: left">{{$jp->kategoripelanggaran}}</td>
                                         <td style="text-align: left">{{$jp->jenisPelanggaran}}</td>
                                         <td>{{$jp->poin}}</td>
                                         <td class="actions">

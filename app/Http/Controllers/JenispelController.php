@@ -14,9 +14,10 @@ class JenispelController extends Controller
      */
     public function index()
     {
-        $jenispel =DB::table('master_jenispel')->get();
+        $jenispel =DB::table('master_jenispel')->join('master_kategoripelanggaran','master_jenispel.idKategoripel','=','master_kategoripelanggaran.id')->get();
+        $kategoripel =DB::table('master_kategoripelanggaran')->get();
         
-        return view('timketertiban.masterjenispel.index', ['jenispel'=> $jenispel]);
+        return view('timketertiban.masterjenispel.index',compact('jenispel','kategoripel'));
     }
 
     /**
@@ -38,6 +39,7 @@ class JenispelController extends Controller
     public function store(Request $request)
     {
         DB::table('master_jenispel')->insert([
+            'idKategoripel'  => $request->idKategori,
             'jenisPelanggaran'  => $request->jenisPel,
             'poin'              => $request->poin
         ]);

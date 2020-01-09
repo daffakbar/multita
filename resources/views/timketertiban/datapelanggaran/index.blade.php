@@ -11,13 +11,14 @@
               <p class="grid-header">Pelanggaran siswa</p>
               <div class="grid-body">
                 <div class="item-wrapper">
-                  <form>
+                <form action="{{action('PelanggaranController@create')}}" method="post">
+                  {{ csrf_field() }}
                     <div class="form-group">
                       <label for="inputPassword1">Nama siswa</label> 
-                      <select class="js-example-basic-single form-control">
-                        <option value="AL">Alabama</option>
-                        ...
-                        <option value="WY">Wyoming</option>
+                      <select class="js-example-basic-single form-control" name="namaSiswa">
+                        @foreach ($siswas as $dt)
+                          <option value="{{ $dt->id}}">{{$dt->name}}</option>
+                        @endforeach
                     </select>
                     </div>
                     <div class="form-group">
