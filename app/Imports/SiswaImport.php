@@ -19,7 +19,7 @@ class SiswaImport implements ToModel
             'nis' => $row[1],
             'name' => $row[2], 
             'email' => $row[3], 
-            'password' => $row[4],
+            'password' => bcrypt($row[4]),
             'jenisKelamin' => $row[5],
             'agama' => $row[6],
             

@@ -15,11 +15,13 @@ class JenispresController extends Controller
     public function index()
     {
         $jenispres =DB::table('master_jenispres')->
-        join('master_kategoriprestasi','masterjenispres.idKategoripres','=','master_kategoriprestasi.id')->
+        join('master_kategoriprestasi','master_jenispres.idKategoripres','=','master_kategoriprestasi.id')->
         orderBy('idKategoripres','desc')->
         get();
-        
-        return view('timketertiban.masterjenispres.index',compact('jenispres'));
+        $kategoripres = DB::table('master_kategoriprestasi')->get();
+        // dd($jenispres);
+
+        return view('timketertiban.masterjenispres.index',compact('jenispres','kategoripres'));
     }
 
     /**
@@ -99,7 +101,7 @@ class JenispresController extends Controller
      */
     public function destroy($id)
     {
-        DB::table('master_jenispres')->where('id', $id)->delete();
+        DB::table('master_jenispres')->where('idJenispres', $id)->delete();
 
         return redirect('timketertiban/masterjenispres')->with('success', 'Data Berhasil di Hapus!');
     }
