@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Alert;
+
 
 class KelassiswaController extends Controller
 {
@@ -13,7 +16,13 @@ class KelassiswaController extends Controller
      */
     public function index()
     {
-        //
+        $kelassiswa = DB::table('kelassiswas')->
+        join('siswas','kelassiswas.idSiswak','=','siswas.id')->
+        join('master_kelas','kelassiswas.idKelask','=','master_kelas.idKelas')->
+        join('master_tahunajaran','kelassiswas.idTahunajarank','=','master_tahunajaran.idTahunajaran')->
+        get();
+
+        return view('bk.masterkelassiswa.index',compact('kelassiswa'));
     }
 
     /**

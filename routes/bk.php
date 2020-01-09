@@ -53,3 +53,8 @@ Route::post('/masterkategoripres/tambah', 'KategoripresController@store')->name(
 Route::get('/masterkategoripres/hapus/{id}', 'KategoripresController@destroy')->name('hapuspres');
 Route::get('/masterkategoripres/edit/{id}', 'KategoripresController@edit')->name('editpres');
 Route::post('/masterkategoripres/update', 'KategoripresController@update')->name('updatepres');
+
+// MASTER KELAS SISWA
+Route::get('/masterkelassiswa', 'KelassiswaController@index')->name('masterkelassiswa');
+Route::post('/masterkelassiswa/tambah', 'KelassiswaController@store')->name('tambahkelassiswa');
+Route::get('/masterkelassiswa/hapus/{id}', 'KelassiswaController@destroy')->name('hapuskelassiswa');

@@ -197,7 +197,12 @@
               </li>
             </ul>
           </li>
-          
+          <li>
+            <a href="{{ url('bk/masterkelassiswa') }}">
+              <span class="link-title">Kelas siswa</span>
+              <i class="mdi mdi-account-multiple-minus link-icon"></i>
+            </a>
+          </li>
           <li class="nav-category-divider">Logout</li>
           <li>
             <a href="{{ url('/bk/logout') }}"

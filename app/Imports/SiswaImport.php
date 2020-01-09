@@ -6,7 +6,8 @@ use App\Master_Siswa;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-class SiswaImport implements ToModel
+
+class SiswaImport implements ToModel, WithHeadingRow
 {
     /**
     * @param array $row
@@ -16,12 +17,12 @@ class SiswaImport implements ToModel
     public function model(array $row)
     {
         return new Master_Siswa([
-            'nis' => $row[1],
-            'name' => $row[2], 
-            'email' => $row[3], 
-            'password' => bcrypt($row[4]),
-            'jenisKelamin' => $row[5],
-            'agama' => $row[6],
+            'nis'           => $row['nis'],
+            'name'          => $row['name'], 
+            'email'         => $row['email'], 
+            'password'      => bcrypt($row['password']),
+            'jenisKelamin'  => $row['jeniskelamin'],
+            'agama'         => $row['agama'],
             
             // 'nis'  => $row['nis'],
             // 'namaSiswa' => $row['namaSiswa'],
