@@ -21,7 +21,7 @@
             
             <form action="/bk/masterkelas/update" method="POST">
               {{ csrf_field() }}
-              <input type="hidden" name="id" value="{{ $k->id }}"> <br/>
+              <input type="hidden" name="id" value="{{ $k->idKelas }}"> <br/>
               <div class="form-group">
                 <label for="kelas">Kelas</label>
                 <input type="text" class="form-control" name="kelas" value="{{$k->kelas}}">

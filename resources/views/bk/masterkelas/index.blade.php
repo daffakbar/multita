@@ -64,9 +64,9 @@
                                         <td>{{$no++}}</td>
                                         <td>{{$k->kelas}}</td>
                                         <td class="actions">
-                                        <a href="/bk/masterkelas/edit/{{$k->id}}" class="btn btn-rounded social-icon-btn btn-google"><i
+                                        <a href="/bk/masterkelas/edit/{{$k->idKelas}}" class="btn btn-rounded social-icon-btn btn-google"><i
                                                 class="mdi mdi-square-edit-outline"></i></a>
-                                        <a href="/bk/masterkelas/hapus/{{$k->id}}" class="btn btn-rounded social-icon-btn btn-pinterest" onclick="return confirm('Apakah anda akan menghapus {{$k->kelas}} ?')"><i class="mdi mdi-delete"></i></a>
+                                        <a href="/bk/masterkelas/hapus/{{$k->idKelas}}" class="btn btn-rounded social-icon-btn btn-pinterest" onclick="return confirm('Apakah anda akan menghapus {{$k->kelas}} ?')"><i class="mdi mdi-delete"></i></a>
                                         </td>
                                         <td>
                                         </td>

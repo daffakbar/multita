@@ -15,12 +15,11 @@ class WalmurImport implements ToModel
     public function model(array $row)
     {
         return new Master_Walimurid([
-            'nis' => $row[1], 
-            'name' => $row[2], 
-            'email' => $row[3],
-            'password' => $row[4],
-            'alamat' => $row[5],
-            'noHp' => $row[6],
+            'name' => $row[1], 
+            'email' => $row[2],
+            'password' => bcrypt($row[3]),
+            'alamat' => $row[4],
+            'noHp' => $row[5],
         ]);
     }
 }

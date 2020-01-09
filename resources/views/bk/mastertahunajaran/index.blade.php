@@ -76,9 +76,9 @@
                                         <td>{{$ta->tahun}}</td>
                                         <td>{{$ta->tanggalMulai}}</td>
                                         <td class="actions">
-                                        <a href="/bk/mastertahunajaran/edit/{{$ta->id}}" class="btn btn-rounded social-icon-btn btn-google"><i
+                                        <a href="/bk/mastertahunajaran/edit/{{$ta->idTahunajaran}}" class="btn btn-rounded social-icon-btn btn-google"><i
                                                 class="mdi mdi-square-edit-outline"></i></a>
-                                        <a href="/bk/mastertahunajaran/hapus/{{$ta->id}}" class="btn btn-rounded social-icon-btn btn-pinterest" onclick="return confirm('Apakah anda akan menghapus {{$ta->semester}} ?')"><i class="mdi mdi-delete"></i></a>
+                                        <a href="/bk/mastertahunajaran/hapus/{{$ta->idTahunajaran}}" class="btn btn-rounded social-icon-btn btn-pinterest" onclick="return confirm('Apakah anda akan menghapus {{$ta->semester}} ?')"><i class="mdi mdi-delete"></i></a>
                                         </td>
                                         <td>
                                         </td>

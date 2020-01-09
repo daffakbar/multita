@@ -64,7 +64,7 @@ class tahunajaranController extends Controller
      */
     public function edit($id)
     {
-        $tahunajaranedit = DB::table('master_tahunajaran')->where('id', $id)->get();
+        $tahunajaranedit = DB::table('master_tahunajaran')->where('idTahunajaran', $id)->get();
 
         return view('bk.mastertahunajaran.edit', ['tahunajaranedit'=> $tahunajaranedit]);
     }
@@ -78,13 +78,13 @@ class tahunajaranController extends Controller
      */
     public function update(Request $request)
     {
-        DB::table('master_tahunajaran')->where('id', $request->id)->update([
+        DB::table('master_tahunajaran')->where('idTahunajaran', $request->id)->update([
             'semester' => $request->semester,
             'tahun' => $request->tahun,
             'tanggalMulai'=> $request->tanggalMulai
         ]);
 
-        return redirect('bk/mastertahunajaran')->with('success', 'Data Berhasil di Hapus!');
+        return redirect('bk/mastertahunajaran')->with('success', 'Data Berhasil di Update!');
     }
 
     /**
@@ -95,7 +95,7 @@ class tahunajaranController extends Controller
      */
     public function destroy($id)
     {
-        DB::table('master_tahunajaran')->where('id', $id)->delete();
+        DB::table('master_tahunajaran')->where('idTahunajaran', $id)->delete();
         
         return redirect('bk/mastertahunajaran')->with('success', 'Data Berhasil di Hapus!');
     }

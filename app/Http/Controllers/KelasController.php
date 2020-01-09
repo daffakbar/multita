@@ -69,7 +69,7 @@ class KelasController extends Controller
      */
     public function edit($id)
     {
-        $kelasedit = DB::table('master_kelas')->where('id', $id)->get();
+        $kelasedit = DB::table('master_kelas')->where('idKelas', $id)->get();
 
         return view('bk.masterkelas.edit', ['kelasedit' => $kelasedit]);
     }
@@ -83,7 +83,7 @@ class KelasController extends Controller
      */
     public function update(Request $request)
     {
-        DB::table('master_kelas')->where('id', $request->id)->update([
+        DB::table('master_kelas')->where('idKelas', $request->id)->update([
             'kelas' => $request->kelas
         ]);
         
@@ -98,7 +98,7 @@ class KelasController extends Controller
      */
     public function destroy($id)
     {
-        DB::table('master_kelas')->where('id', $id)->delete();
+        DB::table('master_kelas')->where('idKelas', $id)->delete();
         // Alert::success('Berhasil menghapus data !')->persistent('Confirm');
         return redirect('bk/masterkelas')->with('success', 'Data Berhasil di Hapus!');
     }

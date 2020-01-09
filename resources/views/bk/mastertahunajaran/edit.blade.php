@@ -19,7 +19,7 @@
             @foreach ($tahunajaranedit as $ta)
             <form action="/bk/mastertahunajaran/update" method="POST">
               {{ csrf_field() }}
-              <input type="hidden" name="id" value="{{ $ta->id }}"> <br/>
+              <input type="hidden" name="idTahunajaran" value="{{ $ta->idTahunajaran }}"> <br/>
               <div class="form-group">
                 <label for="kategoripelanggaran">Semester</label>
                 <input type="text" class="form-control" name="semester" value="{{$ta->semester}}">
