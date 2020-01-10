@@ -19,10 +19,12 @@ class KelassiswaController extends Controller
         $kelassiswa = DB::table('kelassiswas')->
         join('siswas','kelassiswas.idSiswak','=','siswas.id')->
         join('master_kelas','kelassiswas.idKelask','=','master_kelas.idKelas')->
-        join('master_tahunajaran','kelassiswas.idTahunajarank','=','master_tahunajaran.idTahunajaran')->
         get();
 
-        return view('bk.masterkelassiswa.index',compact('kelassiswa'));
+        $kelas = DB::table('master_kelas')->get();
+        $siswas = DB::table('siswas')->get();
+
+        return view('bk.masterkelassiswa.index',compact('kelassiswa','kelas','siswas'));
     }
 
     /**
@@ -43,7 +45,15 @@ class KelassiswaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        DB::table('kelassiswas')->insert([
+            'idTahunajarank'    => $request->idTahunajarank,
+            'idKelask'          => $request->idKelask,
+            'idSiswak'          => $request->idSiswak,
+            'created_at'        => now(),
+            'updated_at'        => now()
+        ]);
+
+        return redirect('bk/masterkelassiswa')->with('success', 'Data Berhasil di Tambah!');
     }
 
     /**

@@ -22,12 +22,25 @@
             <div class="grid">
                 <div class="grid-body">
                   <div class="item-wrapper">
-                    <form action="{{ url('bk/masterkelas/tambah') }}" method="POST">
+                    <form action="{{ url('bk/masterkelassiswa/tambah') }}" method="POST">
                         {{ csrf_field() }}
                       <div class="form-group">
                         <label for="inputEmail1">Kelas</label>
-                        <input type="text" class="form-control" name="kelas" placeholder="">
+                        <select name="idKelask" class="custom-select form-control" id="">
+                          @foreach ($kelas as $ks)
+                          <option value="{{$ks->idKelas}}">{{$ks->kelas}}</option>
+                          @endforeach
+                        </select>
                       </div>
+                      <div class="form-group">
+                        <label for="inputEmail1">Siswa</label>
+                        <select name="idSiswak" class="custom-select form-control" id="">
+                          @foreach ($siswas as $s)
+                          <option value="{{$s->id}}">{{$s->name}}</option>
+                          @endforeach
+                        </select>
+                      </div>
+                      
                   </div>
                 </div>
               </div>
@@ -45,7 +58,7 @@
     <br> 
     <div class="content-viewport">
         <div class="row">
-            <div class="col-lg-4">
+            <div class="col-lg-7">
                 <div class="grid">
                     <p class="grid-header">Master data kelas</p>
                     <div class="item-wrapper">
@@ -54,7 +67,6 @@
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>Semester</th>
                                         <th>Kelas</th>
                                         <th>Nama Siswa</th>
                                         <th>Action</th>
@@ -65,7 +77,6 @@
                                     @foreach ($kelassiswa as $k)
                                     <tr>
                                         <td>{{$no++}}</td>
-                                        <td>{{$k->semester}}</td>
                                         <td>{{$k->kelas}}</td>
                                         <td>{{$k->name}}</td>
                                         <td class="actions">
