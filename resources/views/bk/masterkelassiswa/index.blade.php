@@ -36,8 +36,11 @@
                         <label for="inputEmail1">Siswa</label>
                         <select name="idSiswak" class="custom-select form-control" id="">
                           @foreach ($siswas as $s)
-                          <option value="{{$s->id}}">{{$s->name}}</option>
-                          @endforeach
+                          @if ($s->idSiswak == null)
+                            <option value="{{$s->id}}">{{$s->name}}</option>
+                              
+                          @endif
+                          @endforeach  
                         </select>
                       </div>
                       
@@ -80,9 +83,9 @@
                                         <td>{{$k->kelas}}</td>
                                         <td>{{$k->name}}</td>
                                         <td class="actions">
-                                        <a href="/bk/masterkelas/edit/{{$k->idKelassiswa}}" class="btn btn-rounded social-icon-btn btn-google"><i
+                                        <a href="/bk/masterkelassiswa/edit/{{$k->idKelassiswa}}" class="btn btn-rounded social-icon-btn btn-google"><i
                                                 class="mdi mdi-square-edit-outline"></i></a>
-                                        <a href="/bk/masterkelas/hapus/{{$k->idKelassiswa}}" class="btn btn-rounded social-icon-btn btn-pinterest" onclick="return confirm('Apakah anda akan menghapus {{$k->name}} ?')"><i class="mdi mdi-delete"></i></a>
+                                        <a href="/bk/masterkelassiswa/hapus/{{$k->idKelassiswa}}" class="btn btn-rounded social-icon-btn btn-pinterest" onclick="return confirm('Apakah anda akan menghapus {{$k->name}} ?')"><i class="mdi mdi-delete"></i></a>
                                         </td>
                                         <td>
                                         </td>

@@ -1,10 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Master_Siswa;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Alert;
+
 
 
 class KelassiswaController extends Controller
@@ -22,7 +24,21 @@ class KelassiswaController extends Controller
         get();
 
         $kelas = DB::table('master_kelas')->get();
-        $siswas = DB::table('siswas')->get();
+        $siswas = DB::table('siswas as s')->
+        leftJoin('kelassiswas as k','s.id','=','k.idSiswak')->
+        get();
+        // dd($siswas);
+        // foreach($siswas as $sw){
+        //     if(DB::table('kelassiswas')->where('idSiswak','=',$sw->id)->first() == null){
+        //         $ss = DB::table('siswas')->where('id','=',$sw->id)->get();
+
+        //     }else
+        //     {
+        //         $ss = ' ';
+        //     }
+        //     // $a = "<option >.$ss.</option>";
+        // }
+        
 
         return view('bk.masterkelassiswa.index',compact('kelassiswa','kelas','siswas'));
     }
@@ -46,7 +62,7 @@ class KelassiswaController extends Controller
     public function store(Request $request)
     {
         DB::table('kelassiswas')->insert([
-            'idTahunajarank'    => $request->idTahunajarank,
+
             'idKelask'          => $request->idKelask,
             'idSiswak'          => $request->idSiswak,
             'created_at'        => now(),
@@ -98,6 +114,9 @@ class KelassiswaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        DB::table('siswas')->where('id', $id)->delete();
+
+        return redirect('bk/masterkelassiswa')->with('success', 'Data Berhasil di Hapus!');
+
     }
 }
