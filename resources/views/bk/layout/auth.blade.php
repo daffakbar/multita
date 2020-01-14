@@ -17,7 +17,6 @@
     <link rel="stylesheet" href="{{asset('admin/assets/sweetalert2/sweetalert2.min.css')}}">
     
 
-    
     <!-- endinject -->
     <!-- Layout style -->
     <link rel="stylesheet" href="{{asset('admin/assets/css/demo_1/style.css')}}">
@@ -26,6 +25,7 @@
     {{-- <link rel="stylesheet" type="text/css" href="/pathto/css/sweetalert.css"> --}}
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
     {{-- <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/8.11.8/sweetalert2.css"> --}}
   </head>
   <body class="header-fixed">
@@ -203,12 +203,7 @@
               <i class="mdi mdi-account-multiple link-icon"></i>
             </a>
           </li>
-          <li>
-            <a href="{{ url('bk/tahunajaransiswa') }}">
-              <span class="link-title">Tahun ajaran siswa</span>
-              <i class="mdi mdi-account-multiple link-icon"></i>
-            </a>
-          </li>
+          
           <li class="nav-category-divider">Logout</li>
           <li>
             <a href="{{ url('/bk/logout') }}"
@@ -245,7 +240,7 @@
       <!-- page content ends -->
     </div>
     @include('sweet::alert')
-    
+
     <!--page body ends -->
     <!-- SCRIPT LOADING START FORM HERE /////////////-->
     <!-- plugins:js -->
@@ -262,6 +257,18 @@
     <script src="{{asset('admin/assets/js/dashboard.js')}}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/8.11.8/sweetalert2.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+    <link href="{{asset('admin/assets/select2/css/select2.min.css')}}" rel="stylesheet" />
+    <link href="{{asset('admin/assets/select2/css/select2.css')}}" rel="stylesheet" />
+    <script src="{{asset('admin/assets/select2/js/select2.min.js')}}"></script>    
+    <script>
+        $(document).ready(function() { $("#e1").select2(); });
+    </script>
+    <script>
+      $(document).ready(function() {
+      $('.js-example-basic-single').select2();  
+      });
+      </script>
     {{-- @include('sweet::alert') --}}
     {{-- @include('sweetalert::alert') --}}
     <!-- endbuild -->

@@ -2,12 +2,17 @@
 
 @section('content')
 <div class="container">
-  
+{{-- 
+  <select class="js-example-basic-single" name="state">
+    <option value="AL">Alabama</option>
+      ...
+    <option value="WY">Wyoming</option>
+  </select> --}}
+
     <br>
     <div class="btn btn-success has-icon" data-toggle="modal" data-target="#exampleModal">
         <i class="mdi mdi-clipboard-outline link-icon"></i>Tambah data
     </div>
-
     <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -24,6 +29,14 @@
                   <div class="item-wrapper">
                     <form action="{{ url('bk/masterkelassiswa/tambah') }}" method="POST">
                         {{ csrf_field() }}
+                      <div class="form-group">
+                        <label for="inputEmail1">Tahunajaran</label>
+                        <select name="idTahunajarank" class="custom-select form-control" id="">
+                          @foreach ($tahunajaran as $ta)
+                          <option value="{{$ta->idTahunajaran}}">{{$ta->semester}} / {{$ta->tahun}}</option>
+                          @endforeach
+                        </select>
+                      </div>
                       <div class="form-group">
                         <label for="inputEmail1">Kelas</label>
                         <select name="idKelask" class="custom-select form-control" id="">
@@ -70,8 +83,9 @@
                                 <thead>
                                     <tr>
                                         <th>No</th>
+                                        <th>Tahun ajaran</th>
                                         <th>Kelas</th>
-                                        <th>Nama Siswa</th>
+                                        <th>Nama siswa</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -80,6 +94,7 @@
                                     @foreach ($kelassiswa as $k)
                                     <tr>
                                         <td>{{$no++}}</td>
+                                        <td>{{$k->semester}}/{{$k->tahun}}</td>
                                         <td>{{$k->kelas}}</td>
                                         <td>{{$k->name}}</td>
                                         <td class="actions">

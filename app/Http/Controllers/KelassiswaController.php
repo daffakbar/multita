@@ -21,6 +21,7 @@ class KelassiswaController extends Controller
         $kelassiswa = DB::table('kelassiswas')->
         join('siswas','kelassiswas.idSiswak','=','siswas.id')->
         join('master_kelas','kelassiswas.idKelask','=','master_kelas.idKelas')->
+        join('master_tahunajaran', 'kelassiswas.idTahunajarank','=','master_tahunajaran.idTahunajaran')->
         orderBy('idKelask','desc')->
         get();
 
@@ -28,6 +29,8 @@ class KelassiswaController extends Controller
         $siswas = DB::table('siswas as s')->
         leftJoin('kelassiswas as k','s.id','=','k.idSiswak')->
         get();
+        $tahunajaran = DB::table('master_tahunajaran')->get();
+        // dd($tahunajaran);
         // dd($siswas);
         // foreach($siswas as $sw){
         //     if(DB::table('kelassiswas')->where('idSiswak','=',$sw->id)->first() == null){
@@ -41,7 +44,7 @@ class KelassiswaController extends Controller
         // }
         
 
-        return view('bk.masterkelassiswa.index',compact('kelassiswa','kelas','siswas'));
+        return view('bk.masterkelassiswa.index',compact('kelassiswa','kelas','siswas','tahunajaran'));
     }
 
     /**
@@ -64,6 +67,7 @@ class KelassiswaController extends Controller
     {
         DB::table('kelassiswas')->insert([
 
+            'idTahunajarank'    => $request->idTahunajarank,
             'idKelask'          => $request->idKelask,
             'idSiswak'          => $request->idSiswak,
             'created_at'        => now(),
