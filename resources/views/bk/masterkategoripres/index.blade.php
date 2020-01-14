@@ -64,9 +64,9 @@
                                         <td>{{$no++}}</td>
                                         <td style="text-align:left;">{{$kp->kategoriprestasi}}</td>
                                         <td class="actions">
-                                        <a href="/bk/masterkategoripres/edit/{{$kp->id}}" class="btn btn-rounded social-icon-btn btn-google"><i
+                                        <a href="/bk/masterkategoripres/edit/{{$kp->idKategoripres}}" class="btn btn-rounded social-icon-btn btn-google"><i
                                                 class="mdi mdi-square-edit-outline"></i></a>
-                                        <a href="/bk/masterkategoripres/hapus/{{$kp->id}}" class="btn btn-rounded social-icon-btn btn-pinterest" onclick="return confirm('Apakah anda akan menghapus {{$kp->kategoriprestasi}} ?')"><i class="mdi mdi-delete"></i></a>
+                                        <a href="/bk/masterkategoripres/hapus/{{$kp->idKategoripres}}" class="btn btn-rounded social-icon-btn btn-pinterest" onclick="return confirm('Apakah anda akan menghapus {{$kp->kategoriprestasi}} ?')"><i class="mdi mdi-delete"></i></a>
                                         </td>
                                         <td>
                                         </td>

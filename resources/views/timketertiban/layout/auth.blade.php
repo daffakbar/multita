@@ -24,6 +24,7 @@
 
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
   </head>
   <body class="header-fixed">
     <!-- partial:partials/_header.html -->
@@ -244,6 +245,17 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/8.11.8/sweetalert2.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
   
+    <link href="{{asset('admin/assets/select2/css/select2.min.css')}}" rel="stylesheet" />
+    <link href="{{asset('admin/assets/select2/css/select2.css')}}" rel="stylesheet" />
+    <script src="{{asset('admin/assets/select2/js/select2.min.js')}}"></script>    
+    <script>
+        $(document).ready(function() { $("#e1").select2(); });
+    </script>
+    <script>
+      $(document).ready(function() {
+      $('.js-example-basic-single').select2();  
+      });
+      </script>
     <!-- endbuild -->
   </body>
 </html>

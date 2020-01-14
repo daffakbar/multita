@@ -17,7 +17,7 @@ class JenispelController extends Controller
     public function index()
     {
         $jenispel = DB::table('master_jenispel')->
-        join('master_kategoripelanggaran','master_jenispel.idKategoripel','=','master_kategoripelanggaran.id')->
+        join('master_kategoripelanggaran','master_jenispel.idKategoripelJP','=','master_kategoripelanggaran.idKategoripel')->
         orderBy('kategoripelanggaran','desc')->
         get();
         $kategoripel = DB::table('master_kategoripelanggaran')->get();
@@ -44,7 +44,7 @@ class JenispelController extends Controller
     public function store(Request $request)
     {
         DB::table('master_jenispel')->insert([
-            'idKategoripel'     => $request->idKategori,
+            'idKategoripelJP'     => $request->idKategori,
             'jenisPelanggaran'  => $request->jenisPel,
             'poin'              => $request->poin,
             'created_at'        => now(),

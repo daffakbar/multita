@@ -26,7 +26,7 @@
                         <label >Kategori pelanggaran</label>
                         <select name="idKategori" class="custom-select form-control" id="">
                           @foreach ($kategoripel as $kp)
-                          <option value="{{$kp->id}}">{{$kp->kategoripelanggaran}}</option>
+                          <option value="{{$kp->idKategoripel}}">{{$kp->kategoripelanggaran}}</option>
                           @endforeach
                         </select>
                       </div>

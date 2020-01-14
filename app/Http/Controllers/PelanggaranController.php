@@ -17,10 +17,37 @@ class PelanggaranController extends Controller
      */
     public function index()
     {
-        $siswas = DB::table('siswas')->get();
-        $kategoripel = DB::table('master_kategoripelanggaran')->get();
+        $siswas = DB::table('kelassiswas as ks')
+        ->join('siswas as s','ks.idSiswak','=','s.id')
+        ->get();
+        // dd($siswas);
+        $kategoripel = DB::table('master_jenispel')
+        // ->join('master_kategoripelanggaran as kp','jp.idKategoripelJP','=','kp.idKategoripel')
+        ->get();
+        // dd($kategoripel);
         // dd($datas);
-        return view('timketertiban.datapelanggaran.index',compact('siswas','kategoripel')); 
+        $ajax = DB::table('master_jenispel as jp')
+        ->leftJoin('master_kategoripelanggaran as kp','jp.idKategoripelJP','=','kp.idKategoripel')
+        ->groupBy('kp.kategoripelanggaran')
+        ->get();
+        dd($ajax);
+        return view('timketertiban.datapelanggaran.index',compact('siswas','kategoripel','ajax')); 
+    }
+    function fetch(Request $request)
+    {
+     $select = $request->get('select');
+     $value = $request->get('value');
+     $dependent = $request->get('dependent');
+     $data = DB::table('country_state_city')
+       ->where($select, $value)
+       ->groupBy($dependent)
+       ->get();
+     $output = '<option value="">Select '.ucfirst($dependent).'</option>';
+     foreach($data as $row)
+     {
+      $output .= '<option value="'.$row->$dependent.'">'.$row->$dependent.'</option>';
+     }
+     echo $output;
     }
 
     /**

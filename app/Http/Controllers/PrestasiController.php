@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-class KategoripresController extends Controller
+
+class PrestasiController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,8 +13,7 @@ class KategoripresController extends Controller
      */
     public function index()
     {
-        $kategoripres = DB::table('master_kategoriprestasi')->get();
-        return view('bk.masterkategoripres.index', ['kategoripres'=>$kategoripres]);
+        //
     }
 
     /**
@@ -35,10 +34,7 @@ class KategoripresController extends Controller
      */
     public function store(Request $request)
     {
-        DB::table('master_kategoriprestasi')->insert([
-            'kategoriprestasi' => $request->kategoripres
-        ]);
-        return redirect('bk/masterkategoripres')->with('success', 'Data Berhasil di Tambah!');
+        //
     }
 
     /**
@@ -60,9 +56,7 @@ class KategoripresController extends Controller
      */
     public function edit($id)
     {
-        $kategoripresedit = DB::table('master_kategoriprestasi')->where('idKategoripres', $id)->get();
-
-        return view('bk.masterkategoripres.edit', ['kategoripresedit' => $kategoripresedit]);
+        //
     }
 
     /**
@@ -72,13 +66,9 @@ class KategoripresController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
-        DB::table('master_kategoriprestasi')->where('idKategoripres', $request->id)->update([
-            'kategoriprestasi'=> $request->kategoripres
-        ]);
-
-        return redirect('bk/masterkategoripres')->with('success', 'Data Berhasil di Update!');
+        //
     }
 
     /**
@@ -89,8 +79,6 @@ class KategoripresController extends Controller
      */
     public function destroy($id)
     {
-        DB::table('master_kategoriprestasi')->where('idKategoripres', $id)->delete();
-
-        return redirect('bk/masterkategoripres')->with('success', 'Data Berhasil di Hapus!')    ;
+        //
     }
 }
