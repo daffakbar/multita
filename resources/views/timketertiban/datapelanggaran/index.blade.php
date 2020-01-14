@@ -31,23 +31,23 @@
                         </div> --}}
                         <div class="form-group">
                             <label for="inputPassword1">Kategori pelanggaran</label>
-                            <select class="js-example-basic-single form-control" name="idJenispelP" id="kategori" data-dependent="jenis">
-                                @foreach ($kategoripel as $kp)
-                                <option value="{{$kp->idJenispel}}">{{$kp->jenisPelanggaran}}</option>
+                            <select class="js-example-basic-single form-control dynamic" name="idKategoripelJP" id="idKategoripelJP" data-dependent="jenisPelanggaran">
+                                @foreach ($ajax as $kp)
+                                <option value="{{$kp->idKategoripelJP}}">{{$kp->idKategoripelJP}}</option>
                                 @endforeach
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="inputPassword1">Jenis pelanggaran</label>
-                            <select class="js-example-basic-single form-control" id="jenis" data-dependent="poin">
+                            <select class="js-example-basic-single form-control dynamic" id="jenisPelanggaran">
                                 
-                                <option value="">{{$kp->jenisPelanggaran}}</option>
+                                <option value=""></option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="">Poin</label>
                             <input type="text" class="form-control" id="poin" readonly="readonly"
-                                value="{{$kp->poin}}">
+                                value="">
                             
 
                         </div>

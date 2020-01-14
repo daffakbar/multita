@@ -256,6 +256,76 @@
       $('.js-example-basic-single').select2();  
       });
       </script>
+      <script>
+        $(document).ready(function(){
+        
+         $('.dynamic').change(function(){
+          if($(this).val() != '')
+          {
+           var select = $(this).attr("idJenispel");
+           var value = $(this).val();
+           var dependent = $(this).data('dependent');
+           var _token = $('input[name="_token"]').val();
+           $.ajax({
+            url:"{{ route('timketertiban.pelanggaran.fetch') }}",
+            method:"POST",
+            data:{select:select, value:value, _token:_token, dependent:dependent},
+            success:function(result)
+            {
+             $('#'+dependent).html(result);
+            }
+        
+           })
+          }
+         });
+        
+         $('#idKategoripelJP').change(function(){
+          $('#jenisPelanggaran').val('');
+          // $('#poin').val('');
+         });
+        
+        //  $('#jenisPelanggaran').change(function(){
+          // $('#poin').val('');
+        //  });
+         
+        
+        });
+        </script>
     <!-- endbuild -->
   </body>
 </html>
+<script>
+  $(document).ready(function(){
+  
+   $('.dynamic').change(function(){
+    if($(this).val() != '')
+    {
+     var select = $(this).attr("idJenispel");
+     var value = $(this).val();
+     var dependent = $(this).data('dependent');
+     var _token = $('input[name="_token"]').val();
+     $.ajax({
+      url:"{{ route('timketertiban.pelanggaran.fetch') }}",
+      method:"POST",
+      data:{select:select, value:value, _token:_token, dependent:dependent},
+      success:function(result)
+      {
+       $('#'+dependent).html(result);
+      }
+  
+     })
+    }
+   });
+  
+   $('#idKategoripelJP').change(function(){
+    $('#jenisPelanggaran').val('');
+    // $('#poin').val('');
+   });
+  
+  //  $('#jenisPelanggaran').change(function(){
+    // $('#poin').val('');
+  //  });
+   
+  
+  });
+  </script>

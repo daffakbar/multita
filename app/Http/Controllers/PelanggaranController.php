@@ -27,18 +27,20 @@ class PelanggaranController extends Controller
         // dd($kategoripel);
         // dd($datas);
         $ajax = DB::table('master_jenispel as jp')
-        ->leftJoin('master_kategoripelanggaran as kp','jp.idKategoripelJP','=','kp.idKategoripel')
-        ->groupBy('kp.kategoripelanggaran')
+        // ->join('master_kategoripelanggaran as kp','jp.idKategoripelJP','=','kp.idKategoripel')
+        ->groupBy('idKategoripelJP')
+        // ->orderBy('idKategoripelJP', 'desc')
         ->get();
-        dd($ajax);
-        return view('timketertiban.datapelanggaran.index',compact('siswas','kategoripel','ajax')); 
+        // dd($ajax);
+        return view('timketertiban.datapelanggaran.index',compact('siswas','kategoripel','ajax'))->with('ajax',$ajax); 
     }
     function fetch(Request $request)
     {
      $select = $request->get('select');
      $value = $request->get('value');
      $dependent = $request->get('dependent');
-     $data = DB::table('country_state_city')
+     $data = DB::table('master_jenispel')
+    //    ->join('master_kategoripelanggaran as kp','jp.idKategoripelJP','=','kp.idKategoripel')
        ->where($select, $value)
        ->groupBy($dependent)
        ->get();
