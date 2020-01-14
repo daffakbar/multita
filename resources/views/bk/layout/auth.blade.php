@@ -200,7 +200,13 @@
           <li>
             <a href="{{ url('bk/masterkelassiswa') }}">
               <span class="link-title">Kelas siswa</span>
-              <i class="mdi mdi-account-multiple-minus link-icon"></i>
+              <i class="mdi mdi-account-multiple link-icon"></i>
+            </a>
+          </li>
+          <li>
+            <a href="{{ url('bk/tahunajaransiswa') }}">
+              <span class="link-title">Tahun ajaran siswa</span>
+              <i class="mdi mdi-account-multiple link-icon"></i>
             </a>
           </li>
           <li class="nav-category-divider">Logout</li>

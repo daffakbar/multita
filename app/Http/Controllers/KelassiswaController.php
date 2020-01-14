@@ -21,6 +21,7 @@ class KelassiswaController extends Controller
         $kelassiswa = DB::table('kelassiswas')->
         join('siswas','kelassiswas.idSiswak','=','siswas.id')->
         join('master_kelas','kelassiswas.idKelask','=','master_kelas.idKelas')->
+        orderBy('idKelask','desc')->
         get();
 
         $kelas = DB::table('master_kelas')->get();
@@ -114,7 +115,7 @@ class KelassiswaController extends Controller
      */
     public function destroy($id)
     {
-        DB::table('siswas')->where('id', $id)->delete();
+        DB::table('kelassiswas')->where('idKelassiswa', $id)->delete();
 
         return redirect('bk/masterkelassiswa')->with('success', 'Data Berhasil di Hapus!');
 
