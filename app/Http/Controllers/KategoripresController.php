@@ -13,7 +13,7 @@ class KategoripresController extends Controller
      */
     public function index()
     {
-        $kategoripres = DB::table('master_kategoriprestasi')->get();
+        $kategoripres = DB::table('master_kategoriprestasi')->paginate(5);
         return view('bk.masterkategoripres.index', ['kategoripres'=>$kategoripres]);
     }
 

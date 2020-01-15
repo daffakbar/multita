@@ -90,6 +90,10 @@
                                     @endforeach
                                 </tbody>
                             </table>
+                            {{ $jenispres->links() }}
+                            Halaman : {{ $jenispres->currentPage() }} <br/>
+                            Jumlah Data : {{ $jenispres->total() }} <br/>
+                            Data Per Halaman : {{ $jenispres->perPage() }} <br/>
                         </div>
                     </div>
                 </div>

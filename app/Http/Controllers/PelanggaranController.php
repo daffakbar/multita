@@ -21,8 +21,8 @@ class PelanggaranController extends Controller
         ->join('siswas as s','ks.idSiswak','=','s.id')
         ->get();
         // dd($siswas);
-        $kategoripel = DB::table('master_jenispel')
-        // ->join('master_kategoripelanggaran as kp','jp.idKategoripelJP','=','kp.idKategoripel')
+        $kategoripel = DB::table('master_jenispel as jp')
+        ->join('master_kategoripelanggaran as kp','jp.idKategoripelJP','=','kp.idKategoripel')
         ->get();
         // dd($kategoripel);
         // dd($datas);
@@ -31,10 +31,18 @@ class PelanggaranController extends Controller
         ->groupBy('idKategoripelJP')
         // ->orderBy('idKategoripelJP', 'desc')
         ->get();
-        // dd($ajax);
-        return view('timketertiban.datapelanggaran.index',compact('siswas','kategoripel','ajax'))->with('ajax',$ajax); 
+
+        $pelanggaran = DB::table('pelanggaran_siswas as ps')
+        ->join('kelassiswas as ks','ps.idKelassiswaP','=','ks.idKelassiswa')
+        ->join('siswas as s','ks.idSiswak','=','s.id')
+        ->join('master_jenispel as jp','ps.idJenispelP','=','jp.idJenispel')
+        ->join('master_kategoripelanggaran as kp','jp.idKategoripelJP','=','kp.idKategoripel')
+        ->get();
+        // dd($pelanggaran);
+
+        return view('timketertiban.datapelanggaran.index',compact('siswas','kategoripel','ajax','pelanggaran'))->with('ajax',$ajax); 
     }
-    function fetch(Request $request)
+    public function fetch(Request $request)
     {
      $select = $request->get('select');
      $value = $request->get('value');
@@ -72,7 +80,14 @@ class PelanggaranController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        DB::table('pelanggaran_siswas')->insert([
+            'idKelassiswaP' =>$request->idKelassiswaP,
+            'idJenispelP' => $request->idJenispelP,
+            'tanggalPelanggaran' => $request->tanggalPelanggaran
+        ]);
+        
+
+        return redirect('timketertiban/pelsiswa')->with('success', 'Data Berhasil di Tambah!');
     }
 
     /**

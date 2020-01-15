@@ -85,6 +85,11 @@
                                     @endforeach
                                 </tbody>
                             </table>
+                            <br>
+                            {{ $sanksi->links() }}
+                            Halaman : {{ $sanksi->currentPage() }} <br/>
+                            Jumlah Data : {{ $sanksi->total() }} <br/>
+                            Data Per Halaman : {{ $sanksi->perPage() }} <br/>
                         </div>
                     </div>
                 </div>

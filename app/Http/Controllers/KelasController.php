@@ -16,7 +16,7 @@ class KelasController extends Controller
     public function index()
     {
         //mengambil data
-        $kelas =DB::table('master_kelas')->get();
+        $kelas =DB::table('master_kelas')->paginate(5);
 
         
         // alert()->success('You have been logged out.', 'Good bye!');

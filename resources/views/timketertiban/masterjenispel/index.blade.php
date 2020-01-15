@@ -89,6 +89,10 @@
                                     @endforeach
                                 </tbody>
                             </table>
+                            {{ $jenispel->links() }}
+                            Halaman : {{ $jenispel->currentPage() }} <br/>
+                            Jumlah Data : {{ $jenispel->total() }} <br/>
+                            Data Per Halaman : {{ $jenispel->perPage() }} <br/>
                         </div>
                     </div>
                 </div>

@@ -90,6 +90,10 @@
                                     @endforeach
                                 </tbody>
                             </table>
+                            {{ $siswa->links() }}
+                            Halaman : {{ $siswa->currentPage() }} <br/>
+                            Jumlah Data : {{ $siswa->total() }} <br/>
+                            Data Per Halaman : {{ $siswa->perPage() }} <br/>
                         </div>
                     </div>
                 </div>

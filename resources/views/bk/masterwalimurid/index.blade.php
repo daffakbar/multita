@@ -88,6 +88,10 @@
                                     
                                 </tbody>
                             </table>
+                            {{ $walimurid->links() }}
+                            Halaman : {{ $walimurid->currentPage() }} <br/>
+                            Jumlah Data : {{ $walimurid->total() }} <br/>
+                            Data Per Halaman : {{ $walimurid->perPage() }} <br/>
                         </div>
                     </div>
                 </div>

@@ -11,11 +11,11 @@
               <p class="grid-header">Prestasi siswa</p>
               <div class="grid-body">
                 <div class="item-wrapper">
-                  <form action="{{action('PelanggaranController@create')}}" method="post">
+                  <form action="{{ url('timketertiban/pressiswa/tambah') }}" method="post">
                     {{ csrf_field() }}
                     <div class="form-group">
                         <label for="inputPassword1">Nama siswa</label>
-                        <select class="js-example-basic-single form-control" name="idKelassiswaP">
+                        <select class="js-example-basic-single form-control" name="idKelassiswapres">
                             @foreach ($siswas as $s)
                             <option value="{{ $s->idKelassiswa}}">{{$s->name}}</option>
                             @endforeach
@@ -23,7 +23,7 @@
                     </div>
                     <div class="form-group">
                       <label for="inputPassword1">Kategori prestasi</label>
-                      <select class="js-example-basic-single form-control">
+                      <select class="js-example-basic-single form-control" name="idJenispresP">
                         @foreach ($kategoripres as $kp)
                         <option value="{{$kp->idJenispres}}">{{$kp->jenisPrestasi}} / {{$kp->poin}}</option>
                             
@@ -44,7 +44,7 @@
                     </div>
                     <div class="form-group">
                       <label for="">Tanggal</label>
-                      <input type="date" class="form-control" name="">
+                      <input type="date" class="form-control" name="tanggalPrestasi">
                     </div>
                     <button type="submit" class="btn btn-sm btn-primary">Simpan</button>
                   </form>
@@ -70,21 +70,24 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                  @php $no = 1 @endphp
+                                  @foreach ($prestasi as $p)
                                     <tr>
-                                        <td></td>
-                                        <td style="text-align:left"></td>
-                                        <td style="text-align:left"></td>
-                                        <td style="text-align:left"></td>
-                                        <td style="text-align:left"></td>
-                                        <td style="text-align:left"></td>
+                                        <td>{{$no}}</td>
+                                        <td style="text-align:left">{{$p->name}}</td>
+                                        <td style="text-align:left">{{$p->kategoriprestasi}}</td>
+                                        <td style="text-align:left">{{$p->jenisPrestasi}}</td>
+                                        <td style="text-align:left">{{$p->poin}}</td>
+                                        <td style="text-align:left">{{$p->tanggalPrestasi}}</td>
                                         <td class="actions">
-                                        <a href="/timketertiban/mastersanksi/edit/" class="btn btn-rounded social-icon-btn btn-google"><i
-                                                class="mdi mdi-square-edit-outline"></i></a>
-                                        <a href="/timketertiban/mastersanksi/hapus/" class="btn btn-rounded social-icon-btn btn-pinterest" onclick="return confirm('Apakah anda akan menghapus ?')"><i class="mdi mdi-delete"></i></a>
+                                        {{-- <a href="/timketertiban/mastersanksi/edit/" class="btn btn-rounded social-icon-btn btn-google"><i
+                                                class="mdi mdi-square-edit-outline"></i></a> --}}
+                                        <a href="/timketertiban/pressiswa/hapus/{{$p->idPrestasi}}" class="btn btn-rounded social-icon-btn btn-pinterest" onclick="return confirm('Apakah anda akan menghapus {{$p->jenisPrestasi}} ?')"><i class="mdi mdi-delete"></i></a>
                                         </td>
                                         <td>
                                         </td>
-                                    </tr>    
+                                    </tr>
+                                    @endforeach    
                                 </tbody>
                             </table>
                         </div>

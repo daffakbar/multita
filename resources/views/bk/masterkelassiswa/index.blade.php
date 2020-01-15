@@ -84,6 +84,10 @@
                               @endforeach
                           </tbody>
                       </table>
+                      {{ $kelassiswa->links() }}
+                            Halaman : {{ $kelassiswa->currentPage() }} <br/>
+                            Jumlah Data : {{ $kelassiswa->total() }} <br/>
+                            Data Per Halaman : {{ $kelassiswa->perPage() }} <br/>
                       </div>
                   </div>
               </div>

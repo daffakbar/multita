@@ -22,7 +22,7 @@ class BkController extends Controller
         // return Siswa::all();
         
         //mengambil data
-        $siswa =DB::table('siswas')->get();
+        $siswa =DB::table('siswas')->paginate(5);
         //mengirim data ke view
         return view('bk.mastersiswa.index', ['siswa'=>$siswa]);
     }

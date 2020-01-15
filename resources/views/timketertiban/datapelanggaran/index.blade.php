@@ -11,7 +11,7 @@
                     <p class="grid-header">Pelanggaran siswa</p>
                     <div class="grid-body">
                         <div class="item-wrapper">
-                            <form action="{{action('PelanggaranController@create')}}" method="post">
+                            <form action="{{ url('timketertiban/pelsiswa/tambah') }}" method="post">
                                 {{ csrf_field() }}
                                 <div class="form-group">
                                     <label for="inputPassword1">Nama siswa</label>
@@ -21,22 +21,22 @@
                                         @endforeach
                                     </select>
                                 </div>
-                                {{-- <div class="form-group">
+                                <div class="form-group">
                       <label for="inputPassword1">Kategori pelanggaran</label>
-                      <select class="js-example-basic-single form-control">
+                      <select class="js-example-basic-single form-control" name="idJenispelP">
                         @foreach ($kategoripel as $kp)
-                        <option value="{{$kp->idJenispel}}">{{$kp->kategoripelanggaran}}</option>
-
+                        <option value="{{$kp->idJenispel}}">{{$kp->jenisPelanggaran}} / {{$kp->poin}}</option>
+                        @endforeach
                                 </select>
-                        </div> --}}
-                        <div class="form-group">
+                        </div>
+                        {{-- <div class="form-group">
                             <label for="inputPassword1">Kategori pelanggaran</label>
                             <select class="js-example-basic-single form-control dynamic" name="idKategoripelJP" id="idKategoripelJP" data-dependent="jenisPelanggaran">
                                 @foreach ($ajax as $kp)
                                 <option value="{{$kp->idKategoripelJP}}">{{$kp->idKategoripelJP}}</option>
                                 @endforeach
                             </select>
-                        </div>
+                        </div> --}}
                         <div class="form-group">
                             <label for="inputPassword1">Jenis pelanggaran</label>
                             <select class="js-example-basic-single form-control dynamic" id="jenisPelanggaran">
@@ -79,27 +79,22 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @php $no = 1 @endphp
+                                @foreach ($pelanggaran as $p)
                                 <tr>
-                                    <td></td>
-                                    <td style="text-align:left"></td>
-                                    <td style="text-align:left"></td>
-                                    <td style="text-align:left"></td>
-                                    <td style="text-align:left"></td>
-                                    <td style="text-align:left"></td>
+                                    <td>{{$no}}</td>
+                                    <td style="text-align:left">{{$p->name}}</td>
+                                    <td style="text-align:left">{{$p->kategoripelanggaran}}</td>
+                                    <td style="text-align:left">{{$p->jenisPelanggaran}}</td>
+                                    <td style="text-align:left">{{$p->poin}}</td>
+                                    <td style="text-align:left">{{$p->tanggalPelanggaran}}</td>
                                     <td class="actions">
-                                        <a href="/timketertiban/mastersanksi/edit/"
-                                            class="btn btn-rounded social-icon-btn btn-google"><i
-                                                class="mdi mdi-square-edit-outline"></i></a>
-                                        <a href="/timketertiban/mastersanksi/hapus/"
-                                            class="btn btn-rounded social-icon-btn btn-pinterest"
-                                            onclick="return confirm('Apakah anda akan menghapus ?')"><i
-                                                class="mdi mdi-delete"></i></a>
-                                    </td>
-                                    <td>
                                     </td>
                                 </tr>
+                                @endforeach
                             </tbody>
                         </table>
+                        
                     </div>
                 </div>
             </div>

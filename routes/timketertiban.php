@@ -34,8 +34,9 @@ Route::post('/mastersanksi/update', 'SanksiController@update')->name('updatesank
 //PELANGGARAN SISWA
 Route::get('/pelsiswa','PelanggaranController@index');
 Route::post('/pelsiswa/tambah','PelanggaranController@store');
-Route::post('/pelsiswa/fetch', 'PelanggaranController@fetch')->name('pelanggaran.fetch');
+Route::post('/pelsiswa/fetch', 'PelanggaranController@fetch')->name('timketertiban.fetch');
 
 //PRESTASI SISWA
 Route::get('/pressiswa','PrestasiController@index');
 Route::post('/pressiswa/tambah','PrestasiController@store');
+Route::get('/pressiswa/hapus/{id}', 'PrestasiController@destroy')->name('hapuspres');

@@ -23,13 +23,13 @@ class KelassiswaController extends Controller
         join('master_kelas','kelassiswas.idKelask','=','master_kelas.idKelas')->
         join('master_tahunajaran', 'kelassiswas.idTahunajarank','=','master_tahunajaran.idTahunajaran')->
         orderBy('idKelask','desc')->
-        get();
+        paginate(5);
 
-        $kelas = DB::table('master_kelas')->get();
+        $kelas = DB::table('master_kelas')->paginate(5);
         $siswas = DB::table('siswas as s')->
         leftJoin('kelassiswas as k','s.id','=','k.idSiswak')->
-        get();
-        $tahunajaran = DB::table('master_tahunajaran')->get();
+        paginate(5);
+        $tahunajaran = DB::table('master_tahunajaran')->paginate(5);
         // dd($tahunajaran);
         // dd($siswas);
         // foreach($siswas as $sw){

@@ -18,7 +18,7 @@ class WalimuridController extends Controller
      */
     public function index()
     {
-        $walimurid =DB::table('walimurids')->get();
+        $walimurid =DB::table('walimurids')->paginate(5);
         return view('bk.masterwalimurid.index', ['walimurid'=>$walimurid]);
     }
 

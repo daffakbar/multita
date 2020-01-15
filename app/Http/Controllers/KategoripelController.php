@@ -13,7 +13,7 @@ class KategoripelController extends Controller
      */
     public function index()
     {
-        $kategoripel = DB::table('master_kategoripelanggaran')->get();
+        $kategoripel = DB::table('master_kategoripelanggaran')->paginate(5);
 
         return view('bk.masterkategoripel.index', ['kategoripel' => $kategoripel]);
     }

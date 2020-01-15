@@ -18,13 +18,29 @@ class PrestasiController extends Controller
     {
         $siswas = DB::table('kelassiswas as ks')
         ->join('siswas as s','ks.idSiswak','=','s.id')
-        ->get();
+        ->paginate(5);
         // dd($siswas);
         $kategoripres = DB::table('master_jenispres as jp')
         ->join('master_kategoriprestasi as kp','jp.idKategoripresJP','=','kp.idKategoripres')
+        ->paginate(5);
+        $prestasi = DB::table('prestasi_siswas as ps')
+        ->join('kelassiswas as ks','ps.idKelassiswaPres','=','ks.idKelassiswa')
+        ->join('siswas as s','ks.idSiswak','=','s.id')
+        ->join('master_jenispres as jp','ps.idJenispresP','=','jp.idJenispres')
+        ->join('master_kategoriprestasi as kp','jp.idKategoripresJP','=','kp.idKategoripres')
         ->get();
 
-        return view('timketertiban.dataprestasi.index',compact('siswas','kategoripres'));
+        $xxx = DB::table('prestasi_siswas as ps')
+        ->join('kelassiswas as ks','ps.idKelassiswaPres','=','ks.idKelassiswa')
+        ->join('siswas as s','ks.idSiswak','=','s.id')
+        ->where('s.nis','=','213255')
+        // ->join('master_jenispres as jp','ps.idJenispresP','=','jp.idJenispres')
+        // ->join('master_kategoriprestasi as kp','jp.idKategoripresJP','=','kp.idKategoripres')
+        ->get();
+        // dd($xxx);
+
+        // dd($prestasi);
+        return view('timketertiban.dataprestasi.index',compact('siswas','kategoripres','prestasi'));
     }
 
     /**
@@ -45,7 +61,29 @@ class PrestasiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $prestasi = DB::table('prestasi_siswas')->insert([
+            'idKelassiswapres' =>$request->idKelassiswapres,
+            'idJenispresP' => $request->idJenispresP,
+            'tanggalPrestasi' => $request->tanggalPrestasi
+        ]);
+        
+        $sanksi = DB::table('master_sanksi')
+        ->get();
+        $getprestasi = DB::table('prestasi_siswas as ps')
+        ->join('kelassiswas as ks','ps.idKelassiswaPres','=','ks.idKelassiswa')
+        ->join('siswas as s','ks.idSiswak','=','s.id')
+        ->where('s.nis','=',$request->idKelassiswapres)
+        ->get();
+        $pelanggaran = DB::table('pelanggaran_siswas')
+        ->get();
+        
+        $history = DB::table('history')->insert([
+            'idPrestasiH' => $request->idPrestasiH
+        ]);
+         
+        
+
+        return redirect('timketertiban/pressiswa')->with('success', 'Data Berhasil di Tambah!');
     }
 
     /**
@@ -90,6 +128,8 @@ class PrestasiController extends Controller
      */
     public function destroy($id)
     {
-        //
+        DB::table('prestasi_siswas')->where('idPrestasi', $id)->delete();
+
+        return redirect('timketertiban/pressiswa')->with('success', 'Data Berhasil di Hapus!');
     }
 }

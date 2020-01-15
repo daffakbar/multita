@@ -19,8 +19,8 @@ class JenispelController extends Controller
         $jenispel = DB::table('master_jenispel')->
         join('master_kategoripelanggaran','master_jenispel.idKategoripelJP','=','master_kategoripelanggaran.idKategoripel')->
         orderBy('kategoripelanggaran','desc')->
-        get();
-        $kategoripel = DB::table('master_kategoripelanggaran')->get();
+        paginate(5);
+        $kategoripel = DB::table('master_kategoripelanggaran')->paginate(5);
         
         return view('timketertiban.masterjenispel.index',compact('jenispel','kategoripel'));
     }

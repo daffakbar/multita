@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use Illuminate\Pagination\Paginator;
+
 
 class SanksiController extends Controller
 {
@@ -14,8 +17,9 @@ class SanksiController extends Controller
      */
     public function index()
     {
-        $sanksi =DB::table('master_sanksi')->get();
+        $sanksi =DB::table('master_sanksi')->paginate(5);
         
+        // return Paginator::defaultView('timketertiban.mastersanksi.index');
         return view('timketertiban.mastersanksi.index', ['sanksi'=> $sanksi]);
     }
 

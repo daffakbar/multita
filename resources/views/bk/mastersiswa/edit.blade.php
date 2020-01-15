@@ -28,7 +28,7 @@
               </div>
               <div class="form-group">
                 <label for="kelas">Nama Siswa</label>
-                <input type="text" class="form-control" name="namaSiswa" value="{{$s->namaSiswa}}">
+                <input type="text" class="form-control" name="namaSiswa" value="{{$s->name}}">
               </div>
               <div class="form-group">
                 <label for="kelas">Jenis Kelamin</label>

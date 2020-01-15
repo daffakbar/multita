@@ -74,6 +74,10 @@
                                     @endforeach
                                 </tbody>
                             </table>
+                            {{ $kategoripres->links() }}
+                            Halaman : {{ $kategoripres->currentPage() }} <br/>
+                            Jumlah Data : {{ $kategoripres->total() }} <br/>
+                            Data Per Halaman : {{ $kategoripres->perPage() }} <br/>
                         </div>
                     </div>
                 </div>

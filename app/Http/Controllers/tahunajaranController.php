@@ -14,7 +14,7 @@ class tahunajaranController extends Controller
      */
     public function index()
     {
-        $tahunajaran =DB::table('master_tahunajaran')->get();
+        $tahunajaran =DB::table('master_tahunajaran')->paginate(5);
         return view('bk.mastertahunajaran.index', ['tahunajaran'=>$tahunajaran]);
     }
 

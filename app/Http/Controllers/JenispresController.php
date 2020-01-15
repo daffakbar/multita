@@ -17,9 +17,9 @@ class JenispresController extends Controller
         $jenispres =DB::table('master_jenispres as jp')->
         join('master_kategoriprestasi as kp','jp.idKategoripresJP','=','kp.idKategoripres')->
         orderBy('kp.idKategoripres','desc')->
-        get();
+        paginate(5);
         // dd($jenispres);
-        $kategoripres = DB::table('master_kategoriprestasi')->get();
+        $kategoripres = DB::table('master_kategoriprestasi')->paginate(5);
         // dd($jenispres);
 
         return view('timketertiban.masterjenispres.index',compact('jenispres','kategoripres'));
