@@ -25,9 +25,9 @@
                         {{ csrf_field() }}
                       <div class="form-group">
                         <label >Kategori prestasi</label>
-                        <select name="idKategoripres" class="custom-select form-control" id="">
+                        <select name="idKategoripresJP" class="custom-select form-control" id="">
                           @foreach ($kategoripres as $kp)
-                          <option value="{{$kp->id}}">{{$kp->kategoriprestasi}}</option>
+                          <option value="{{$kp->idKategoripres}}">{{$kp->kategoriprestasi}}</option>
                           @endforeach
                         </select>
                       </div>
@@ -37,7 +37,7 @@
                       </div>
                       <div class="form-group">
                         <label for="inputEmail1">Poin</label>
-                        <input type="text" class="form-control" name="poin" placeholder="">
+                        <input type="number" class="form-control" name="poin" placeholder="">
                       </div>
                   </div>
                 </div>

@@ -14,10 +14,11 @@ class JenispresController extends Controller
      */
     public function index()
     {
-        $jenispres =DB::table('master_jenispres')->
-        join('master_kategoriprestasi','master_jenispres.idKategoripres','=','master_kategoriprestasi.id')->
-        orderBy('idKategoripres','desc')->
+        $jenispres =DB::table('master_jenispres as jp')->
+        join('master_kategoriprestasi as kp','jp.idKategoripresJP','=','kp.idKategoripres')->
+        orderBy('kp.idKategoripres','desc')->
         get();
+        // dd($jenispres);
         $kategoripres = DB::table('master_kategoriprestasi')->get();
         // dd($jenispres);
 
@@ -43,7 +44,7 @@ class JenispresController extends Controller
     public function store(Request $request)
     {
         DB::table('master_jenispres')->insert([
-            'idKategoripres'    => $request->idKategoripres,
+            'idKategoripresJP'    => $request->idKategoripres,
             'jenisPrestasi'     => $request->jenisPres,
             'poin'              => $request->poin,
             'created_at'        =>now(),
@@ -72,7 +73,7 @@ class JenispresController extends Controller
      */
     public function edit($id)
     {
-        $jenispresedit = DB::table('master_jenispres')->where('id', $id)->get();
+        $jenispresedit = DB::table('master_jenispres')->where('idJenispres', $id)->get();
 
         return view('timketertiban.masterjenispres.edit', ['jenispresedit'=>$jenispresedit]);
     }

@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\PelanggaranSiswa;
+use Illuminate\Database\Eloquent\Model;
 
 class PrestasiController extends Controller
 {
@@ -13,7 +16,15 @@ class PrestasiController extends Controller
      */
     public function index()
     {
-        //
+        $siswas = DB::table('kelassiswas as ks')
+        ->join('siswas as s','ks.idSiswak','=','s.id')
+        ->get();
+        // dd($siswas);
+        $kategoripres = DB::table('master_jenispres as jp')
+        ->join('master_kategoriprestasi as kp','jp.idKategoripresJP','=','kp.idKategoripres')
+        ->get();
+
+        return view('timketertiban.dataprestasi.index',compact('siswas','kategoripres'));
     }
 
     /**

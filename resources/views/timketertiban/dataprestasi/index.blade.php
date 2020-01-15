@@ -11,21 +11,23 @@
               <p class="grid-header">Prestasi siswa</p>
               <div class="grid-body">
                 <div class="item-wrapper">
-                  <form>
+                  <form action="{{action('PelanggaranController@create')}}" method="post">
+                    {{ csrf_field() }}
                     <div class="form-group">
-                      <label for="inputPassword1">Nama siswa</label> 
-                      <select class="js-example-basic-single form-control">
-                        <option value="AL">Alabama</option>
-                        ...
-                        <option value="WY">Wyoming</option>
-                    </select>
+                        <label for="inputPassword1">Nama siswa</label>
+                        <select class="js-example-basic-single form-control" name="idKelassiswaP">
+                            @foreach ($siswas as $s)
+                            <option value="{{ $s->idKelassiswa}}">{{$s->name}}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="form-group">
                       <label for="inputPassword1">Kategori prestasi</label>
                       <select class="js-example-basic-single form-control">
-                        <option value="AL">Alabama</option>
-                        ...
-                        <option value="WY">Wyoming</option>
+                        @foreach ($kategoripres as $kp)
+                        <option value="{{$kp->idJenispres}}">{{$kp->jenisPrestasi}} / {{$kp->poin}}</option>
+                            
+                        @endforeach
                     </select>
                     </div>
                     <div class="form-group">
@@ -42,7 +44,7 @@
                     </div>
                     <div class="form-group">
                       <label for="">Tanggal</label>
-                      <input type="date" class="form-control" id="inputType8">
+                      <input type="date" class="form-control" name="">
                     </div>
                     <button type="submit" class="btn btn-sm btn-primary">Simpan</button>
                   </form>

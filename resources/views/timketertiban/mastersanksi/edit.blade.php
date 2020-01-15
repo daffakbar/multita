@@ -21,10 +21,18 @@
             
             <form action="/timketertiban/mastersanksi/update" method="POST">
               {{ csrf_field() }}
-              <input type="hidden" name="id" value="{{ $s->id }}"> <br/>
+              <input type="hidden" name="idSanksi" value="{{ $s->idSanksi }}"> <br/>
               <div class="form-group">
                 <label for="kelas">Sanksi</label>
                 <input type="text" class="form-control" name="sanksi" value="{{$s->sanksi}}">
+              </div>
+              <div class="form-group">
+                <label for="kelas">Batas poin awal</label>
+                <input type="text" class="form-control" name="batasAwal" value="{{$s->batasAwal}}">
+              </div>
+              <div class="form-group">
+                <label for="kelas">Batas poin akhir</label>
+                <input type="text" class="form-control" name="batasAkhir" value="{{$s->batasAkhir}}">
               </div>
               <button type="submit" class="btn btn-sm btn-primary">Simpan</button>
             </form>

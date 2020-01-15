@@ -38,7 +38,9 @@ class SanksiController extends Controller
     public function store(Request $request)
     {
         DB::table('master_sanksi')->insert([
-            'sanksi' =>$request->sanksi
+            'sanksi' =>$request->sanksi,
+            'batasAwal' => $request->batasAwal,
+            'batasAkhir' => $request->batasAkhir
         ]);
         
 
@@ -64,7 +66,7 @@ class SanksiController extends Controller
      */
     public function edit($id)
     {
-        $sanksiedit = DB::table('master_sanksi')->where('id', $id)->get();
+        $sanksiedit = DB::table('master_sanksi')->where('idSanksi', $id)->get();
 
         return view('timketertiban.mastersanksi.edit', ['sanksiedit' => $sanksiedit]);
     }
@@ -78,8 +80,10 @@ class SanksiController extends Controller
      */
     public function update(Request $request)
     {
-        DB::table('master_sanksi')->where('id', $request->id)->update([
-            'sanksi' => $request->sanksi
+        DB::table('master_sanksi')->where('idSanksi', $request->id)->update([
+            'sanksi' => $request->sanksi,
+            'batasAwal' => $request->batasAwal,
+            'batasAkhir' => $request->batasAkhir
         ]);
 
         return redirect('timketertiban/mastersanksi')->with('success', 'Data Berhasil di Update!');
@@ -93,7 +97,7 @@ class SanksiController extends Controller
      */
     public function destroy($id)
     {
-        DB::table('master_sanksi')->where('id', $id)->delete();
+        DB::table('master_sanksi')->where('idSanksi', $id)->delete();
 
         return redirect('timketertiban/mastersanksi')->with('success', 'Data Berhasil di Hapus!');
     }

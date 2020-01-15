@@ -27,6 +27,14 @@
                         <label for="inputEmail1">Sanksi</label>
                         <input type="text" class="form-control" name="sanksi" placeholder="">
                       </div>
+                      <div class="form-group">
+                        <label for="inputEmail1">Batas poin awal</label>
+                        <input type="number" class="form-control" name="batasAwal" placeholder="">
+                      </div>
+                      <div class="form-group">
+                        <label for="inputEmail1">Batas poin akhir</label>
+                        <input type="number" class="form-control" name="batasAkhir" placeholder="">
+                      </div>
                   </div>
                 </div>
               </div>
@@ -44,7 +52,7 @@
     <br> 
     <div class="content-viewport">
         <div class="row">
-            <div class="col-lg-5">
+            <div class="col-lg-8">
                 <div class="grid">
                     <p class="grid-header">Master data sanksi</p>
                     <div class="item-wrapper">
@@ -54,6 +62,8 @@
                                     <tr>
                                         <th>No</th>
                                         <th style="text-align:left">Sanksi</th>
+                                        <th>Batas poin awal</th>
+                                        <th>Batas poin akhir</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -62,10 +72,12 @@
                                     <tr>
                                         <td>{{$no++}}</td>
                                         <td style="text-align:left">{{$s->sanksi}}</td>
+                                        <td  style="text-align:center">{{$s->batasAwal}}</td>
+                                        <td style="text-align:center">{{$s->batasAkhir}}</td>
                                         <td class="actions">
-                                        <a href="/timketertiban/mastersanksi/edit/{{$s->id}}" class="btn btn-rounded social-icon-btn btn-google"><i
+                                        <a href="/timketertiban/mastersanksi/edit/{{$s->idSanksi}}" class="btn btn-rounded social-icon-btn btn-google"><i
                                                 class="mdi mdi-square-edit-outline"></i></a>
-                                        <a href="/timketertiban/mastersanksi/hapus/{{$s->id}}" class="btn btn-rounded social-icon-btn btn-pinterest" onclick="return confirm('Apakah anda akan menghapus {{$s->sanksi}} ?')"><i class="mdi mdi-delete"></i></a>
+                                        <a href="/timketertiban/mastersanksi/hapus/{{$s->idSanksi}}" class="btn btn-rounded social-icon-btn btn-pinterest" onclick="return confirm('Apakah anda akan menghapus {{$s->sanksi}} ?')"><i class="mdi mdi-delete"></i></a>
                                         </td>
                                         <td>
                                         </td>

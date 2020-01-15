@@ -66,9 +66,9 @@
                                         <td>{{$no++}}</td>
                                         <td style="text-align:left;">{{$kp->kategoripelanggaran}}</td>
                                         <td class="actions">
-                                            <a href="/bk/masterkategoripel/edit/{{$kp->id}}" class="btn btn-rounded social-icon-btn btn-google"><i
+                                            <a href="/bk/masterkategoripel/edit/{{$kp->idKategoripel}}" class="btn btn-rounded social-icon-btn btn-google"><i
                                                     class="mdi mdi-square-edit-outline"></i></a>
-                                            <a href="/bk/masterkategoripel/hapus/{{$kp->id}}" class="btn btn-rounded social-icon-btn btn-pinterest" onclick="return confirm('Apakah anda akan menghapus {{$kp->kategoripelanggaran}} ?')"><i class="mdi mdi-delete"></i></a>
+                                            <a href="/bk/masterkategoripel/hapus/{{$kp->idKategoripel}}" class="btn btn-rounded social-icon-btn btn-pinterest" onclick="return confirm('Apakah anda akan menghapus {{$kp->kategoripelanggaran}} ?')"><i class="mdi mdi-delete"></i></a>
                                         </td>
                                         <td>
                                         </td>

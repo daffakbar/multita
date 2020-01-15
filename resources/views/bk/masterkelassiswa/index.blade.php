@@ -12,7 +12,7 @@
       <div class="row">
         <div class="col-lg-4 equel-grid">
           <div class="grid">
-            <p class="grid-header">Pelanggaran siswa</p>
+            <p class="grid-header">Form kelas siswa</p>
             <div class="grid-body">
               <div class="item-wrapper">
                 <form action="{{ url('bk/masterkelassiswa/tambah') }}" method="POST">
@@ -52,7 +52,7 @@
         </div>
           <div class="col-lg-8">
             <div class="grid">
-              <p class="grid-header">Master data kelas</p>
+              <p class="grid-header">Kelas siswa</p>
               <div class="item-wrapper">
                   <div class="table-responsive">
                       <table class="table info-table">
