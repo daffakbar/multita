@@ -13,6 +13,7 @@
                 <div class="item-wrapper">
                   <form action="{{ url('timketertiban/pressiswa/tambah') }}" method="post">
                     {{ csrf_field() }}
+                    {{-- <input type="text" class="form-control" id="inputType8" readonly="readonly" name="idPrestasi"> --}}
                     <div class="form-group">
                         <label for="inputPassword1">Nama siswa</label>
                         <select class="js-example-basic-single form-control" name="idKelassiswapres">
@@ -22,25 +23,22 @@
                         </select>
                     </div>
                     <div class="form-group">
-                      <label for="inputPassword1">Kategori prestasi</label>
-                      <select class="js-example-basic-single form-control" name="idJenispresP">
-                        @foreach ($kategoripres as $kp)
-                        <option value="{{$kp->idJenispres}}">{{$kp->jenisPrestasi}} / {{$kp->poin}}</option>
-                            
-                        @endforeach
-                    </select>
-                    </div>
-                    <div class="form-group">
                       <label for="inputPassword1">Jenis prestasi</label>
-                      <select class="js-example-basic-single form-control">
-                        <option value="AL">Alabama</option>
-                        ...
-                        <option value="WY">Wyoming</option>
+                      <select class="js-example-basic-single form-control" name="idJenispresP">
+                        {{-- @foreach ($kategoripres as $kp)
+                        <option value="{{$kp->idJenispres}}">{{$kp->jenisPrestasi}} / </option>
+                        @endforeach       --}}
+                        
+                        @foreach ($kategoripres as $kp)
+                        <option value="{{$kp->idJenispres}}">{{$kp->jenisPrestasi}} / </option>
+                        @endforeach
+                        
                     </select>
                     </div>
-                    <div class="form-group">
+                   <div class="form-group">
                       <label for="">Poin</label>
-                      <input type="text" class="form-control" id="inputType8" readonly="readonly" value="xxx">
+                      <input type="text" class="form-control poin" id="poin" readonly="readonly" value="">
+                      
                     </div>
                     <div class="form-group">
                       <label for="">Tanggal</label>

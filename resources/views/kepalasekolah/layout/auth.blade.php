@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Test</title>
+    <title>Aplikasi Pelanggaran dan Prestasi Trimurti</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="{{asset('admin/assets/vendors/iconfonts/mdi/css/materialdesignicons.css')}}">
     <!-- endinject -->

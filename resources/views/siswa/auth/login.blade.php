@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Label - Premium Responsive Bootstrap 4 Admin & Dashboard Template</title>
+    <title>Aplikasi Pelanggaran dan Prestasi Trimurti</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="{{asset('admin/assets/vendors/iconfonts/mdi/css/materialdesignicons.css')}}" />
     <link rel="stylesheet" href="{{asset('admin/assets/vendors/css/vendor.addons.css')}}" />
@@ -22,8 +22,8 @@
     <div class="authentication-theme auth-style_1">
       <div class="row">
         <div class="col-12 logo-section">
-          <a href="../../index.html" class="logo">
-            <img src="{{asset('admin/assets/images/logo.svg')}}" alt="logo" />
+          <a href="#" class="logo">
+            <img src="{{asset('admin/assets/images/smatrimurti.png')}}" alt="logo" />
           </a>
         </div>
       </div>
@@ -36,7 +36,7 @@
                   <form action="{{ url('/siswa/login') }}" role="form"method="POST">
                     {{ csrf_field() }}
                     <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }} input-rounded">
-                      <input id="email" name="email" type="email" class="form-control" placeholder="Username" value="{{ old('email') }}" autofocus/>
+                      <input id="email" name="email" type="email" class="form-control" placeholder="Email" value="{{ old('email') }}" autofocus/>
                       @if ($errors->has('email'))
                         <span class="help-block">
                           <strong>{{ $errors->first('email') }}</strong>
@@ -62,10 +62,10 @@
                     </div>
                     <button type="submit" class="btn btn-primary btn-block"> Login </button>
                   </form>
-                  <div class="signup-link">
+                  {{-- <div class="signup-link">
                     <p>Don't have an account yet?</p>
                     <a href="#">Sign Up</a>
-                  </div>
+                  </div> --}}
                 </div>
               </div>
             </div>
@@ -73,7 +73,7 @@
         </div>
       </div>
       <div class="auth_footer">
-        <p class="text-muted text-center">© Label Inc 2019</p>
+        <p class="text-muted text-center">© Trimurti 2020</p>
       </div>
     </div>
     <!--page body ends -->
