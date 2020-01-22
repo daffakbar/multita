@@ -18,7 +18,7 @@
                         <label for="inputPassword1">Nama siswa</label>
                         <select class="js-example-basic-single form-control" name="idKelassiswapres">
                             @foreach ($siswas as $s)
-                            <option value="{{ $s->idKelassiswa}}">{{$s->name}}</option>
+                            <option value="{{ $s->nis}}">{{$s->name}}</option>
                             @endforeach
                         </select>
                     </div>

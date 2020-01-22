@@ -52,7 +52,7 @@
 
     <div class="content-viewport">
         <div class="row">
-            <div class="col-lg-12">
+            <div class="col-lg-13">
                 <div class="grid">
                     <p class="grid-header">Master data siswa</p>
                     <div class="item-wrapper">

@@ -97,7 +97,7 @@
                 <div class="dropdown-body">
                   <div class="dropdown-list">
                     <div class="image-wrapper">
-                      <img class="profile-img" src="{{asset('admin/assets/images/profile/male/image_1.png')}}" alt="profile image">
+                      {{-- <img class="profile-img" src="{{asset('admin/assets/images/profile/male/image_1.png')}}" alt="profile image"> --}}
                       <div class="status-indicator rounded-indicator bg-success"></div>
                     </div>
                     <div class="content-wrapper">
@@ -144,7 +144,7 @@
             <img class="profile-img img-lg rounded-circle" src="{{asset('admin/assets/images/profile/male/image_1.png')}}" alt="profile image">
           </div>
           <div class="info-wrapper">
-            <p class="user-name">{{auth()->user()->name}}</p>
+            {{-- <p class="user-name">{{auth()->user()->name}}</p> --}}
             <h6 class="display-income">$3,400,00</h6>
           </div>
         </div>

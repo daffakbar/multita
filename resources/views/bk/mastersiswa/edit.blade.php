@@ -28,7 +28,11 @@
               </div>
               <div class="form-group">
                 <label for="kelas">Nama Siswa</label>
-                <input type="text" class="form-control" name="namaSiswa" value="{{$s->name}}">
+                <input type="text" class="form-control" name="name" value="{{$s->name}}">
+              </div>
+              <div class="form-group">
+                <label for="kelas">Email</label>
+                <input type="text" class="form-control" name="email" value="{{$s->email}}">
               </div>
               <div class="form-group">
                 <label for="kelas">Jenis Kelamin</label>
@@ -38,10 +42,16 @@
                 <label for="kelas">Agama</label>
                 <input type="text" class="form-control" name="agama" value="{{$s->agama}}">
               </div>
-              <div class="form-group">
+              {{-- <input type="text" class="form-control" name="password" value="{{$s->password}}" hidden> --}}
+              {{-- <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                 <label for="kelas">Password</label>
-                <input type="text" class="form-control" name="password" value="{{$s->password}}">
-              </div>
+                <input id="password" type="password" class="form-control" name="password" value="{{$s->password}}">
+                @if ($errors->has('password'))
+                    <span class="help-block">
+                      <strong>{{ $errors->first('password') }}</strong>
+                    </span>
+                @endif
+              </div> --}}
               <button type="submit" class="btn btn-sm btn-primary">Simpan</button>
             </form>
             @endforeach

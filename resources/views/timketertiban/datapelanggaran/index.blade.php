@@ -17,7 +17,7 @@
                                     <label for="inputPassword1">Nama siswa</label>
                                     <select class="js-example-basic-single form-control" name="idKelassiswaP">
                                         @foreach ($siswas as $s)
-                                        <option value="{{ $s->idKelassiswa}}">{{$s->name}}</option>
+                                        <option value="{{ $s->id}}">{{$s->name}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -82,7 +82,7 @@
                                 @php $no = 1 @endphp
                                 @foreach ($pelanggaran as $p)
                                 <tr>
-                                    <td>{{$no}}</td>
+                                    <td>{{$no++}}</td>
                                     <td style="text-align:left">{{$p->name}}</td>
                                     <td style="text-align:left">{{$p->kategoripelanggaran}}</td>
                                     <td style="text-align:left">{{$p->jenisPelanggaran}}</td>

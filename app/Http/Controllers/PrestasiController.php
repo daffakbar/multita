@@ -18,7 +18,7 @@ class PrestasiController extends Controller
     {
         $siswas = DB::table('kelassiswas as ks')
         ->join('siswas as s','ks.idSiswak','=','s.id')
-        ->paginate(5);
+        ->get();
         // dd($siswas);
         $kategoripres = DB::table('master_jenispres as jp')
         ->join('master_kategoriprestasi as kp','jp.idKategoripresJP','=','kp.idKategoripres')
@@ -68,7 +68,7 @@ class PrestasiController extends Controller
     public function store(Request $request)
     {
         $idprestasi = DB::table('prestasi_siswas')->insertGetId([
-            'idKelassiswapres' =>$request->idKelassiswapres,
+            'id' =>$request->idKelassiswapres,
             'idJenispresP' => $request->idJenispresP,
             'tanggalPrestasi' => $request->tanggalPrestasi
         ]);
@@ -77,6 +77,12 @@ class PrestasiController extends Controller
             'idPrestasiH' => $idprestasi
         ]);
         
+        //insert&update histori
+        $history = DB::table('historysiswas')
+        ->updateOrInsert(
+            [],
+        );
+
         // $sanksi = DB::table('master_sanksi')
         // ->get();
         

@@ -33,8 +33,8 @@ class PelanggaranController extends Controller
         ->get();
 
         $pelanggaran = DB::table('pelanggaran_siswas as ps')
-        ->join('kelassiswas as ks','ps.idKelassiswaP','=','ks.idKelassiswa')
-        ->join('siswas as s','ks.idSiswak','=','s.id')
+        // ->join('kelassiswas as ks','ps.idKelassiswaP','=','ks.idKelassiswa')
+        ->join('siswas as s','ps.id_siswa','=','s.id')
         ->join('master_jenispel as jp','ps.idJenispelP','=','jp.idJenispel')
         ->join('master_kategoripelanggaran as kp','jp.idKategoripelJP','=','kp.idKategoripel')
         ->get();
@@ -80,14 +80,66 @@ class PelanggaranController extends Controller
      */
     public function store(Request $request)
     {
-        DB::table('pelanggaran_siswas')->insert([
-            'idKelassiswaP' =>$request->idKelassiswaP,
-            'idJenispelP' => $request->idJenispelP,
-            'tanggalPelanggaran' => $request->tanggalPelanggaran
-        ]);
+        // DB::table('pelanggaran_siswas')->insert([
+        //     'id_siswa' =>$request->idKelassiswaP,
+        //     'idJenispelP' => $request->idJenispelP,
+        //     'tanggalPelanggaran' => $request->tanggalPelanggaran
+        // ]);
+
+
+        $totalpel = DB::table('pelanggaran_siswas as ps')
+        ->select(DB::raw('sum(jp.poin) as total_pelanggaran'))
+        ->join('master_jenispel as jp','ps.idJenispelP','=','jp.idJenispel')
+        ->where('id_siswa','=',$request->idKelassiswaP)
+        ->get();
+        $totalpeljson = json_decode($totalpel,true);
+        // dd($totalpeljson);
+        $totalpres = DB::table('prestasi_siswas as ps')
+        ->select(DB::raw('sum(jp.poin) as total_prestasi'))
+        ->join('master_jenispres as jp','ps.idJenispresP','=','jp.idJenispres')
+        ->where('id_siswa','=',$request->idKelassiswaP)
+        ->get();
+        $totalpresjson = json_decode($totalpres,true);
+        foreach($totalpel as $totpel){
+            foreach($totalpres as $totpres){
+
+                $total = $totpel->total_pelanggaran + $totpres->total_prestasi;
+            }
+        }
+        if($totalpeljson >= 75){
+            $totals = $totalpeljson[0]['total_pelanggaran'] - $totalpresjson[0]['total_prestasi'];
+            
+        }else{
+            $totals = $totalpeljson[0]['total_pelanggaran'];
+        }
+        // dd($totals);
+        $batasawal = DB::table('master_sanksi')
+        // ->select('batasAwal','batasAkhir')
+        ->get();
+
+// dd($batasawal);
+        // dd($batasawal);
+        // $peringatan = 'aaa';
+        foreach ($batasawal as $sk){
+            if($sk->batasAwal >= $totals or $sk->batasAkhir <= $totals){
+                $peringatan = $sk->idSanksi;
+            // break;
+        }
+        var_dump($peringatan);
+    }
+    // dd($peringatan);
+        // dd($totals);    
+        // dd($total,$totalpel,$totalpres);
+        // $history = DB::table('historysiswas')
+        // ->updateOrInsert(
+        //     ['id_siswa'=>$request->idKelassiswaP],
+        //     ['total_pelanggaran'=> $totalpeljson['total_pelanggaran']],
+        //     ['total'=>$total]
+        //     ['id_sangsi']
+        // );
         
 
-        return redirect('timketertiban/pelsiswa')->with('success', 'Data Berhasil di Tambah!');
+        // return redirect('timketertiban/pelsiswa')->with('success', 'Data Berhasil di Tambah!');
     }
 
     /**

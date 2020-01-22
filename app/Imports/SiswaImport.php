@@ -4,10 +4,10 @@ namespace App\Imports;
 
 use App\Master_Siswa;
 use Maatwebsite\Excel\Concerns\ToModel;
-use Maatwebsite\Excel\Concerns\WithHeadingRow;
+// use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
 
-class SiswaImport implements ToModel, WithHeadingRow
+class SiswaImport implements ToModel
 {
     /**
     * @param array $row
@@ -17,12 +17,12 @@ class SiswaImport implements ToModel, WithHeadingRow
     public function model(array $row)
     {
         return new Master_Siswa([
-            'nis'           => $row['nis'],
-            'name'          => $row['name'], 
-            'email'         => $row['email'], 
-            'password'      => bcrypt($row['password']),
-            'jenisKelamin'  => $row['jeniskelamin'],
-            'agama'         => $row['agama'],
+            'nis'           => $row[0],
+            'name'          => $row[1], 
+            'email'         => $row[2], 
+            'password'      => bcrypt($row[3]),
+            'jenisKelamin'  => $row[4],
+            'agama'         => $row[5]
             
             // 'nis'  => $row['nis'],
             // 'namaSiswa' => $row['namaSiswa'],

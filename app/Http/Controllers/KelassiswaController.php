@@ -28,7 +28,7 @@ class KelassiswaController extends Controller
         $kelas = DB::table('master_kelas')->paginate(5);
         $siswas = DB::table('siswas as s')->
         leftJoin('kelassiswas as k','s.id','=','k.idSiswak')->
-        paginate(5);
+        get();
         $tahunajaran = DB::table('master_tahunajaran')->paginate(5);
         // dd($tahunajaran);
         // dd($siswas);

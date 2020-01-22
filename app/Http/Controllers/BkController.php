@@ -9,6 +9,7 @@ use App\Imports\SiswaImport;
 use Session;
 use Maatwebsite\Excel\Facades\Excel;
 use Alert;
+use Illuminate\Support\Facades\Crypt;
 
 class BkController extends Controller
 {
@@ -24,7 +25,7 @@ class BkController extends Controller
         //mengambil data
         $siswa =DB::table('siswas')->paginate(5);
         //mengirim data ke view
-        return view('bk.mastersiswa.index', ['siswa'=>$siswa]);
+        return view('bk.mastersiswa.index', compact('siswa'));
     }
 
     /**
@@ -81,14 +82,15 @@ class BkController extends Controller
      */
     public function update(Request $request)
     {
-        DB::table('siswas')->where('nis', $request->id)->update([
-            // 'nis' => $request->nis,
-            'namaSiswa' => $request->namaSiswa,
+        DB::table('siswas')->where('id', $request->id)->update([
+            'nis' => $request->nis,
+            'name' => $request->name,
+            'email' => $request->email,
             'jenisKelamin' => $request->jenisKelamin,
             'agama' => $request->agama,
-            'password' => $request->password
+            // 'password' => $request->password
         ]);
-
+        // dd($test);
         return redirect('bk/mastersiswa')->with('success', 'Data Berhasil di Update!');
     }
 
