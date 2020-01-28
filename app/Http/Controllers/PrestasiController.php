@@ -108,6 +108,8 @@ class PrestasiController extends Controller
             
         }else{
             $totals = $totalpeljson[0]['total_pelanggaran'];
+            // $totalprestasii = $totalpresjson[0]['total_prestasi'];
+
         }
         // dd($totalpresjson);
         $batasawal = DB::table('master_sanksi')

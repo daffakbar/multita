@@ -56,9 +56,12 @@
                               <thead>
                                   <tr>
                                       <th>No</th>
-                                      <th style="text-align:left">Sanksi</th>
-                                      <th>Batas poin awal</th>
-                                      <th>Batas poin akhir</th>
+                                      <th style="text-align:left">Nama</th>
+                                      <th style="text-align:left">Kelas</th>
+                                      <th style="text-align:left">Kategori pelanggaran</th>
+                                      <th style="text-align:left">Jenis pelanggaran</th>
+                                      <th style="text-align:left">Poin</th>
+                                      <th style="text-align:left">Tanggal</th>
                                   </tr>
                               </thead>
                               <tbody>
@@ -68,10 +71,10 @@
                                       <td>{{$no++}}</td>
                                       <td style="text-align:left">{{$pk->name}}</td>
                                       <td style="text-align:left">{{$pk->kelas}}</td>
-                                      <td class="actions">
-                                      </td>
-                                      <td>
-                                      </td>
+                                      <td style="text-align:left">{{$pk->kategoripelanggaran}}</td>
+                                      <td style="text-align:left">{{$pk->jenisPelanggaran}}</td>
+                                      <td style="text-align:left">{{$pk->poin}}</td>
+                                      <td style="text-align:left">{{$pk->tanggalPelanggaran}}</td>
                                   </tr>    
                                   @endforeach
                               </tbody>

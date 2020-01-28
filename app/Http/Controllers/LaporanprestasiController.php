@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use Illuminate\Pagination\Paginator;
+
 
 class LaporanprestasiController extends Controller
 {
@@ -11,9 +15,23 @@ class LaporanprestasiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $pilihkelas = DB::table('siswas as s')->
+        join('kelassiswas as ks', 's.id', '=', 'ks.idSiswak')->
+        join('master_kelas as k', 'ks.idKelask', '=', 'k.idKelas')->
+        // join('master_kelas as k', 'ks.idKelask', '=', 'k.idKelas')->
+        join('prestasi_siswas as p', 's.id', '=', 'p.id_siswa')->
+        join('master_jenispres as jp', 'p.idJenispresP', '=', 'jp.idJenispres')->
+        join('master_kategoriprestasi as kp', 'jp.idKategoripresJP', '=', 'kp.idKategoripres')->
+        where('k.idKelas','=',$request->idKelas)->
+        get();
+        
+        $kelas = DB::table('master_kelas')->
+        get();
+        // dd($pilihkelas);
+        
+        return view('timketertiban.laporanprestasi.index', compact('pilihkelas', 'kelas'));
     }
 
     /**

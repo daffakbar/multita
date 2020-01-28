@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Aplikasi Pelanggaran dan Prestasi Trimurti</title>
+    <link rel="shortcut icon" href="{{asset('admin/assets/images/trim.ico')}}">
     <!-- plugins:css -->
     <link rel="stylesheet" href="{{asset('admin/assets/vendors/iconfonts/mdi/css/materialdesignicons.css')}}">
     <!-- endinject -->
@@ -18,7 +19,7 @@
     <!-- Layout style -->
     <link rel="stylesheet" href="{{asset('admin/assets/css/demo_1/style.css')}}">
     <!-- Layout style -->
-    <link rel="shortcut icon" href="{{asset('admin/assets/images/favicon.ico')}}" />
+    {{-- <link rel="shortcut icon" href="{{asset('admin/assets/images/favicon.ico')}}" /> --}}
 
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
