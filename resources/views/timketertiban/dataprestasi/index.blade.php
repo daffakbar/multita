@@ -18,7 +18,7 @@
                         <label for="inputPassword1">Nama siswa</label>
                         <select class="js-example-basic-single form-control" name="idKelassiswapres">
                             @foreach ($siswas as $s)
-                            <option value="{{ $s->nis}}">{{$s->name}}</option>
+                            <option value="{{ $s->id}}">{{$s->name}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -30,7 +30,7 @@
                         @endforeach       --}}
                         
                         @foreach ($kategoripres as $kp)
-                        <option value="{{$kp->idJenispres}}">{{$kp->jenisPrestasi}} / </option>
+                        <option value="{{$kp->idJenispres}}">{{$kp->jenisPrestasi}} / {{$kp->poin}} </option>
                         @endforeach
                         
                     </select>

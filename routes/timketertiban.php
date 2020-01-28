@@ -40,3 +40,10 @@ Route::post('/pelsiswa/fetch', 'PelanggaranController@fetch')->name('timketertib
 Route::get('/pressiswa','PrestasiController@index');
 Route::post('/pressiswa/tambah','PrestasiController@store');
 Route::get('/pressiswa/hapus/{id}', 'PrestasiController@destroy')->name('hapuspres');
+
+//LAPORAN PELANGGARAN PERKELAS
+Route::get('/laporanpelanggaran','LaporanpelanggaranController@index');
+
+
+//LAPORAN PRESTASI PERKELAS
+Route::get('/laporanprestasi','LaporanprestasiController@index');

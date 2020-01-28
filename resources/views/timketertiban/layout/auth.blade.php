@@ -13,8 +13,6 @@
     <link rel="stylesheet" href="{{asset('admin/assets/css/shared/style.css')}}">
 
     {{-- sweetalert2 --}}
-    <script src="{{asset('admin/assets/sweetalert2/sweetalert2.min.js')}}"></script>
-    <link rel="stylesheet" href="{{asset('admin/assets/sweetalert2/sweetalert2.min.css')}}">
     
     <!-- endinject -->
     <!-- Layout style -->
@@ -191,6 +189,20 @@
               <i class="mdi mdi-account-multiple-plus link-icon"></i>
             </a>
           </li>
+          <li>
+            <a href="#sample-pages1" data-toggle="collapse" aria-expanded="false">
+              <span class="link-title">Laporan perkelas</span>
+              <i class="mdi mdi-book-multiple-variant link-icon"></i>
+            </a>
+            <ul class="collapse navigation-submenu" id="sample-pages1">
+              <li>
+                <a href="{{ url('timketertiban/laporanpelanggaran') }}" >Laporan pelanggaran</a>
+              </li>
+              <li>
+                <a href="{{ url('timketertiban/laporanprestasi') }}" >Laporan prestasi</a>
+              </li>
+            </ul>
+          </li>
           <li class="nav-category-divider">Logout</li>
           <li>
             <a href="{{ url('/timketertiban/logout') }}"
@@ -231,7 +243,10 @@
     <!--page body ends -->
     <!-- SCRIPT LOADING START FORM HERE /////////////-->
     <!-- plugins:js -->
-    <script src="{{asset('admin/assets/vendors/js/core.js')}}"></script>
+    <script async src="//www.instagram.com/embed.js"></script>
+    {{-- INI YG DIHAPUS --}}
+    {{-- <script src="{{asset('admin/assets/vendors/js/core.js')}}"></script> --}}
+    
     <!-- endinject -->
     <!-- Vendor Js For This Page Ends-->
     <script src="{{asset('admin/assets/vendors/apexcharts/apexcharts.min.js')}}"></script>
@@ -262,41 +277,3 @@
       
   </body>
 </html>
-
-<script>
-  $(document).ready(function(){
-  
-   $('.dynamic').change(function(){
-    if($(this).val() != '')
-    {
-     var select = $(this).attr("idJenispel");
-     var value = $(this).val();
-     var dependent = $(this).data('dependent');
-     var _token = $('input[name="_token"]').val();
-     $.ajax({
-      url:"{{ route('timketertiban.timketertiban.fetch') }}",
-      method:"POST",
-      data:{select:select, value:value, _token:_token, dependent:dependent},
-      success:function(result)
-      // console.log(result)
-      {
-        console.log(result)
-       $('#'+dependent).html(result);
-      }
-  
-     })
-    }
-   });
-  
-   $('#idKategoripelJP').change(function(){
-    $('#jenisPelanggaran').val('');
-    // $('#poin').val('');
-   });
-  
-  //  $('#jenisPelanggaran').change(function(){
-    // $('#poin').val('');
-  //  });
-   
-  
-  });
-  </script>

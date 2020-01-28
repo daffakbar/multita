@@ -19,7 +19,7 @@ class JenispresController extends Controller
         orderBy('kp.idKategoripres','desc')->
         paginate(5);
         // dd($jenispres);
-        $kategoripres = DB::table('master_kategoriprestasi')->paginate(5);
+        $kategoripres = DB::table('master_kategoriprestasi')->get();
         // dd($jenispres);
 
         return view('timketertiban.masterjenispres.index',compact('jenispres','kategoripres'));
@@ -44,7 +44,7 @@ class JenispresController extends Controller
     public function store(Request $request)
     {
         DB::table('master_jenispres')->insert([
-            'idKategoripresJP'    => $request->idKategoripres,
+            'idKategoripresJP'    => $request->idKategoripresJP,
             'jenisPrestasi'     => $request->jenisPres,
             'poin'              => $request->poin,
             'created_at'        =>now(),

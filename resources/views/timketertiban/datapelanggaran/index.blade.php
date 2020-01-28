@@ -94,7 +94,11 @@
                                 @endforeach
                             </tbody>
                         </table>
-                        
+                        <br>
+                        {{ $pelanggaran->links() }}
+                        Halaman : {{ $pelanggaran->currentPage() }} <br/>
+                        Jumlah Data : {{ $pelanggaran->total() }} <br/>
+                        Data Per Halaman : {{ $pelanggaran->perPage() }} <br/> 
                     </div>
                 </div>
             </div>

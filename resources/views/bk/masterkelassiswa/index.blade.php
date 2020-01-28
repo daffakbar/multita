@@ -37,10 +37,11 @@
                   <label for="inputEmail1">Siswa</label>
                   <select name="idSiswak" class="custom-select form-control  js-example-basic-single" id="">
                     @foreach ($siswas as $s)
-                    @if ($s->idSiswak == null)
+
+                    {{-- @if ($s->idSiswak == null) --}}
                       <option value="{{$s->id}}">{{$s->name}}</option>
                         
-                    @endif
+                    {{-- @endif --}}
                     @endforeach  
                   </select>
                 </div>

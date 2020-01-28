@@ -37,7 +37,7 @@ class PelanggaranController extends Controller
         ->join('siswas as s','ps.id_siswa','=','s.id')
         ->join('master_jenispel as jp','ps.idJenispelP','=','jp.idJenispel')
         ->join('master_kategoripelanggaran as kp','jp.idKategoripelJP','=','kp.idKategoripel')
-        ->get();
+        ->paginate(7);
         // dd($pelanggaran);
 
         return view('timketertiban.datapelanggaran.index',compact('siswas','kategoripel','ajax','pelanggaran'))->with('ajax',$ajax); 
@@ -80,11 +80,11 @@ class PelanggaranController extends Controller
      */
     public function store(Request $request)
     {
-        // DB::table('pelanggaran_siswas')->insert([
-        //     'id_siswa' =>$request->idKelassiswaP,
-        //     'idJenispelP' => $request->idJenispelP,
-        //     'tanggalPelanggaran' => $request->tanggalPelanggaran
-        // ]);
+        DB::table('pelanggaran_siswas')->insert([
+            'id_siswa' =>$request->idKelassiswaP,
+            'idJenispelP' => $request->idJenispelP,
+            'tanggalPelanggaran' => $request->tanggalPelanggaran
+        ]);
 
 
         $totalpel = DB::table('pelanggaran_siswas as ps')
@@ -92,14 +92,18 @@ class PelanggaranController extends Controller
         ->join('master_jenispel as jp','ps.idJenispelP','=','jp.idJenispel')
         ->where('id_siswa','=',$request->idKelassiswaP)
         ->get();
+        // dd($totalpel);
         $totalpeljson = json_decode($totalpel,true);
         // dd($totalpeljson);
+        
+
         $totalpres = DB::table('prestasi_siswas as ps')
         ->select(DB::raw('sum(jp.poin) as total_prestasi'))
         ->join('master_jenispres as jp','ps.idJenispresP','=','jp.idJenispres')
         ->where('id_siswa','=',$request->idKelassiswaP)
         ->get();
         $totalpresjson = json_decode($totalpres,true);
+        
         foreach($totalpel as $totpel){
             foreach($totalpres as $totpres){
 
@@ -112,7 +116,7 @@ class PelanggaranController extends Controller
         }else{
             $totals = $totalpeljson[0]['total_pelanggaran'];
         }
-        // dd($totals);
+        // dd($totalpresjson);
         $batasawal = DB::table('master_sanksi')
         // ->select('batasAwal','batasAkhir')
         ->get();
@@ -120,26 +124,85 @@ class PelanggaranController extends Controller
 // dd($batasawal);
         // dd($batasawal);
         // $peringatan = 'aaa';
-        foreach ($batasawal as $sk){
-            if($sk->batasAwal >= $totals or $sk->batasAkhir <= $totals){
-                $peringatan = $sk->idSanksi;
-            // break;
-        }
-        var_dump($peringatan);
-    }
-    // dd($peringatan);
-        // dd($totals);    
-        // dd($total,$totalpel,$totalpres);
-        // $history = DB::table('historysiswas')
-        // ->updateOrInsert(
-        //     ['id_siswa'=>$request->idKelassiswaP],
-        //     ['total_pelanggaran'=> $totalpeljson['total_pelanggaran']],
-        //     ['total'=>$total]
-        //     ['id_sangsi']
-        // );
-        
 
-        // return redirect('timketertiban/pelsiswa')->with('success', 'Data Berhasil di Tambah!');
+        //KODE YG BENARR!!
+        //     foreach ($batasawal as $sk){
+        //         if($sk->batasAwal <= $totals AND $sk->batasAkhir >= $totals){
+        //             $peringatan = $sk->idSanksi;
+        //         // break;
+        //     }
+        //     dd($peringatan);
+        // }
+
+        //KODE DARURAT!!!
+        if('10' <= $totals AND '35' >= $totals){
+            $peringatan = DB::table('master_sanksi')
+            ->select('idSanksi')
+            ->where('idSanksi','=','6')
+            ->get();
+            $per = json_decode($peringatan,true);
+        }elseif('36' <= $totals AND '55' >= $totals){
+            $peringatan = DB::table('master_sanksi')
+            ->select('idSanksi')
+            ->where('idSanksi','=', '7')
+            ->get();
+            $per = json_decode($peringatan,true);
+        }elseif ('56' <= $totals AND '75' >= $totals) {
+            $peringatan = DB::table('master_sanksi')
+            ->select('idSanksi')
+            ->where('idSanksi','=', '8')
+            ->get();
+            $per = json_decode($peringatan,true);
+        }elseif ('76' <= $totals AND '95' >= $totals) {
+            $peringatan = DB::table('master_sanksi')
+            ->select('idSanksi')
+            ->where('idSanksi','=', '9')
+            ->get();
+            $per = json_decode($peringatan,true);
+        }elseif ('96' <= $totals AND '150' >= $totals) {
+            $peringatan = DB::table('master_sanksi')
+            ->select('idSanksi')
+            ->where('idSanksi','=', '10')
+            ->get();
+            $per = json_decode($peringatan,true);
+        }elseif ('151' <= $totals AND '249' >= $totals) {
+            $peringatan = DB::table('master_sanksi')
+            ->select('idSanksi')
+            ->where('idSanksi','=', '11')
+            ->get();
+            $per = json_decode($peringatan,true);
+        }elseif ('250' <= $totals AND '300' >= $totals) {
+            $peringatan = DB::table('master_sanksi')
+            ->select('idSanksi')
+            ->where('idSanksi','=', '12')
+            ->get();
+            $per = json_decode($peringatan,true);
+        }
+
+        // dd($peringatan);
+
+        // dd($peringatan);
+        // dd($total,$totalpel,$totalpres);
+        $history = DB::table('historysiswas')
+        ->updateOrInsert(
+            ['id_siswa'=> $request->idKelassiswaP],
+            [
+            'id_siswa'=> $request->idKelassiswaP,
+            'total_pelanggaran'=> $totalpeljson[0]['total_pelanggaran'],
+            'total_prestasi'=> $totalpresjson[0]['total_prestasi'],
+            'total'=> $totals,
+            'id_sangsi' => $per[0]['idSanksi']
+            ]
+
+            // ['total_pelanggaran'=> $totalpeljson[0]['total_pelanggaran']],
+            // ['total_prestasi'=> $totalpresjson[0]['total_prestasi']],
+            // ['total'=> $totals],
+            // ['id_sangsi' => $peringatan]
+            );
+        // dd($history);
+        // dd($history);
+
+        return redirect('timketertiban/pelsiswa')->with('success', 'Data Berhasil di Tambah!');
     }
 
     /**
