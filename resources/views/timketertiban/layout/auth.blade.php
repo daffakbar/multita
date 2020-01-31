@@ -145,18 +145,18 @@
       <!-- partial:partials/_sidebar.html -->
       <div class="sidebar">
         <div class="user-profile">
-          <div class="display-avatar animated-avatar">
-            <img class="profile-img img-lg rounded-circle" src="{{asset('admin/assets/images/profile/male/image_1.png')}}" alt="profile image">
+          <div class="display-avatar ">
+            <img class="profile-img img-lg" src="{{asset('admin/assets/images/trimurti.gif')}}" style="height:90px;width:70px" alt="profile image">
           </div>
           <div class="info-wrapper">
-            {{-- <p class="user-name">{{auth()->user()->name}}</p> --}}
+            <p class="user-name">Halo {{auth()->user()->name}}</p>
             
           </div>
         </div>
         <ul class="navigation-menu">
           <li class="nav-category-divider">MAIN</li>
           <li>
-            <a href="index.html">
+            <a href="{{ url('timketertiban/dashboard') }}">
               <span class="link-title">Dashboard</span>
               <i class="mdi mdi-gauge link-icon"></i>
             </a>
@@ -253,6 +253,7 @@
     <script src="{{asset('admin/assets/vendors/apexcharts/apexcharts.min.js')}}"></script>
     <script src="{{asset('admin/assets/vendors/chartjs/Chart.min.js')}}"></script>
     <script src="{{asset('admin/assets/js/charts/chartjs.addon.js')}}"></script>
+    <script src="{{asset('admin/assets/js/charts/chartjs.js')}}"></script>
     <!-- Vendor Js For This Page Ends-->
     <!-- build:js -->
     <script src="{{asset('admin/assets/js/template.js')}}"></script>

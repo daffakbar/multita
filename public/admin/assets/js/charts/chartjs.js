@@ -107,15 +107,15 @@ $(function () {
       datasets: [{
           label: 'Profit',
           data: [10, 19, 3, 5, 12, 3],
-          backgroundColor: chartColors[0],
-          borderColor: chartColors[0],
+          backgroundColor: chartColors[2],
+          borderColor: chartColors[2],
           borderWidth: 0
         },
         {
           label: 'Sales',
           data: [23, 12, 8, 13, 9, 17],
-          backgroundColor: chartColors[1],
-          borderColor: chartColors[1],
+          backgroundColor: dangerColor,
+          borderColor: dangerColor,
           borderWidth: 0
         }
       ]

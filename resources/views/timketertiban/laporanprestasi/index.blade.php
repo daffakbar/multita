@@ -79,6 +79,11 @@
                                   @endforeach
                               </tbody>
                           </table>
+                          <br>
+                            {{ $pilihkelas->links() }}
+                            Halaman : {{ $pilihkelas->currentPage() }} <br/>
+                            Jumlah Data : {{ $pilihkelas->total() }} <br/>
+                            Data Per Halaman : {{ $pilihkelas->perPage() }} <br/>
                       </div>
                   </div>
               </div>

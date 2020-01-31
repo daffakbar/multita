@@ -4,34 +4,39 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\Controller;
-use Illuminate\Pagination\Paginator;
 
-
-class LaporanprestasiController extends Controller
+class DashboardTKController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        $pilihkelas = DB::table('siswas as s')->
-        join('kelassiswas as ks', 's.id', '=', 'ks.idSiswak')->
-        join('master_kelas as k', 'ks.idKelask', '=', 'k.idKelas')->
-        // join('master_kelas as k', 'ks.idKelask', '=', 'k.idKelas')->
-        join('prestasi_siswas as p', 's.id', '=', 'p.id_siswa')->
-        join('master_jenispres as jp', 'p.idJenispresP', '=', 'jp.idJenispres')->
-        join('master_kategoriprestasi as kp', 'jp.idKategoripresJP', '=', 'kp.idKategoripres')->
-        where('k.idKelas','=',$request->idKelas)->
-        paginate(10);
-        
+        $jumlahsiswa = DB::table('siswas')->
+        count();
+
+        $totpel = DB::table('pelanggaran_siswas')->
+        count();
+
+        $totpres = DB::table('prestasi_siswas')->
+        count();
+
+        $sispel = DB::table('pelanggaran_siswas')->
+        // select('id_siswa')->
+        GroupBy('id_siswa')->
+        get()->count();
+        // dd($sispel);
+
         $kelas = DB::table('master_kelas')->
+        select(DB::raw('kelas'))->
         get();
-        // dd($pilihkelas);
-        
-        return view('timketertiban.laporanprestasi.index', compact('pilihkelas', 'kelas'));
+        $kelasjson = json_encode($kelas, true);
+        // $k = $kelasjson[0];
+        // dd($kelasjson);
+
+        return view('timketertiban.dashboard.index', compact('jumlahsiswa','totpel', 'totpres', 'sispel'));
     }
 
     /**

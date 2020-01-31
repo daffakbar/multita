@@ -71,7 +71,7 @@
                                   @php $no = 1 @endphp
                                   @foreach ($prestasi as $p)
                                     <tr>
-                                        <td>{{$no}}</td>
+                                        <td>{{$no++}}</td>
                                         <td style="text-align:left">{{$p->name}}</td>
                                         <td style="text-align:left">{{$p->kategoriprestasi}}</td>
                                         <td style="text-align:left">{{$p->jenisPrestasi}}</td>

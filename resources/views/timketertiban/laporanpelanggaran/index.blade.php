@@ -10,7 +10,7 @@
             <p class="grid-header"></p>
             <div class="grid-body">
               <div class="item-wrapper">
-                <form action="{{ url('timketertiban/laporanpelanggaran') }}" method="GET">
+                <form action="{{ url('timketertiban/laporanpelanggaran/cetak') }}" method="GET">
                   {{ csrf_field() }}
                 <div class="row mb-3">
                   <div class="col-md-8 mx-auto">
@@ -33,7 +33,8 @@
                       <div class="col-md-9 showcase_content_area">
                         {{-- <button type="submit" class="btn btn-sm btn-primary">Pilih</button> --}}
                         
-                        <button type="submit" class="btn btn-sm btn-primary"><a class="mdi mdi-file-pdf link-icon"></a> Export</button>
+                        {{-- <a href="{{ url('timketertiban/laporanpelanggaran/cetak') }}" class="mdi mdi-file-pdf link-icon btn btn-sm btn-primary" target="_blank"> CETAK PDF</a> --}}
+                        <button type="submit" class="mdi mdi-file-pdf btn btn-sm btn-primary"> Cetak</button>
                       </div>
                     </div>
                   </div>
@@ -49,7 +50,7 @@
       <div class="row">
           <div class="col-lg-12">
               <div class="grid">
-                  <p class="grid-header">Laporan pelanggaran perkelas</p>
+                  <p class="grid-header"> Laporan pelanggaran perkelas</p>
                   <div class="item-wrapper">
                       <div class="table-responsive">
                           <table class="table info-table">
@@ -67,6 +68,7 @@
                               <tbody>
                                   @php $no = 1 @endphp
                                   @foreach ($pilihkelas as $pk)
+                                  {{-- <a href="{{$pk->idKelas}}" class="btn btn-primary"></a> --}}
                                   <tr>
                                       <td>{{$no++}}</td>
                                       <td style="text-align:left">{{$pk->name}}</td>
@@ -79,6 +81,11 @@
                                   @endforeach
                               </tbody>
                           </table>
+                          <br>
+                            {{ $pilihkelas->links() }}
+                            Halaman : {{ $pilihkelas->currentPage() }} <br/>
+                            Jumlah Data : {{ $pilihkelas->total() }} <br/>
+                            Data Per Halaman : {{ $pilihkelas->perPage() }} <br/>
                       </div>
                   </div>
               </div>

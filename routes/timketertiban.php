@@ -43,7 +43,11 @@ Route::get('/pressiswa/hapus/{id}', 'PrestasiController@destroy')->name('hapuspr
 
 //LAPORAN PELANGGARAN PERKELAS
 Route::get('/laporanpelanggaran','LaporanpelanggaranController@index');
+Route::get('/laporanpelanggaran/cetak','LaporanpelanggaranController@cetakpdf');
 
 
 //LAPORAN PRESTASI PERKELAS
 Route::get('/laporanprestasi','LaporanprestasiController@index');
+
+//DASHBOARD
+Route::get('/dashboard','DashboardTKController@index');

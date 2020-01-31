@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Pagination\Paginator;
+use PDF;
 
 class LaporanpelanggaranController extends Controller
 {
@@ -23,14 +24,32 @@ class LaporanpelanggaranController extends Controller
         join('pelanggaran_siswas as p', 's.id', '=', 'p.id_siswa')->
         join('master_jenispel as jp', 'p.idJenispelP', '=', 'jp.idJenispel')->
         join('master_kategoripelanggaran as kp', 'jp.idKategoripelJP', '=', 'kp.idKategoripel')->
-        where('k.idKelas','=',$request->idKelas)->
-        get();
+        // where('k.idKelas','=',$request->idKelas)->
+        paginate(10);
         
         $kelas = DB::table('master_kelas')->
         get();
         // dd($pilihkelas);
         
         return view('timketertiban.laporanpelanggaran.index', compact('pilihkelas', 'kelas'));
+    }
+    public function cetakpdf(Request $request)
+    {
+        $pilihkelas = DB::table('siswas as s')->
+        join('kelassiswas as ks', 's.id', '=', 'ks.idSiswak')->
+        join('master_kelas as k', 'ks.idKelask', '=', 'k.idKelas')->
+        // join('master_kelas as k', 'ks.idKelask', '=', 'k.idKelas')->
+        join('pelanggaran_siswas as p', 's.id', '=', 'p.id_siswa')->
+        join('master_jenispel as jp', 'p.idJenispelP', '=', 'jp.idJenispel')->
+        join('master_kategoripelanggaran as kp', 'jp.idKategoripelJP', '=', 'kp.idKategoripel')->
+        where('k.idKelas','=',$request->idKelas)->
+        get();
+        $kelas = DB::table('master_kelas')->
+        get();
+        // dd($pilihkelas);   
+        set_time_limit(500);
+        $pdf = PDF::loadview('timketertiban.laporanpelanggaran.cetakpdf',['pilihkelas'=>$pilihkelas, 'kelas'=>$kelas]);
+        return $pdf->stream();
     }
 
     /**
