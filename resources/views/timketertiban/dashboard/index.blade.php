@@ -88,76 +88,163 @@
           <table class="table table-hover table-sm">
             <thead>
               <tr class="solid-header">
-                <th colspan="2" class="pl-4">Nama</th>
+                <th>No.</th>
+                <th>Nama</th>
                 <th>Poin</th>
                 <th>Sanksi</th>
+                <th>Aksi</th>
               </tr>
             </thead>
             <tbody>
+              @php
+               $no = 1;   
+              @endphp
+              @foreach ($suratperingatan as $sp)
               <tr>
-                <td class="pr-0 pl-4">
-                  <img class="profile-img img-sm" src="../assets/images/profile/male/image_4.png" alt="profile image">
-                </td>
-                <td class="pl-md-0">
-                  <small class="text-black font-weight-medium d-block">Barbara Curtis</small>
-                  <span class="text-gray">
-                    <span class="status-indicator rounded-indicator small bg-primary"></span>Account Deactivated </span>
-                </td>
+                <td>{{$no++}}</td>
                 <td>
-                  <small>8523537435</small>
-                </td>
-                <td> Just Now </td>
-              </tr>
-              <tr>
-                <td class="pr-0 pl-4">
-                  <img class="profile-img img-sm" src="../assets/images/profile/male/image_3.png" alt="profile image">
-                </td>
-                <td class="pl-md-0">
-                  <small class="text-black font-weight-medium d-block">Charlie Hawkins</small>
+                  <small class="text-black font-weight-medium d-block">{{$sp->name}}</small>
                   <span class="text-gray">
-                    <span class="status-indicator rounded-indicator small bg-success"></span>Email Verified </span>
-                </td>
-                <td>
-                  <small>9537537436</small>
-                </td>
-                <td> Mar 04, 2018 11:37am </td>
-              </tr>
-              <tr>
-                <td class="pr-0 pl-4">
-                  <img class="profile-img img-sm" src="../assets/images/profile/female/image_2.png" alt="profile image">
-                </td>
-                <td class="pl-md-0">
-                  <small class="text-black font-weight-medium d-block">Nina Bates</small>
-                  <span class="text-gray">
-                    <span class="status-indicator rounded-indicator small bg-warning"></span>Payment On Hold </span>
-                </td>
-                <td>
-                  <small>7533567437</small>
-                </td>
-                <td> Mar 13, 2018 9:41am </td>
-              </tr>
-              <tr>
-                <td class="pr-0 pl-4">
-                  <img class="profile-img img-sm" src="../assets/images/profile/male/image_10.png" alt="profile image">
-                </td>
-                <td class="pl-md-0">
-                  <small class="text-black font-weight-medium d-block">Hester Richards</small>
-                  <span class="text-gray">
-                    <span class="status-indicator rounded-indicator small bg-success"></span>Email Verified </span>
-                </td>
-                <td>
-                  <small>5673467743</small>
-                </td>
-                <td> Feb 21, 2018 8:34am </td>
-              </tr>
+                    <span class="status-indicator rounded-indicator small bg-danger"></span>{{$sp->kelas}}</span>
+                  </td>
+                  <td>
+                    <small>{{$sp->total}}</small>
+                  </td>
+                  <td> {{$sp->sanksi}} </td>
+                  <td> 
+                    <a href="https://wa.me/{{$sp->noHp}}?text=Anak anda bernama {{$sp->name}} mempunyai poin pelanggaran {{$sp->total}} dan mendapatkan sanksi berupa {{$sp->sanksi}}. Dari SMA Trimurti Surabaya 
+                      
+                      Terima kasih " class="btn btn-rounded social-icon-btn btn-behance" target="_blank">
+                      <i class="mdi mdi-comment-processing-outline"></i>
+                    </a>
+                  </td>
+                </tr>
+                @endforeach
             </tbody>
           </table>
         </div>
-        <a class="border-top px-3 py-2 d-block text-gray" href="#">
-          <small class="font-weight-medium"><i class="mdi mdi-chevron-down mr-2"></i>View All Order History</small>
-        </a>
       </div>
     </div>
+    {{-- <div id="container">
+
+    </div> --}}
   </div>
 </div>
+@endsection
+@section('footer')
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script>
+Highcharts.chart('container', {
+    chart: {
+        type: 'column'
+    },
+    title: {
+        text: 'Monthly Average Rainfall'
+    },
+    subtitle: {
+        text: 'Source: WorldClimate.com'
+    },
+    xAxis: {
+        categories: [
+            'Jan',
+            'Feb',
+            'Mar',
+            'Apr',
+            'May',
+            'Jun',
+            'Jul',
+            'Aug',
+            'Sep',
+            'Oct',
+            'Nov',
+            'Dec'
+        ],
+        crosshair: true
+    },
+    yAxis: {
+        min: 0,
+        title: {
+            text: 'Rainfall (mm)'
+        }
+    },
+    tooltip: {
+        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+            '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+        footerFormat: '</table>',
+        shared: true,
+        useHTML: true
+    },
+    plotOptions: {
+        column: {
+            pointPadding: 0.2,
+            borderWidth: 0
+        }
+    },
+    series: [{
+        name: 'Tokyo',
+        data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
+
+    }, {
+        name: 'New York',
+        data: [83.6, 78.8, 98.5, 93.4, 106.0, 84.5, 105.0, 104.3, 91.2, 83.5, 106.6, 92.3]
+
+    }, {
+        name: 'London',
+        data: [48.9, 38.8, 39.3, 41.4, 47.0, 48.3, 59.0, 59.6, 52.4, 65.2, 59.3, 51.2]
+
+    }, {
+        name: 'Berlin',
+        data: [42.4, 33.2, 34.5, 39.7, 52.6, 75.5, 57.4, 60.4, 47.6, 39.1, 46.8, 51.1]
+
+    }]
+});
+</script>
+<script>
+  $(function () {
+  'use strict';
+  if ($("#chartjs-staked-bar-chart").length) {
+    var BarData = {
+      labels: {!!json_encode($arraykelas)!!},
+      datasets: [{
+        label: 'Pelanggaran',
+          data: {!!json_encode($arraypel)!!},
+          backgroundColor: chartColors[1],
+          borderColor: chartColors[1],
+          borderWidth: 0
+        },
+        {
+          
+          label: 'Prestasi',
+          data: {!!json_encode($arraypres)!!},
+          backgroundColor: chartColors[2],
+          borderColor: chartColors[2],
+          borderWidth: 0
+        }
+      ]
+    };
+    var barChartCanvas = $("#chartjs-staked-bar-chart").get(0).getContext("2d");
+    var barChart = new Chart(barChartCanvas, {
+      type: 'bar',
+      data: BarData,
+      options: {
+        tooltips: {
+          mode: 'index',
+          intersect: false
+        },
+        responsive: true,
+        scales: {
+          xAxes: [{
+            stacked: true,
+          }],
+          yAxes: [{
+            stacked: true
+          }]
+        },
+        legend: false
+      }
+    });
+  }
+});
+</script>
 @endsection

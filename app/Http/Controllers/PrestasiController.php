@@ -119,7 +119,7 @@ class PrestasiController extends Controller
         if( null <= $totals AND '9' >= $totals){
             $peringatan = DB::table('master_sanksi')
             ->select('idSanksi')
-            ->where('idSanksi','=','13')
+            ->where('idSanksi','=','1')
             ->get();
             $per = json_decode($peringatan,true);
         }

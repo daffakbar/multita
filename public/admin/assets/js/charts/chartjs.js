@@ -101,47 +101,7 @@ $(function () {
     });
   }
 
-  if ($("#chartjs-staked-bar-chart").length) {
-    var BarData = {
-      labels: ["2013", "2014", "2014", "2015", "2016", "2017"],
-      datasets: [{
-          label: 'Profit',
-          data: [10, 19, 3, 5, 12, 3],
-          backgroundColor: chartColors[2],
-          borderColor: chartColors[2],
-          borderWidth: 0
-        },
-        {
-          label: 'Sales',
-          data: [23, 12, 8, 13, 9, 17],
-          backgroundColor: dangerColor,
-          borderColor: dangerColor,
-          borderWidth: 0
-        }
-      ]
-    };
-    var barChartCanvas = $("#chartjs-staked-bar-chart").get(0).getContext("2d");
-    var barChart = new Chart(barChartCanvas, {
-      type: 'bar',
-      data: BarData,
-      options: {
-        tooltips: {
-          mode: 'index',
-          intersect: false
-        },
-        responsive: true,
-        scales: {
-          xAxes: [{
-            stacked: true,
-          }],
-          yAxes: [{
-            stacked: true
-          }]
-        },
-        legend: false
-      }
-    });
-  }
+  
 
   if ($("#chartjs-radar-chart").length) {
     var marksCanvas = document.getElementById("chartjs-radar-chart");

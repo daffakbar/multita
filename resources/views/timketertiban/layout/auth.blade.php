@@ -22,7 +22,7 @@
     {{-- <link rel="shortcut icon" href="{{asset('admin/assets/images/favicon.ico')}}" /> --}}
 
     <script src="{{ asset('js/app.js') }}"></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    {{-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> --}}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
   </head>
   <body class="header-fixed">
@@ -45,7 +45,7 @@
               <button class="btn btn-primary" type="submit"><i class="mdi mdi-arrow-right-thick"></i></button>
             </div>
           </form>
-          <ul class="nav ml-auto">
+          {{-- <ul class="nav ml-auto">
             <li class="nav-item dropdown">
               <a class="nav-link" href="#" id="notificationDropdown" data-toggle="dropdown" aria-expanded="false">
                 <i class="mdi mdi-bell-outline mdi-1x"></i>
@@ -136,7 +136,7 @@
                 </div>
               </div>
             </li>
-          </ul>
+          </ul> --}}
         </div>
       </div>
     </nav>
@@ -239,12 +239,12 @@
       </div>
       <!-- page content ends -->
     </div>
-    @include('sweet::alert')
+    {{-- @include('sweet::alert') --}}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <!--page body ends -->
     <!-- SCRIPT LOADING START FORM HERE /////////////-->
     <!-- plugins:js -->
-    <script async src="//www.instagram.com/embed.js"></script>
+    {{-- <script async src="//www.instagram.com/embed.js"></script> --}}
     {{-- INI YG DIHAPUS --}}
     {{-- <script src="{{asset('admin/assets/vendors/js/core.js')}}"></script> --}}
     
@@ -260,11 +260,11 @@
     <script src="{{asset('admin/assets/js/dashboard.js')}}"></script>
   
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/8.11.8/sweetalert2.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/8.11.8/sweetalert2.min.js"></script> --}}
+    {{-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script> --}}
   
     <link href="{{asset('admin/assets/select2/css/select2.min.css')}}" rel="stylesheet" />
-    <link href="{{asset('admin/assets/select2/css/select2.css')}}" rel="stylesheet" />
+    {{-- <link href="{{asset('admin/assets/select2/css/select2.css')}}" rel="stylesheet" /> --}}
     <script src="{{asset('admin/assets/select2/js/select2.min.js')}}"></script>    
     <script>
         $(document).ready(function() { $("#e1").select2(); });
@@ -274,6 +274,7 @@
       $('.js-example-basic-single').select2();  
       });
       </script>
+      @yield('footer');
       
     <!-- endbuild -->
       
