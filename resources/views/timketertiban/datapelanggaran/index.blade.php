@@ -23,9 +23,10 @@
                                 </div>
                                 <div class="form-group">
                       <label for="inputPassword1">Kategori pelanggaran</label>
-                      <select class="js-example-basic-single form-control" name="idJenispelP">
-                        @foreach ($kategoripel as $kp)
-                        <option value="{{$kp->idJenispel}}">{{$kp->jenisPelanggaran}} / {{$kp->poin}}</option>
+                      <select class=" form-control" name="idJenispelP" id="kategoripelanggaran" data-dependent="jenisPelanggaran">
+                          <option value=""> Pilih aku mas</option>
+                        @foreach ($ajax as $kp)
+                        <option value="{{$kp->idKategoripel}}">{{$kp->kategoripelanggaran}} </option>
                         @endforeach
                                 </select>
                         </div>
@@ -39,17 +40,13 @@
                         </div> --}}
                         <div class="form-group">
                             <label for="inputPassword1">Jenis pelanggaran</label>
-                            <select class="js-example-basic-single form-control dynamic" id="jenisPelanggaran">
-                                
+                            <select class=" form-control dynamic" id="jenisPelanggaran" data-dependent="poin">                      
                                 <option value=""></option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="">Poin</label>
-                            <input type="text" class="form-control" id="poin" readonly="readonly"
-                                value="">
-                            
-
+                            <input type="text" class="form-control" id="poin" readonly="readonly" value="">
                         </div>
                         <div class="form-group">
                             <label for="">Tanggal</label>

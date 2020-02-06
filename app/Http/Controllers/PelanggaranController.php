@@ -27,11 +27,12 @@ class PelanggaranController extends Controller
         // dd($kategoripel);
         // dd($datas);
         $ajax = DB::table('master_jenispel as jp')
-        // ->join('master_kategoripelanggaran as kp','jp.idKategoripelJP','=','kp.idKategoripel')
-        ->groupBy('idKategoripelJP')
+        ->join('master_kategoripelanggaran as kp','jp.idKategoripelJP','=','kp.idKategoripel')
+        ->groupBy('idKategoripel')
         // ->orderBy('idKategoripelJP', 'desc')
         ->get();
-
+        // dd($ajax);
+        
         $pelanggaran = DB::table('pelanggaran_siswas as ps')
         // ->join('kelassiswas as ks','ps.idKelassiswaP','=','ks.idKelassiswa')
         ->join('siswas as s','ps.id_siswa','=','s.id')
@@ -39,25 +40,25 @@ class PelanggaranController extends Controller
         ->join('master_kategoripelanggaran as kp','jp.idKategoripelJP','=','kp.idKategoripel')
         ->paginate(7);
         // dd($pelanggaran);
-
+        
         return view('timketertiban.datapelanggaran.index',compact('siswas','kategoripel','ajax','pelanggaran'))->with('ajax',$ajax); 
     }
     public function fetch(Request $request)
     {
-     $select = $request->get('select');
-     $value = $request->get('value');
-     $dependent = $request->get('dependent');
-     $data = DB::table('master_jenispel')
-    //    ->join('master_kategoripelanggaran as kp','jp.idKategoripelJP','=','kp.idKategoripel')
-       ->where($select, $value)
-       ->groupBy($dependent)
-       ->get();
-     $output = '<option value="">Select '.ucfirst($dependent).'</option>';
-     foreach($data as $row)
-     {
-      $output .= '<option value="'.$row->$dependent.'">'.$row->$dependent.'</option>';
-     }
-     echo $output;
+        $select = $request->get('select');
+        $value = $request->get('value');
+        $dependent = $request->get('dependent');
+        $data = DB::table('master_jenispel as jp')
+        ->join('master_kategoripelanggaran as kp','jp.idKategoripelJP','=','kp.idKategoripel')
+        ->where($select, $value)
+        ->groupBy($dependent)
+        ->get();
+        $output = '<option value="">Select '.ucfirst($dependent).'</option>';
+        foreach($data as $row)
+        {
+         $output .= '<option value="'.$row->$dependent.'">'.$row->$dependent.'</option>';
+        }
+        echo $output;
     }
 
     /**

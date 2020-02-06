@@ -231,7 +231,7 @@
             
             <div class="col-sm-6 text-center text-sm-left mt-3 mt-sm-0">
               <small class="text-muted d-block">Copyright © 2020 <a href="http://smatrimurti.sch.id/" target="_blank">SMA Trimurti</a>. All rights reserved</small>
-              <small class="text-gray mt-2">Made by Daffa Akbar  <i class="mdi mdi-heart text-danger"></i></small>
+              {{-- <small class="text-gray mt-2">Made by Daffa Akbar  <i class="mdi mdi-heart text-danger"></i></small> --}}
             </div>
           </div>
         </footer>
@@ -276,6 +276,41 @@
       </script>
       @yield('footer');
       
+      <script>
+        $(document).ready(function(){
+        
+         $('.dynamic').change(function(){
+          if($(this).val() != '')
+          {
+           var select = $(this).attr("idKategoripel");
+           var value = $(this).val();
+           var dependent = $(this).data('dependent');
+           var _token = $('input[name="_token"]').val();
+           $.ajax({
+            url:"{{ url('timketertiban/pelsiswa/fetch') }}",
+            method:"POST",
+            data:{select:select, value:value, _token:_token, dependent:dependent},
+            success:function(result)
+            {
+             $('#'+dependent).html(result);
+            }
+        
+           })
+          }
+         });
+        
+         $('#kategoripelanggaran').change(function(){
+          $('#jenisPelanggaran').val('');
+          $('#poin').val('');
+         });
+        
+         $('#jenisPelanggaran').change(function(){
+          $('#poin').val('');
+         });
+         
+        
+        });
+        </script>
     <!-- endbuild -->
       
   </body>

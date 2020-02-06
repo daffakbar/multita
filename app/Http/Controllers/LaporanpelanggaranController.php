@@ -30,6 +30,7 @@ class LaporanpelanggaranController extends Controller
         
         $kelas = DB::table('master_kelas')->
         get();
+
         // dd($pilihkelas);
         
         return view('timketertiban.laporanpelanggaran.index', compact('pilihkelas', 'kelas'));
@@ -43,17 +44,25 @@ class LaporanpelanggaranController extends Controller
         join('pelanggaran_siswas as p', 's.id', '=', 'p.id_siswa')->
         join('master_jenispel as jp', 'p.idJenispelP', '=', 'jp.idJenispel')->
         join('master_kategoripelanggaran as kp', 'jp.idKategoripelJP', '=', 'kp.idKategoripel')->
+        join('master_tahunajaran as ta', 'ks.idTahunajarank', '=', 'ta.idTahunajaran')->
         where('k.idKelas','=',$request->idKelas)->
         orderBy('name')->
         get();
         $kelas = DB::table('master_kelas')->
         get();
-        // dd($pilihkelas);   
+        
+        $ta = DB::table('master_tahunajaran as ta')->
+        join('kelassiswas as ks', 'ta.idTahunajaran', '=', 'ks.idSiswak')->
+        join('master_kelas as k', 'ks.idKelask', '=', 'k.idKelas')->
+        where('k.idKelas','=',$request->idKelas)->
+        groupBy('tahun')->
+        get();
+        // dd($ta);   
         set_time_limit(500);
-        $pdf = PDF::loadview('timketertiban.laporanpelanggaran.cetakpdf',['pilihkelas'=>$pilihkelas, 'kelas'=>$kelas]);
+        $pdf = PDF::loadview('timketertiban.laporanpelanggaran.cetakpdf',['pilihkelas'=>$pilihkelas, 'kelas'=>$kelas, 'ta'=>$ta]);
         return $pdf->stream();
     }
-
+    
     /**
      * Show the form for creating a new resource.
      *
@@ -63,7 +72,7 @@ class LaporanpelanggaranController extends Controller
     {
         //
     }
-
+    
     /**
      * Store a newly created resource in storage.
      *
@@ -85,7 +94,7 @@ class LaporanpelanggaranController extends Controller
     {
         //
     }
-
+    
     /**
      * Show the form for editing the specified resource.
      *

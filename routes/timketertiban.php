@@ -34,7 +34,7 @@ Route::post('/mastersanksi/update', 'SanksiController@update')->name('updatesank
 //PELANGGARAN SISWA
 Route::get('/pelsiswa','PelanggaranController@index');
 Route::post('/pelsiswa/tambah','PelanggaranController@store');
-Route::post('/pelsiswa/fetch', 'PelanggaranController@fetch')->name('timketertiban.fetch');
+Route::post('/pelsiswa/fetch', 'PelanggaranController@fetch')->name('fetch');
 
 //PRESTASI SISWA
 Route::get('/pressiswa','PrestasiController@index');
