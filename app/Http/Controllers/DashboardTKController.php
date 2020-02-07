@@ -112,7 +112,24 @@ class DashboardTKController extends Controller
         // join('historysiswas as hs','s.id','=','hs.id_siswa')->
         // get();
         
+        $test = DB::table('pelanggaran_siswas as ps')->
+        select('jenisPelanggaran')->
+        select(DB::raw('count(jenisPelanggaran) as jumlah','jenisPelanggaran'))->
+        join('master_jenispel as jp', 'ps.idJenispelP','=','jp.idJenispel')->
+        groupBy('jenisPelanggaran')->
+        orderBy('jumlah','desc')->
+        get();
+        dd($test);
         
+        $tes1t = DB::table('polling')->
+        select('kandidat')->
+        select(DB::raw('count(kandidat) as jumlah'))->
+        groupBy('kandidat')->
+        orderBy('jumlah','desc')->
+        get();
+
+
+
         return view('timketertiban.dashboard.index', compact('jumlahsiswa','totpel', 'totpres', 'sispel','arraykelas','suratperingatan','arraypel','arraypres'));
     }
     

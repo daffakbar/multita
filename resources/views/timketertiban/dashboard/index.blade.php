@@ -132,8 +132,8 @@
 </div>
 @endsection
 @section('footer')
-<script src="https://code.highcharts.com/highcharts.js"></script>
-<script>
+{{-- <script src="https://code.highcharts.com/highcharts.js"></script> --}}
+{{-- <script>
 Highcharts.chart('container', {
     chart: {
         type: 'column'
@@ -199,7 +199,7 @@ Highcharts.chart('container', {
 
     }]
 });
-</script>
+</script> --}}
 <script>
   $(function () {
   'use strict';
