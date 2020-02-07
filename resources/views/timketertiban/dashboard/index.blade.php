@@ -7,10 +7,10 @@
       <div class="grid">
         <div class="grid-body text-gray">
           <div class="d-flex justify-content-between">
-            <p>{{$jumlahsiswa}}</p>
+            <p class="text-black">Jumlah siswa</p>
             {{-- <p>+06.2%</p> --}}
           </div>
-          <p class="text-black">Jumlah siswa</p>
+          <p>{{$jumlahsiswa}}</p>
           <div class="wrapper w-50 mt-4"><div style="position: absolute; inset: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;" class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
             <canvas height="17" id="stat-line_1" style="display: block; width: 118px; height: 17px;" width="118" class="chartjs-render-monitor"></canvas>
           </div>
@@ -21,10 +21,10 @@
       <div class="grid">
         <div class="grid-body text-gray">
           <div class="d-flex justify-content-between">
-            <p>{{$totpel}}</p>
+            <p class="text-black">Total Pelanggaran</p>
             {{-- <p>+15.7%</p> --}}
           </div>
-          <p class="text-black">Total Pelanggaran</p>
+          <p>{{$totpel}}</p>
           <div class="wrapper w-50 mt-4"><div style="position: absolute; inset: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;" class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
             <canvas height="17" id="stat-line_2" style="display: block; width: 118px; height: 17px;" width="118" class="chartjs-render-monitor"></canvas>
           </div>
@@ -35,10 +35,10 @@
       <div class="grid">
         <div class="grid-body text-gray">
           <div class="d-flex justify-content-between">
-            <p>{{$totpres}}</p>
+            <p class="text-black">Total Prestasi</p>
             {{-- <p>+02.7%</p> --}}
           </div>
-          <p class="text-black">Total Prestasi</p>
+          <p>{{$totpres}}</p>
           <div class="wrapper w-50 mt-4"><div style="position: absolute; inset: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;" class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
             <canvas height="17" id="stat-line_3" style="display: block; width: 118px; height: 17px;" width="118" class="chartjs-render-monitor"></canvas>
           </div>
@@ -49,10 +49,15 @@
       <div class="grid">
         <div class="grid-body text-gray">
           <div class="d-flex justify-content-between">
-            <p>{{$sispel}}</p>
-            {{-- <p>- 53.34%</p> --}}
+            {{-- @foreach ($sering as $ps)
+            <p>{{$ps->jenisPelanggaran}}</p>
+            <p>{{$ps->jumlah}}</p>
+                 --}}
+            {{-- <p>{!!json_encode($pelser)!!}</p> --}}
+            <p class="text-black">Pelanggaran Terbanyak </p>
+            {{-- @endforeach --}}
           </div>
-          <p class="text-black">Jumlah siswa melanggar </p>
+          <p>{{$pelserin}}</p>
           <div class="wrapper w-50 mt-4"><div style="position: absolute; inset: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;" class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
             <canvas height="17" id="stat-line_4" style="display: block; width: 118px; height: 17px;" width="118" class="chartjs-render-monitor"></canvas>
           </div>

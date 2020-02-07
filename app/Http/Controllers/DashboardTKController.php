@@ -16,6 +16,7 @@ class DashboardTKController extends Controller
     {
         $jumlahsiswa = DB::table('siswas')->
         count();
+        // dd($jumlahsiswa);
 
         $totpel = DB::table('pelanggaran_siswas')->
         count();
@@ -33,6 +34,7 @@ class DashboardTKController extends Controller
         // select(DB::raw('kelas'))->
         // join('kelassiswas as ks','k.idKelas','=','ks.idKelask')->
         get();
+        // dd($kelas);
         
         $pelkelas = DB::table('pelanggaran_siswas as p')->
         select(DB::raw('idKelask'))->
@@ -112,25 +114,53 @@ class DashboardTKController extends Controller
         // join('historysiswas as hs','s.id','=','hs.id_siswa')->
         // get();
         
-        $test = DB::table('pelanggaran_siswas as ps')->
+        $pelsering = DB::table('pelanggaran_siswas as ps')->
+        select(DB::raw('count(jenisPelanggaran) as jumlah'))->
+        join('master_jenispel as jp', 'ps.idJenispelP','=','jp.idJenispel')->
+        // where('jumlah')->
+        groupBy('jenisPelanggaran')->
+        // select('jenisPelanggaran')->
+        // orderBy('jenisPelanggaran')->
+        orderBy('jumlah','desc')->
+        limit(1)->
+        // max('jenisPelanggaran')->
+        // get();
+        get();
+        
+        $pelser =json_decode($pelsering);
+
+        // dd($pelser);
+        $pelser = [];
+        foreach ($pelsering as $p ) {
+            $pelser[] = $p->jumlah;
+            // $arraypelkelas[] = $pelkelas->idKelask;
+            
+        }
+
+        $pelserin = DB::table('pelanggaran_siswas as ps')->
         select('jenisPelanggaran')->
-        select(DB::raw('count(jenisPelanggaran) as jumlah','jenisPelanggaran'))->
         join('master_jenispel as jp', 'ps.idJenispelP','=','jp.idJenispel')->
         groupBy('jenisPelanggaran')->
-        orderBy('jumlah','desc')->
-        get();
-        dd($test);
+        // select('jenisPelanggaran')->
+        // orderBy('jenisPelanggaran')->
+        // orderBy('jumlah','desc')->
+        max('jenisPelanggaran');
+        // get();
+        // first();
+
+        // $sering = json_decode($pelsering);
+        // dd($sering);
         
-        $tes1t = DB::table('polling')->
-        select('kandidat')->
-        select(DB::raw('count(kandidat) as jumlah'))->
-        groupBy('kandidat')->
-        orderBy('jumlah','desc')->
-        get();
+        // $tes1t = DB::table('polling')->
+        // select('kandidat')->
+        // select(DB::raw('count(kandidat) as jumlah'))->
+        // groupBy('kandidat')->
+        // orderBy('jumlah','desc')->
+        // get();
 
 
 
-        return view('timketertiban.dashboard.index', compact('jumlahsiswa','totpel', 'totpres', 'sispel','arraykelas','suratperingatan','arraypel','arraypres'));
+        return view('timketertiban.dashboard.index', compact('jumlahsiswa','totpel', 'totpres', 'sispel','arraykelas','suratperingatan','arraypel','arraypres','pelserin','pelser'));
     }
     
     
