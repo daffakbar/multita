@@ -6,9 +6,8 @@
       <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading"><h1 class="mb-4">Laporan pelanggaran siswa</h1></div>
-
-               
+                <div class="panel-heading"><h4 class="mb-4">Laporan Pelanggaran Siswa</h3></div>
+               {{-- <input type="hidden" name="id" value="{{Auth::user()->id}}"> --}}
             </div>
         </div>
     </div>
@@ -20,34 +19,37 @@
                   <div class="item-wrapper">
                     <div class="table-responsive">
                       <table class="table info-table table-bordered">
+                        @foreach ($datasiswa as $s)
+                            
                         <thead>
                           <tr>
                             <th>NIS</th>
-                            <th>3272799</th>
+                            <th>{{$s->id}}</th>
                           </tr>
                         </thead>
                         <tbody>
                           <tr>
                             <td>Nama</td>
-                            <td>M. Budi Pamungkas</td>
+                            <td>{{$s->name}}</td>
                           </tr>
                           <tr>
                             <td>Kelas</td>
-                            <td>XII IPA 4</td>
+                            <td>{{$s->kelas}}</td>
                           </tr>
                           <tr>
                             <td>Jenis kelamin</td>
-                            <td>L</td>
+                            <td>{{$s->jenisKelamin}}</td>
                           </tr>
                           <tr>
                             <td>Nama orang tua</td>
-                            <td>Hendra</td>
+                            <td>{{$s->namewm}}</td>
                           </tr>
                           <tr>
                             <td>Agama</td>
-                            <td>Islam</td>
+                            <td>{{$s->agama}}</td>
                           </tr>
                         </tbody>
+                        @endforeach
                       </table>
                     </div>
                   </div>
@@ -63,32 +65,34 @@
                       <thead>
                         <tr>
                           <th>Tanggal</th>
-                          <th>Jenis pelanggaran</th>
-                          <th>Kategori</th>
-                          <th>Poin</th>
+                          <th style="text-align:left">Kategori</th>
+                          <th style="text-align:left">Jenis pelanggaran</th>
+                          <th style="text-align:right">Poin</th>
                         </tr>
                       </thead>
                       <tbody>
+                        @foreach ($datapelsiswa as $pel)
                         <tr>
-                          <td>01/01/2020</td>
-                          <td>Tidak memakai topi upacara</td>
-                          <td>Kerapian</td>
-                          <td>10</td>
+                          <td>{{$pel->tanggalPelanggaran}}</td>
+                          <td style="text-align:left">{{$pel->kategoripelanggaran}}</td>
+                          <td style="text-align:left">{{$pel->jenisPelanggaran}}</td>
+                          <td style="text-align:right">{{$pel->poin}}</td>
                         </tr>
+                        @endforeach
+                        
                         <tr>
-                          <td>02/01/2020</td>
-                          <td>Terlambat</td>
-                          <td>Kerajinan</td>
-                          <td>5</td>
-                        </tr>
-                        <tr>
-                          <td>08/01/2020</td>
-                          <td>Terlambat</td>
-                          <td>Kerajinan</td>
-                          <td>5</td>
+                        <td></td>  
+                        <td></td>  
+                        <td> <b>Total Pelanggaran</b> </td>  
+                        <td><b>{{$totpel}}</b></td>  
                         </tr>
                       </tbody>
                     </table>
+                    <br>
+                    {{ $datapelsiswa->links() }}
+                    Halaman : {{ $datapelsiswa->currentPage() }} <br/>
+                    Jumlah Data : {{ $datapelsiswa->total() }} <br/>
+                    Data Per Halaman : {{ $datapelsiswa->perPage() }} <br/>
                   </div>
                 </div>
               </div>

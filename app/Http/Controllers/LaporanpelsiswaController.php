@@ -3,6 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+// use App\Http\Controllers\Auth;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Pagination\Paginator;
 
 class LaporanpelsiswaController extends Controller
 {
@@ -11,9 +17,32 @@ class LaporanpelsiswaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $idlogin = Auth::user()->id;
+        $datasiswa = DB::table('siswas as s')->
+        join('walimurids as w','s.id','=','w.niss')->
+        join('kelassiswas as ks','s.id','=','ks.idSiswak')->
+        join('master_kelas as k','k.idKelas','=','ks.idKelask')->
+        where('s.id','=',$idlogin)->
+        get();
+
+        $datapelsiswa = DB::table('siswas as s')->
+        join('pelanggaran_siswas as ps','s.id','=','ps.id_siswa')->
+        join('master_jenispel as jp','ps.idJenispelP','=','jp.idJenispel')->
+        join('master_kategoripelanggaran as kp','kp.idKategoripel','=','jp.idKategoripelJP')->
+        where('id','=',$idlogin)->
+        paginate(5);
+        
+        $totpel = DB::table('siswas as s')->
+        select(DB::raw('SUM(poin) as totpoin'))->
+        join('pelanggaran_siswas as ps','s.id','=','ps.id_siswa')->
+        join('master_jenispel as jp','ps.idJenispelP','=','jp.idJenispel')->
+        where('s.id','=',$idlogin)->
+        value('totpoin');
+
+        // dd($totpel);
+        return view('siswa/laporanpelanggaran/index',compact('datasiswa','datapelsiswa','totpel'));
     }
 
     /**

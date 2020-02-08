@@ -117,25 +117,25 @@ class DashboardTKController extends Controller
         $pelsering = DB::table('pelanggaran_siswas as ps')->
         select(DB::raw('count(jenisPelanggaran) as jumlah'))->
         join('master_jenispel as jp', 'ps.idJenispelP','=','jp.idJenispel')->
-        // where('jumlah')->
         groupBy('jenisPelanggaran')->
-        // select('jenisPelanggaran')->
-        // orderBy('jenisPelanggaran')->
         orderBy('jumlah','desc')->
         limit(1)->
+        value('jumlah');
+        
+        // dd($pelsering);
+        // where('jumlah')->
+        // select('jenisPelanggaran')->
+        // orderBy('jenisPelanggaran')->
         // max('jenisPelanggaran')->
         // get();
-        get();
         
-        $pelser =json_decode($pelsering);
+        // $pelser =json_decode($pelsering);
 
-        // dd($pelser);
-        $pelser = [];
-        foreach ($pelsering as $p ) {
-            $pelser[] = $p->jumlah;
-            // $arraypelkelas[] = $pelkelas->idKelask;
-            
-        }
+        // dd($pelsering);
+        // $pelser = [];
+        // foreach ($pelsering as $p ) {
+        //     $pelser[] = $p->jumlah;
+        // }
 
         $pelserin = DB::table('pelanggaran_siswas as ps')->
         select('jenisPelanggaran')->
@@ -160,7 +160,7 @@ class DashboardTKController extends Controller
 
 
 
-        return view('timketertiban.dashboard.index', compact('jumlahsiswa','totpel', 'totpres', 'sispel','arraykelas','suratperingatan','arraypel','arraypres','pelserin','pelser'));
+        return view('timketertiban.dashboard.index', compact('jumlahsiswa','totpel', 'totpres', 'sispel','arraykelas','suratperingatan','arraypel','arraypres','pelsering','pelserin'));
     }
     
     

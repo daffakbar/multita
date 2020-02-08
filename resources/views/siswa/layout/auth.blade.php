@@ -158,7 +158,7 @@
             </a>
           </li>
           <li>
-            <a href="{{ url('siswa/laporanpelanggaran') }}">
+            <a href="{{ url('siswa/laporanpelanggaransiswa') }}">
               <span class="link-title">Laporan pelanggaran</span>
               <i class="mdi mdi-account-minus link-icon"></i>
             </a>

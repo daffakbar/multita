@@ -13,9 +13,9 @@ Route::get('/home', function () {
 //DASHBOARD
 
 //LAPORAN PELANGGARAN
-Route::get('/laporanpelanggaran', function () {
-	return view('siswa/laporanpelanggaran/index');
-});
+// Route::get('/laporanpelanggaran', function () {
+// });
+Route::get('/laporanpelanggaransiswa','LaporanpelsiswaController@index');
 // Route::get('/laporanpelang', 'LaporanpelsiswaController@index')->name('laporanpelsiswa');
 
 //LAPORAN PRESTASI
