@@ -3,6 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+// use App\Http\Controllers\Auth;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Pagination\Paginator;
 
 class LaporanpressiswaController extends Controller
 {
@@ -13,7 +19,32 @@ class LaporanpressiswaController extends Controller
      */
     public function index()
     {
-        //
+
+        $idlogin = Auth::user()->id;
+        $datasiswa = DB::table('siswas as s')->
+        join('walimurids as w','s.id','=','w.niss')->
+        join('kelassiswas as ks','s.id','=','ks.idSiswak')->
+        join('master_kelas as k','k.idKelas','=','ks.idKelask')->
+        where('s.id','=',$idlogin)->
+        get();
+
+        $datapressiswa = DB::table('siswas as s')->
+        join('prestasi_siswas as ps','s.id','=','ps.id_siswa')->
+        join('master_jenispres as jp','ps.idJenispresP','=','jp.idJenispres')->
+        join('master_kategoriprestasi as kp','kp.idKategoripres','=','jp.idKategoripresJP')->
+        where('id','=',$idlogin)->
+        orderBy('tanggalprestasi','desc')->
+        paginate(5);
+        // dd($datapressiswa);
+
+        $totpres = DB::table('siswas as s')->
+        select(DB::raw('SUM(poin) as totpoin'))->
+        join('prestasi_siswas as ps','s.id','=','ps.id_siswa')->
+        join('master_jenispres as jp','ps.idJenispresP','=','jp.idJenispres')->
+        where('s.id','=',$idlogin)->
+        value('totpoin');
+
+        return view('siswa/laporanprestasi/index',compact('datasiswa','datapressiswa','totpres'));
     }
 
     /**

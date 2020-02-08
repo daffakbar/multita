@@ -41,7 +41,7 @@
               <button class="btn btn-primary" type="submit"><i class="mdi mdi-arrow-right-thick"></i></button>
             </div>
           </form>
-          <ul class="nav ml-auto">
+          {{-- <ul class="nav ml-auto">
             <li class="nav-item dropdown">
               <a class="nav-link" href="#" id="notificationDropdown" data-toggle="dropdown" aria-expanded="false">
                 <i class="mdi mdi-bell-outline mdi-1x"></i>
@@ -132,7 +132,7 @@
                 </div>
               </div>
             </li>
-          </ul>
+          </ul> --}}
         </div>
       </div>
     </nav>
@@ -142,10 +142,10 @@
       <div class="sidebar">
         <div class="user-profile">
           <div class="display-avatar animated-avatar">
-            <img class="profile-img img-lg rounded-circle" src="{{asset('admin/assets/images/profile/male/image_1.png')}}" alt="profile image">
+            <img class="profile-img img-lg" src="{{asset('admin/assets/images/trimurti.gif')}}" style="height:90px;width:70px" alt="profile image">
           </div>
           <div class="info-wrapper">
-            <p class="user-name">{{auth()->user()->name}}</p>
+            <p class="user-name">Hallo {{auth()->user()->name}}</p>
             {{-- <h6 class="display-income">$3,400,00</h6> --}}
           </div>
         </div>
@@ -164,7 +164,7 @@
             </a>
           </li>
           <li>
-            <a href="{{ url('siswa/laporanprestasi') }}">
+            <a href="{{ url('siswa/laporanprestasisiswa') }}">
               <span class="link-title">Laporan prestasi</span>
               <i class="mdi mdi-account-plus link-icon"></i>
             </a>
@@ -196,7 +196,7 @@
             
             <div class="col-sm-6 text-center text-sm-left mt-3 mt-sm-0">
               <small class="text-muted d-block">Copyright © 2020 <a href="http://smatrimurti.sch.id/" target="_blank">SMA Trimurti</a>. All rights reserved</small>
-              <small class="text-gray mt-2">Made by Daffa Akbar  <i class="mdi mdi-heart text-danger"></i></small>
+              {{-- <small class="text-gray mt-2">Made by Daffa Akbar  <i class="mdi mdi-heart text-danger"></i></small> --}}
             </div>
           </div>
         </footer>

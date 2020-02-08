@@ -145,11 +145,11 @@
       <!-- partial:partials/_sidebar.html -->
       <div class="sidebar">
         <div class="user-profile">
-          <div class="display-avatar ">
+          <div class="display-avatar animated-avatar">
             <img class="profile-img img-lg" src="{{asset('admin/assets/images/trimurti.gif')}}" style="height:90px;width:70px" alt="profile image">
           </div>
           <div class="info-wrapper">
-            <p class="user-name">Halo {{auth()->user()->name}}</p>
+            <p class="user-name">Hallo {{auth()->user()->name}}</p>
             
           </div>
         </div>
@@ -246,7 +246,7 @@
     <!-- plugins:js -->
     {{-- <script async src="//www.instagram.com/embed.js"></script> --}}
     {{-- INI YG DIHAPUS --}}
-    {{-- <script src="{{asset('admin/assets/vendors/js/core.js')}}"></script> --}}
+    <script src="{{asset('admin/assets/vendors/js/core.js')}}"></script>
     
     <!-- endinject -->
     <!-- Vendor Js For This Page Ends-->

@@ -32,6 +32,7 @@ class LaporanpelsiswaController extends Controller
         join('master_jenispel as jp','ps.idJenispelP','=','jp.idJenispel')->
         join('master_kategoripelanggaran as kp','kp.idKategoripel','=','jp.idKategoripelJP')->
         where('id','=',$idlogin)->
+        orderBy('tanggalpelanggaran','desc')->
         paginate(5);
         
         $totpel = DB::table('siswas as s')->

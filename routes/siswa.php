@@ -19,8 +19,9 @@ Route::get('/laporanpelanggaransiswa','LaporanpelsiswaController@index');
 // Route::get('/laporanpelang', 'LaporanpelsiswaController@index')->name('laporanpelsiswa');
 
 //LAPORAN PRESTASI
-Route::get('/laporanprestasi', function () {
-	return view('siswa/laporanprestasi/index');
-});
+// Route::get('/laporanprestasi', function () {
+//     
+// });
+Route::get('/laporanprestasisiswa','LaporanpressiswaController@index');
 // Route::get('/laporanprestasi', 'LaporanpressiswaController@index')->name('laporanpressiswa');
 
