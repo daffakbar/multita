@@ -11,17 +11,11 @@ Route::get('/home', function () {
 })->name('home');
 
 //DASHBOARD
+Route::get('/dashboardsiswa','DashboardsiswaController@index');
 
 //LAPORAN PELANGGARAN
-// Route::get('/laporanpelanggaran', function () {
-// });
 Route::get('/laporanpelanggaransiswa','LaporanpelsiswaController@index');
-// Route::get('/laporanpelang', 'LaporanpelsiswaController@index')->name('laporanpelsiswa');
 
 //LAPORAN PRESTASI
-// Route::get('/laporanprestasi', function () {
-//     
-// });
 Route::get('/laporanprestasisiswa','LaporanpressiswaController@index');
-// Route::get('/laporanprestasi', 'LaporanpressiswaController@index')->name('laporanpressiswa');
 

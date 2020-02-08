@@ -166,34 +166,34 @@ $(function () {
     });
   }
 
-  if ($("#chartjs-pie-chart").length) {
-    var PieData = {
-      datasets: [{
-        data: [30, 40, 30],
-        backgroundColor: chartColors,
-        borderColor: chartColors,
-        borderWidth: chartColors
-      }],
+  // if ($("#chartjs-pie-chart").length) {
+  //   var PieData = {
+  //     datasets: [{
+  //       data: [30, 40, 30],
+  //       backgroundColor: chartColors,
+  //       borderColor: chartColors,
+  //       borderWidth: chartColors
+  //     }],
 
-      // These labels appear in the legend and in the tooltips when hovering different arcs
-      labels: [
-        'Data 1',
-        'Data 2',
-        'Data 3',
-      ]
-    };
-    var PieOptions = {
-      responsive: true,
-      animation: {
-        animateScale: true,
-        animateRotate: true
-      }
-    };
-    var pieChartCanvas = $("#chartjs-pie-chart").get(0).getContext("2d");
-    var pieChart = new Chart(pieChartCanvas, {
-      type: 'pie',
-      data: PieData,
-      options: PieOptions
-    });
-  }
+  //     // These labels appear in the legend and in the tooltips when hovering different arcs
+  //     labels: [
+  //       'Data 1',
+  //       'Data 2',
+  //       'Data 3',
+  //     ]
+  //   };
+  //   var PieOptions = {
+  //     responsive: true,
+  //     animation: {
+  //       animateScale: true,
+  //       animateRotate: true
+  //     }
+  //   };
+  //   var pieChartCanvas = $("#chartjs-pie-chart").get(0).getContext("2d");
+  //   var pieChart = new Chart(pieChartCanvas, {
+  //     type: 'pie',
+  //     data: PieData,
+  //     options: PieOptions
+  //   });
+  // }
 });

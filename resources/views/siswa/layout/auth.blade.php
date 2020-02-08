@@ -152,7 +152,7 @@
         <ul class="navigation-menu">
           <li class="nav-category-divider">MAIN</li>
           <li>
-            <a href="index.html">
+            <a href="{{ url('siswa/dashboardsiswa') }}">
               <span class="link-title">Dashboard</span>
               <i class="mdi mdi-gauge link-icon"></i>
             </a>
@@ -220,5 +220,6 @@
     <script src="{{asset('admin/assets/js/charts/chartjs.js')}}"></script>
     <script src="{{asset('admin/assets/js/dashboard.js')}}"></script>
     <!-- endbuild -->
+    @yield('footer');
   </body>
 </html>
