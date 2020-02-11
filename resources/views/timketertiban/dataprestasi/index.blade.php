@@ -23,7 +23,7 @@
                         </select>
                     </div>
                     <div class="form-group">
-                      <label for="inputPassword1">Jenis prestasi</label>
+                      <label for="inputPassword1">Bentuk prestasi</label>
                       <select class="js-example-basic-single form-control" name="idJenispresP">
                         {{-- @foreach ($kategoripres as $kp)
                         <option value="{{$kp->idJenispres}}">{{$kp->jenisPrestasi}} / </option>
@@ -52,7 +52,7 @@
           </div>
             <div class="col-lg-8">
                 <div class="grid">
-                    <p class="grid-header">Master data prestasi</p>
+                    <p class="grid-header">Data prestasi</p>
                     <div class="item-wrapper">
                         <div class="table-responsive">
                             <table class="table info-table">
@@ -60,8 +60,8 @@
                                     <tr>
                                         <th>No</th>
                                         <th style="text-align:left">Nama siswa</th>
-                                        <th style="text-align:left">Kategori </th>
-                                        <th style="text-align:left">Jenis </th>
+                                        <th style="text-align:left">Kategori</th>
+                                        <th style="text-align:left">Bentuk prestasi</th>
                                         <th style="text-align:left">Poin</th>
                                         <th style="text-align:left">Tanggal</th>
                                         <th style="text-align:left">Action</th>

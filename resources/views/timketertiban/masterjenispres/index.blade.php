@@ -32,7 +32,7 @@
                         </select>
                       </div>
                       <div class="form-group">
-                        <label >Jenis Prestasi</label>
+                        <label >Bentuk Prestasi</label>
                         <input type="text" class="form-control" name="jenisPres" placeholder="">
                       </div>
                       <div class="form-group">
@@ -58,15 +58,15 @@
         <div class="row">
             <div class="col-lg-9">
                 <div class="grid">
-                    <p class="grid-header">Master data jenis prestasi</p>
+                    <p class="grid-header">Master data bentuk prestasi</p>
                     <div class="item-wrapper">
                         <div class="table-responsive">
                             <table class="table info-table">
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th style="text-align: left">Kategori Prestasi</th>
-                                        <th style="text-align: left">Jenis Prestasi</th>
+                                        {{-- <th style="text-align: left">Kategori Prestasi</th> --}}
+                                        <th style="text-align: left">Bentuk prestasi</th>
                                         <th>Poin</th>
                                         <th>Action</th>
                                     </tr>
@@ -76,7 +76,7 @@
                                     @foreach ($jenispres as $jp)
                                     <tr>
                                         <td>{{$no++}}</td>
-                                        <td style="text-align: left">{{$jp->kategoriprestasi}}</td>
+                                        {{-- <td style="text-align: left">{{$jp->kategoriprestasi}}</td> --}}
                                         <td style="text-align: left">{{$jp->jenisPrestasi}}</td>
                                         <td>{{$jp->poin}}</td>
                                         <td class="actions">

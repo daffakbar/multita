@@ -21,10 +21,10 @@
                                         @endforeach
                                     </select>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group"> 
                       <label for="inputPassword1">Kategori pelanggaran</label>
                       <select class=" form-control" name="idJenispelP" id="kategoripelanggaran" data-dependent="jenisPelanggaran">
-                          <option value=""> Pilih aku mas</option>
+                          {{-- <option value=""> Pilih </option> --}}
                         @foreach ($ajax as $kp)
                         <option value="{{$kp->idKategoripel}}">{{$kp->kategoripelanggaran}} </option>
                         @endforeach
@@ -39,7 +39,7 @@
                             </select>
                         </div> --}}
                         <div class="form-group">
-                            <label for="inputPassword1">Jenis pelanggaran</label>
+                            <label for="inputPassword1">Bentuk pelanggaran</label>
                             <select class=" form-control dynamic" id="jenisPelanggaran" data-dependent="poin">                      
                                 <option value=""></option>
                             </select>
@@ -60,7 +60,7 @@
         </div>
         <div class="col-lg-8">
             <div class="grid">
-                <p class="grid-header">Master data pelanggaran</p>
+                <p class="grid-header">Data pelanggaran</p>
                 <div class="item-wrapper">
                     <div class="table-responsive">
                         <table class="table info-table">
@@ -69,7 +69,7 @@
                                     <th>No</th>
                                     <th style="text-align:left">Nama siswa</th>
                                     <th style="text-align:left">Kategori</th>
-                                    <th style="text-align:left">Jenis</th>
+                                    <th style="text-align:left">Bentuk pelanggaran</th>
                                     <th style="text-align:left">Poin</th>
                                     <th style="text-align:left">Tanggal</th>
                                     <th style="text-align:left">Action</th>

@@ -168,10 +168,10 @@
             </a>
             <ul class="collapse navigation-submenu" id="sample-pages">
               <li>
-                <a href="{{ url('timketertiban/masterjenispel') }}" >Jenis Pelanggaran</a>
+                <a href="{{ url('timketertiban/masterjenispel') }}" >Bentuk Pelanggaran</a>
               </li>
               <li>
-                <a href="{{ url('timketertiban/masterjenispres') }}" >Jenis Prestasi</a>
+                <a href="{{ url('timketertiban/masterjenispres') }}" >Bentuk Prestasi</a>
               </li>
               <li>
                 <a href="{{ url('timketertiban/mastersanksi') }}" >Sanksi</a>

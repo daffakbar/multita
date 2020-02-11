@@ -31,7 +31,7 @@
                         </select>
                       </div>
                       <div class="form-group">
-                        <label >Jenis Pelanggaran</label>
+                        <label >Bentuk Pelanggaran</label>
                         <input type="text" class="form-control" name="jenisPel" placeholder="">
                       </div>
                       <div class="form-group">
@@ -55,17 +55,17 @@
     <br> 
     <div class="content-viewport">
         <div class="row">
-            <div class="col-lg-10">
+            <div class="col-lg-8">
                 <div class="grid">
-                    <p class="grid-header">Master data jenis pelanggaran</p>
+                    <p class="grid-header">Master data bentuk pelanggaran</p>
                     <div class="item-wrapper">
                         <div class="table-responsive">
                             <table class="table info-table">
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th style="text-align: left">Kategori pelanggaran</th>
-                                        <th style="text-align: left">Jenis pelanggaran</th>
+                                        {{-- <th style="text-align: left">Kategori pelanggaran</th> --}}
+                                        <th style="text-align: left">Bentuk pelanggaran</th>
                                         <th>Poin</th>
                                         <th>Action</th>
                                     </tr>
@@ -75,7 +75,7 @@
                                     @foreach ($jenispel as $jp)
                                     <tr>
                                         <td>{{$no++}}</td>
-                                        <td style="text-align: left">{{$jp->kategoripelanggaran}}</td>
+                                        {{-- <td style="text-align: left">{{$jp->kategoripelanggaran}}</td> --}}
                                         <td style="text-align: left">{{$jp->jenisPelanggaran}}</td>
                                         <td>{{$jp->poin}}</td>
                                         <td class="actions">
