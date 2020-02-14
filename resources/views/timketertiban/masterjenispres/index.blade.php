@@ -56,7 +56,7 @@
     <br>
     <div class="content-viewport">
         <div class="row">
-            <div class="col-lg-9">
+            <div class="col-lg-8">
                 <div class="grid">
                     <p class="grid-header">Master data bentuk prestasi</p>
                     <div class="item-wrapper">

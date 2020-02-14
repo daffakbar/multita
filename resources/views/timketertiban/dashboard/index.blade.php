@@ -76,7 +76,7 @@
         </div>
       </div>
     </div>
-    <div class="col-md-6">
+    {{-- <div class="col-md-6">
       <div class="grid">
         <div class="grid-body">
           <h2 class="grid-title">Total Pelanggaran dan Prestasi</h2>
@@ -85,7 +85,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> --}}
     <div class="col-md-8 equel-grid">
       <div class="grid">
         <div class="grid-body py-3">

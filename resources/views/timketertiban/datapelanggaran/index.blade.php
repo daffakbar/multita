@@ -21,36 +21,35 @@
                                         @endforeach
                                     </select>
                                 </div>
-                                <div class="form-group"> 
-                      <label for="inputPassword1">Kategori pelanggaran</label>
-                      <select class=" form-control" name="idJenispelP" id="kategoripelanggaran" data-dependent="jenisPelanggaran">
-                          {{-- <option value=""> Pilih </option> --}}
-                        @foreach ($ajax as $kp)
-                        <option value="{{$kp->idKategoripel}}">{{$kp->kategoripelanggaran}} </option>
-                        @endforeach
-                                </select>
-                        </div>
-                        {{-- <div class="form-group">
+                        <div class="form-group"> 
                             <label for="inputPassword1">Kategori pelanggaran</label>
-                            <select class="js-example-basic-single form-control dynamic" name="idKategoripelJP" id="idKategoripelJP" data-dependent="jenisPelanggaran">
-                                @foreach ($ajax as $kp)
-                                <option value="{{$kp->idKategoripelJP}}">{{$kp->idKategoripelJP}}</option>
+                            <select class="js-example-basic-single form-control" name="idKategoripel" id="kategoripelanggaran" data-dependent="jenisPelanggaran">
+                                <option value=""> Pilih </option>
+                                @foreach ($ajax as $key =>$value)
+                                <option value="{{$key}}">{{$value}} </option>
                                 @endforeach
                             </select>
-                        </div> --}}
-                        <div class="form-group">
+                        </div>
+                        <div class="form-group"> 
                             <label for="inputPassword1">Bentuk pelanggaran</label>
-                            <select class=" form-control dynamic" id="jenisPelanggaran" data-dependent="poin">                      
-                                <option value=""></option>
+                            <select class=" form-control" name="idJenispelP" id="bentukpelanggaran" data-dependent="jenisPelanggaran">
+                                <option value=""> Pilih </option>
+                              @foreach ($poin as $key => $value)
+                              <option value="{{$key}}">{{$value}} </option>
+                              @endforeach
                             </select>
                         </div>
-                        <div class="form-group">
-                            <label for="">Poin</label>
-                            <input type="text" class="form-control" id="poin" readonly="readonly" value="">
+
+                        <div>
+                            <label >Poin</label>
+                            <div class="form-group" id="poin">
+                                <input type="text" name="poin" class="form-control" readonly value="">
+                            </div>
                         </div>
+                         
                         <div class="form-group">
                             <label for="">Tanggal</label>
-                            <input type="date" name="tanggalPelanggaran" class="form-control">
+                            <input type="datetime" name="tanggalPelanggaran" class="form-control" value="{{$a}}">
                         </div>
                         <button type="submit" class="btn btn-sm btn-primary">Simpan</button>
                         </form>
@@ -103,4 +102,64 @@
     </div>
 </div>
 </div>
+@endsection
+@section('footer')
+<script>
+    $(document).ready(function(){
+        $('select[name="idKategoripel"]').on('change', function(){
+            var idKategoripel = $(this).val();
+            if(idKategoripel){
+                $.ajax({
+                    url: 'pelsiswa/bp/'+idKategoripel,
+                    type: 'get',
+                    dataType: 'json',
+                    success:function(data){
+                        // console.log(data);
+                        
+                        $('select[name="idJenispelP"]').empty();
+                        $('select[name="idJenispelP"]').append('<option id="dummyOption">Pilih</option>')
+                        $.each(data, function(key, value){
+
+                        $('select[name="idJenispelP"]').append('<option value="'+key+'">'+ value +'</option>');
+                        });
+
+                        $('select[name="idJenispelP"]')
+
+                    }
+                })
+            } 
+            else{
+                $('select[name="idJenispelP"]').empty();
+            }
+        });
+    });
+</script>
+<script>
+    $(document).ready(function(){
+        $('select[name="idJenispelP"]').on('change', function(){
+            var idJenispelP = $(this).val();
+            console.log('callback function invoked')
+
+            if(idJenispelP){
+                $.ajax({
+                    url: 'pelsiswa/poin/'+idJenispelP,
+                    type: 'get',
+                    dataType: 'json',
+                    success:function(data){
+                        console.log(data);
+                        $('#dummyOption').remove()
+                        $("#poin").empty();
+                        $.each(data, function(key, value){
+                            // value=idJenispelP;
+                        $("#poin").append('<input name="poin" class="form-control" value="'+ value +'" readonly />');
+                        });
+                    }
+                })
+            } 
+            else{
+                $("#poin").empty();
+            }
+        });
+    });
+</script>    
 @endsection

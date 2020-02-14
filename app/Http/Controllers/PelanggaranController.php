@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\PelanggaranSiswa;
 use Illuminate\Database\Eloquent\Model;
+use DateTime;
 
 
 class PelanggaranController extends Controller
@@ -17,6 +18,13 @@ class PelanggaranController extends Controller
      */
     public function index()
     {
+
+        date_default_timezone_set('Asia/Jakarta');
+        $now = new DateTime();
+        $a = $now->format('Y-m-d H:i:s');
+        // dd($a);
+
+
         $siswas = DB::table('kelassiswas as ks')
         ->join('siswas as s','ks.idSiswak','=','s.id')
         ->get();
@@ -26,12 +34,20 @@ class PelanggaranController extends Controller
         ->get();
         // dd($kategoripel);
         // dd($datas);
-        $ajax = DB::table('master_jenispel as jp')
-        ->join('master_kategoripelanggaran as kp','jp.idKategoripelJP','=','kp.idKategoripel')
-        ->groupBy('idKategoripel')
+        $ajax = DB::table('master_kategoripelanggaran as jp')
+        // ->select('kategoripelanggaran','idKategoripel','poin')
+        ->join('master_jenispel as kp','kp.idKategoripelJP','=','jp.idKategoripel')
+        // ->groupBy('idKategoripel')
         // ->orderBy('idKategoripelJP', 'desc')
-        ->get();
-        // dd($ajax);
+        ->pluck('kategoripelanggaran','idKategoripel')->all();
+        // ->get()
+        // $ajax->all();
+        $poin = DB::table('master_jenispel')
+        // ->select('kategoripelanggaran','idKategoripel','poin')
+        // ->join('master_jenispel as kp','kp.idKategoripelJP','=','jp.idKategoripel')
+        ->pluck('poin','idJenispel')->all();
+        // ->get();
+        // dd($poin);
         
         $pelanggaran = DB::table('pelanggaran_siswas as ps')
         // ->join('kelassiswas as ks','ps.idKelassiswaP','=','ks.idKelassiswa')
@@ -41,7 +57,26 @@ class PelanggaranController extends Controller
         ->paginate(7);
         // dd($pelanggaran);
         
-        return view('timketertiban.datapelanggaran.index',compact('siswas','kategoripel','ajax','pelanggaran'))->with('ajax',$ajax); 
+        return view('timketertiban.datapelanggaran.index',compact('siswas','kategoripel','ajax','pelanggaran','poin','a'))->with('ajax',$ajax); 
+    }
+    public function btuk($id){
+
+        $ajax = DB::table('master_jenispel as jp')
+        // -select('jenisPelanggaran','idJenispel')
+        // ->join('master_kategoripelanggaran as kp','jp.idKategoripelJP','=','kp.idKategoripel')
+        ->where('jp.idKategoripelJP','=',$id)
+        // ->groupBy('idKategoripel')
+        // ->orderBy('idKategoripelJP', 'desc')
+        ->pluck('jenisPelanggaran','idJenispel');
+        // dd($ajax);
+        return json_encode($ajax);
+    }
+    public function poin($id){
+        $poin = DB::table('master_jenispel')->
+        where('idJenispel','=',$id)->
+        pluck('poin','idJenispel');
+        // dd($poin);
+        return json_encode($poin);
     }
     public function fetch(Request $request)
     {

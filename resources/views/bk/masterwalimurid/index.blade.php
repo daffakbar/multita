@@ -73,13 +73,13 @@
                                     @foreach ($walimurid as $wm)
                                     <tr>
                                         <td>{{$no++}}</td>
-                                        <td style="text-align:left;">{{$wm->name}}</td>
+                                        <td style="text-align:left;">{{$wm->namewm}}</td>
                                         <td style="text-align:left;">{{$wm->noHp}}</td>
                                         <td style="text-align:left;">{{$wm->alamat}}</td>
                                         <td class="actions">
                                         <a href="/bk/masterwalmur/edit/{{$wm->id}}" class="btn btn-rounded social-icon-btn btn-google"><i
                                                 class="mdi mdi-square-edit-outline"></i></a>
-                                        <a href="/bk/masterwalmur/hapus/{{$wm->id}}" class="btn btn-rounded social-icon-btn btn-pinterest" onclick="return confirm('Apakah anda akan menghapus {{$wm->name}} ?')"><i class="mdi mdi-delete"></i></a>
+                                        <a href="/bk/masterwalmur/hapus/{{$wm->id}}" class="btn btn-rounded social-icon-btn btn-pinterest" onclick="return confirm('Apakah anda akan menghapus {{$wm->namewm}} ?')"><i class="mdi mdi-delete"></i></a>
                                         </td>
                                         <td>
                                         </td>
