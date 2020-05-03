@@ -5,7 +5,9 @@ namespace App\Imports;
 use App\Master_Walimurid;
 use Maatwebsite\Excel\Concerns\ToModel;
 
-class WalmurImport implements ToModel
+use Maatwebsite\Excel\Concerns\WithHeadingRow;
+
+class WalmurImport implements ToModel, WithHeadingRow
 {
     /**
     * @param array $row
@@ -15,11 +17,20 @@ class WalmurImport implements ToModel
     public function model(array $row)
     {
         return new Master_Walimurid([
-            'name' => $row[1], 
-            'email' => $row[2],
-            'password' => bcrypt($row[3]),
-            'alamat' => $row[4],
-            'noHp' => $row[5],
+            'niss' => $row['niss'], 
+            'namewm' => $row['namewm'], 
+            'email' => $row['email'],
+            'password' => bcrypt($row['password']),
+            'alamat' => $row['alamat'],
+            'noHp' => $row['nomerhp']
         ]);
+
+        // return new Master_Walimurid([
+        //     'name' => $row[1], 
+        //     'email' => $row[2],
+        //     'password' => bcrypt($row[3]),
+        //     'alamat' => $row[4],
+        //     'noHp' => $row[5],
+        // ]);
     }
 }

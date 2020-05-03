@@ -66,7 +66,7 @@
                                         <!-- <th>Jenis Kelamin</th> -->
                                         <th>Jenis kelamin</th>
                                         <th>Agama</th>
-                                        <th>Password</th>
+                                        {{-- <th>Password</th> --}}
                                         <!-- <th>Profit</th> -->
                                         <th>Action</th>
                                     </tr>
@@ -78,7 +78,7 @@
                                         <td>{{$s->name}}</td>
                                         <td>{{$s->jenisKelamin}}</td>
                                         <td>{{$s->agama}}</td>
-                                        <td>{{$s->password}}</td>
+                                        {{-- <td>{{$s->password}}</td> --}}
                                         <td class="actions">
                                         <a href="/bk/mastersiswa/edit/{{$s->nis}}" class="btn btn-rounded social-icon-btn btn-google"><i
                                                 class="mdi mdi-square-edit-outline"></i></a>

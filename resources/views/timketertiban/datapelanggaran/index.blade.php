@@ -1,10 +1,16 @@
 @extends('timketertiban.layout.auth')
 
 @section('content')
+
 <div class="container">
-
     <div class="content-viewport">
-
+        <div class="row">
+            
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="content-viewport">
         <div class="row">
             <div class="col-lg-4 equel-grid">
                 <div class="grid">

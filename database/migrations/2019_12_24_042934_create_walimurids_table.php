@@ -17,6 +17,7 @@ class CreateWalimuridsTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
+            $table->string('noHp');
             $table->rememberToken();
             $table->timestamps();
         });

@@ -8,5 +8,5 @@ class Master_Walimurid extends Model
 {
     protected $table = "walimurids";
  
-    protected $fillable = ['nis','name','email','password','alamat', 'noHp'];
+    protected $fillable = ['niss','namewm','email','password','alamat','noHp'];
 }
