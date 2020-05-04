@@ -8,5 +8,5 @@ class Master_Siswa extends Model
 {
     protected $table = "siswas";
  
-    protected $fillable = ['nis','name','email','password','jenisKelamin','agama'];
+    protected $fillable = ['id','name','email','password','jenisKelamin','agama'];
 }

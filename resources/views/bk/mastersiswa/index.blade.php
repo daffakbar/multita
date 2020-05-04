@@ -60,7 +60,7 @@
                             <table class="table info-table">
                                 <thead>
                                     <tr>
-                                        <!-- <th>No</!-->
+                                        <th>No</th>
                                         <th>Nis</th>
                                         <th style="text-align:left;">Nama</th>
                                         <!-- <th>Jenis Kelamin</th> -->
@@ -72,17 +72,19 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @php $no = 1 @endphp
                                     @foreach ($siswa as $s)
                                     <tr>
-                                        <td>{{$s->nis}}</td>
+                                        <td>{{$no++}}</td>
+                                        <td>{{$s->id}}</td>
                                         <td>{{$s->name}}</td>
                                         <td>{{$s->jenisKelamin}}</td>
                                         <td>{{$s->agama}}</td>
                                         {{-- <td>{{$s->password}}</td> --}}
                                         <td class="actions">
-                                        <a href="/bk/mastersiswa/edit/{{$s->nis}}" class="btn btn-rounded social-icon-btn btn-google"><i
+                                        <a href="/bk/mastersiswa/edit/{{$s->id}}" class="btn btn-rounded social-icon-btn btn-google"><i
                                                 class="mdi mdi-square-edit-outline"></i></a>
-                                        <a href="/bk/mastersiswa/hapus/{{$s->nis}}" class="btn btn-rounded social-icon-btn btn-pinterest" onclick="return confirm('Apakah anda akan menghapus {{$s->name}} ?')"><i class="mdi mdi-delete"></i></a>
+                                        <a href="/bk/mastersiswa/hapus/{{$s->id}}" class="btn btn-rounded social-icon-btn btn-pinterest" onclick="return confirm('Apakah anda akan menghapus {{$s->name}} ?')"><i class="mdi mdi-delete"></i></a>
                                         </td>
                                         <td>
                                         </td>
