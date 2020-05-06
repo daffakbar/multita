@@ -153,13 +153,13 @@
             <img class="profile-img img-lg rounded-circle" src="{{asset('admin/assets/images/profile/male/image_1.png')}}" alt="profile image">
           </div>
           <div class="info-wrapper">
-            {{-- <p class="user-name">{{auth()->user()->name}}</p> --}}
+            {{-- <p class="user-name">Hallo {{auth()->user()->name}}</p> --}}
           </div>
         </div>
         <ul class="navigation-menu">
           <li class="nav-category-divider">MAIN</li>
           <li>
-            <a href="index.html">
+            <a href="{{ url('bk/dashboard') }}">
               <span class="link-title">Dashboard</span>
               <i class="mdi mdi-gauge link-icon"></i>
             </a>
@@ -270,6 +270,51 @@
       $('.js-example-basic-single').select2();  
       });
       </script>
+      <script>
+        $(document).ready(function() { $("#e1").select2(); });
+    </script>
+    <script>
+      $(document).ready(function() {
+      $('.js-example-basic-single').select2();  
+      });
+      </script>
+      @yield('footer');
+      
+      <script>
+        $(document).ready(function(){
+        
+         $('.dynamic').change(function(){
+          if($(this).val() != '')
+          {
+           var select = $(this).attr("idKategoripel");
+           var value = $(this).val();
+           var dependent = $(this).data('dependent');
+           var _token = $('input[name="_token"]').val();
+           $.ajax({
+            url:"{{ url('timketertiban/pelsiswa/fetch') }}",
+            method:"POST",
+            data:{select:select, value:value, _token:_token, dependent:dependent},
+            success:function(result)
+            {
+             $('#'+dependent).html(result);
+            }
+        
+           })
+          }
+         });
+        
+         $('#kategoripelanggaran').change(function(){
+          $('#jenisPelanggaran').val('');
+          $('#poin').val('');
+         });
+        
+         $('#jenisPelanggaran').change(function(){
+          $('#poin').val('');
+         });
+         
+        
+        });
+        </script>
     {{-- @include('sweet::alert') --}}
     {{-- @include('sweetalert::alert') --}}
     <!-- endbuild -->

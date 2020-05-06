@@ -75,3 +75,6 @@ Route::post('/masterkategoripres/update', 'KategoripresController@update')->name
 Route::get('/masterkelassiswa', 'KelassiswaController@index')->name('masterkelassiswa');
 Route::post('/masterkelassiswa/tambah', 'KelassiswaController@store')->name('tambahkelassiswa');
 Route::get('/masterkelassiswa/hapus/{id}', 'KelassiswaController@destroy')->name('hapuskelassiswa');
+
+//DASHBOARD
+Route::get('/dashboard','DashboardBKController@index');
