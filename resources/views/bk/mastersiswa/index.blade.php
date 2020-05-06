@@ -32,8 +32,13 @@
 						</div>
 						<div class="modal-body">
  
-							{{ csrf_field() }}
- 
+                            {{ csrf_field() }}
+
+                            <label>Format siswa</label>
+                            <div class="form-group">
+                                <a href="/bk/mastersiswa/download" class="btn btn-primary  "><span class="mdi mdi-file-document">  Download </span>  </a>
+                            </div>
+
 							<label>Pilih file excel</label>
 							<div class="form-group">
 								<input type="file" name="file" required="required">

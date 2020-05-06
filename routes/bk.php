@@ -17,6 +17,15 @@ Route::post('/mastersiswa/import_excel', 'BkController@import_excel');
 Route::get('/mastersiswa/hapus/{id}', 'BkController@destroy')->name('hapussiswa');
 Route::get('/mastersiswa/edit/{id}', 'BkController@edit')->name('editsiswa');
 Route::post('/mastersiswa/update', 'BkController@update')->name('updatesiswa');
+Route::get('/mastersiswa/download', function () {
+    $file = public_path()."/format_siswa.xlsx";
+
+    $headers = array(
+        'Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+    );
+
+    return response()->download($file, "format_siswa.xlsx", $headers);
+});
 
 // MASTER WALI MURID
 Route::get('/masterwalmur', 'WalimuridController@index')->name('masterwalmur');
@@ -24,7 +33,15 @@ Route::post('/masterwalmur/import_excel', 'WalimuridController@import_excel');
 Route::get('/masterwalmur/hapus/{id}', 'WalimuridController@destroy')->name('hapuswalmur');
 Route::get('/masterwalmur/edit/{id}', 'WalimuridController@edit')->name('editwalmur');
 Route::post('/masterwalmur/update', 'WalimuridController@update')->name('updatewalmur');
+Route::get('/masterwalmur/download', function () {
+    $file = public_path()."/format_wali_murid.xlsx";
 
+    $headers = array(
+        'Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+    );
+
+    return response()->download($file, "format_wali_murid.xlsx", $headers);
+});
 
 // MASTER KELAS
 Route::get('/masterkelas', 'KelasController@index')->name('masterkelas');

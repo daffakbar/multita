@@ -33,6 +33,11 @@
  
 							{{ csrf_field() }}
  
+                            <label>Format wali murid</label>
+                            <div class="form-group">
+                                <a href="/bk/masterwalmur/download" class="btn btn-primary  "><span class="mdi mdi-file-document">  Download </span>  </a>
+                            </div>
+
 							<label>Pilih file excel</label>
 							<div class="form-group">
 								<input type="file" name="file" required="required">

@@ -17,12 +17,12 @@ class WalmurImport implements ToModel, WithHeadingRow
     public function model(array $row)
     {
         return new Master_Walimurid([
-            'niss' => $row['niss'], 
-            'namewm' => $row['namewm'], 
+            'niss' => $row['nis_siswa'], 
+            'namewm' => $row['nama_wali_murid'], 
             'email' => $row['email'],
             'password' => bcrypt($row['password']),
             'alamat' => $row['alamat'],
-            'noHp' => $row['nomerhp']
+            'noHp' => $row['nomer_hp']
         ]);
 
         // return new Master_Walimurid([
