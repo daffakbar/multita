@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\PelanggaranSiswa;
 use Illuminate\Database\Eloquent\Model;
+use DateTime;
 
 class PrestasiController extends Controller
 {
@@ -16,6 +17,11 @@ class PrestasiController extends Controller
      */
     public function index()
     {
+        date_default_timezone_set('Asia/Jakarta');
+        $now = new DateTime();
+        $a = $now->format('Y-m-d H:i:s');
+
+
         $siswas = DB::table('kelassiswas as ks')
         ->join('siswas as s','ks.idSiswak','=','s.id')
         ->get();
@@ -23,6 +29,23 @@ class PrestasiController extends Controller
         $kategoripres = DB::table('master_jenispres as jp')
         ->join('master_kategoriprestasi as kp','jp.idKategoripresJP','=','kp.idKategoripres')
         ->get();
+
+
+        $ajax = DB::table('master_kategoriprestasi as jp')
+        // ->select('kategoripelanggaran','idKategoripel','poin')
+        ->join('master_jenispres as kp','kp.idKategoripresJP','=','jp.idKategoripres')
+        // ->groupBy('idKategoripel')
+        // ->orderBy('idKategoripelJP', 'desc')
+        ->pluck('kategoriprestasi','idKategoripres')->all();
+        // ->get()
+        // $ajax->all();
+        $poin = DB::table('master_jenispres')
+        // ->select('kategoripelanggaran','idKategoripel','poin')
+        // ->join('master_jenispel as kp','kp.idKategoripelJP','=','jp.idKategoripel')
+        ->pluck('poin','idJenispres')->all();
+        // ->get();
+        // dd($poin);
+
 
         // dd($kategoripres);
         $prestasi = DB::table('prestasi_siswas as ps')
@@ -46,9 +69,45 @@ class PrestasiController extends Controller
         // dd($xxx);
 
         // dd($prestasi);
-        return view('timketertiban.dataprestasi.index',compact('siswas','kategoripres','prestasi'));
+        return view('timketertiban.dataprestasi.index',compact('siswas','kategoripres','ajax','prestasi','poin','a'))->with('ajax',$ajax);
     }
 
+    public function btuk($id){
+
+        $ajax = DB::table('master_jenispres as jp')
+        // -select('jenisPelanggaran','idJenispel')
+        // ->join('master_kategoripelanggaran as kp','jp.idKategoripelJP','=','kp.idKategoripel')
+        ->where('jp.idKategoripresJP','=',$id)
+        // ->groupBy('idKategoripel')
+        // ->orderBy('idKategoripelJP', 'desc')
+        ->pluck('jenisPrestasi','idJenispres');
+        // dd($ajax);
+        return json_encode($ajax);
+    }
+    public function poin($id){
+        $poin = DB::table('master_jenispres')->
+        where('idJenispres','=',$id)->
+        pluck('poin','idJenispres');
+        // dd($poin);
+        return json_encode($poin);
+    }
+    public function fetch(Request $request)
+    {
+        $select = $request->get('select');
+        $value = $request->get('value');
+        $dependent = $request->get('dependent');
+        $data = DB::table('master_jenispres as jp')
+        ->join('master_kategoriprestasi as kp','jp.idKategoripresJP','=','kp.idKategoripres')
+        ->where($select, $value)
+        ->groupBy($dependent)
+        ->get();
+        $output = '<option value="">Select '.ucfirst($dependent).'</option>';
+        foreach($data as $row)
+        {
+         $output .= '<option value="'.$row->$dependent.'">'.$row->$dependent.'</option>';
+        }
+        echo $output;
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -56,7 +115,9 @@ class PrestasiController extends Controller
      */
     public function create()
     {
-        //
+        $datas = new PrestasiSiswa;
+        $datas->idHistorysiswa = $request->namaSiswa;
+        $datas->save();
     }
 
     /**

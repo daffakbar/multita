@@ -42,6 +42,10 @@ Route::post('/pelsiswa/fetch', 'PelanggaranController@fetch')->name('fetch');
 Route::get('/pressiswa','PrestasiController@index');
 Route::post('/pressiswa/tambah','PrestasiController@store');
 Route::get('/pressiswa/hapus/{id}', 'PrestasiController@destroy')->name('hapuspres');
+Route::get('/pressiswa/bp/{id}','PrestasiController@btuk');
+Route::get('/pressiswa/poin/{id}','PrestasiController@poin');
+Route::post('/pressiswa/fetch', 'PrestasiController@fetch')->name('fetch');
+
 
 //LAPORAN PELANGGARAN PERKELAS
 Route::get('/laporanpelanggaran','LaporanpelanggaranController@index');

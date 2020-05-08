@@ -311,7 +311,44 @@
         
         });
         </script>
-    <!-- endbuild -->
+
+<script>
+  $(document).ready(function(){
+  
+   $('.dynamic').change(function(){
+    if($(this).val() != '')
+    {
+     var select = $(this).attr("idKategoripres");
+     var value = $(this).val();
+     var dependent = $(this).data('dependent');
+     var _token = $('input[name="_token"]').val();
+     $.ajax({
+      url:"{{ url('timketertiban/pressiswa/fetch') }}",
+      method:"POST",
+      data:{select:select, value:value, _token:_token, dependent:dependent},
+      success:function(result)
+      {
+       $('#'+dependent).html(result);
+      }
+  
+     })
+    }
+   });
+  
+   $('#kategoriprestasi').change(function(){
+    $('#jenisPrestasi').val('');
+    $('#poin').val('');
+   });
+  
+   $('#jenisPrestasi').change(function(){
+    $('#poin').val('');
+   });
+   
+  
+  });
+  </script>
+
+<!-- endbuild -->
       
   </body>
 </html>
