@@ -38,7 +38,7 @@
                         </div>
                         <div class="form-group"> 
                             <label for="inputPassword1">Bentuk pelanggaran</label>
-                            <select class=" form-control" name="idJenispelP" id="bentukpelanggaran" data-dependent="jenisPelanggaran">
+                            <select class="js-example-basic-single form-control" name="idJenispelP" id="bentukpelanggaran" data-dependent="jenisPelanggaran">
                                 <option value=""> Pilih </option>
                               @foreach ($poin as $key => $value)
                               <option value="{{$key}}">{{$value}} </option>
@@ -55,7 +55,7 @@
                          
                         <div class="form-group">
                             <label for="">Tanggal</label>
-                            <input type="datetime" name="tanggalPelanggaran" class="form-control" value="{{$a}}">
+                            <input type="datetime" name="tanggalPelanggaran" class="form-control" readonly value="{{$a}}">
                         </div>
                         <button type="submit" class="btn btn-sm btn-primary">Simpan</button>
                         </form>
