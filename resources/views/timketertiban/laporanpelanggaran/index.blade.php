@@ -34,7 +34,7 @@
                         {{-- <button type="submit" class="btn btn-sm btn-primary">Pilih</button> --}}
                         
                         {{-- <a href="{{ url('timketertiban/laporanpelanggaran/cetak') }}" class="mdi mdi-file-pdf link-icon btn btn-sm btn-primary" target="_blank"> CETAK PDF</a> --}}
-                        <button type="submit" class="mdi mdi-file-pdf btn btn-sm btn-primary"> Cetak</button>
+                        <button type="submit" class="btn btn-sm btn-primary"><a class="mdi mdi-file-pdf link-icon"> Cetak</a> </button>
                       </div>
                     </div>
                   </div>

@@ -33,7 +33,7 @@
                       <div class="col-md-9 showcase_content_area">
                         {{-- <button type="submit" class="btn btn-sm btn-primary">Pilih</button> --}}
                         
-                        <button type="submit" class="btn btn-sm btn-primary"><a class="mdi mdi-file-pdf link-icon"></a> Export</button>
+                        <button type="submit" class="btn btn-sm btn-primary"><a class="mdi mdi-file-pdf link-icon"> Cetak</a> </button>
                       </div>
                     </div>
                   </div>

@@ -49,7 +49,7 @@
               <button class="btn btn-primary" type="submit"><i class="mdi mdi-arrow-right-thick"></i></button>
             </div>
           </form>
-          <ul class="nav ml-auto">
+          {{-- <ul class="nav ml-auto">
             <li class="nav-item dropdown">
               <a class="nav-link" href="#" id="notificationDropdown" data-toggle="dropdown" aria-expanded="false">
                 <i class="mdi mdi-bell-outline mdi-1x"></i>
@@ -140,7 +140,7 @@
                 </div>
               </div>
             </li>
-          </ul>
+          </ul> --}}
         </div>
       </div>
     </nav>
@@ -150,7 +150,7 @@
       <div class="sidebar">
         <div class="user-profile">
           <div class="display-avatar animated-avatar">
-            <img class="profile-img img-lg rounded-circle" src="{{asset('admin/assets/images/profile/male/image_1.png')}}" alt="profile image">
+            <img class="profile-img img-lg" src="{{asset('admin/assets/images/trimurti.gif')}}" style="height:90px;width:70px" alt="profile image">
           </div>
           <div class="info-wrapper">
             {{-- <p class="user-name">Hallo {{auth()->user()->name}}</p> --}}
