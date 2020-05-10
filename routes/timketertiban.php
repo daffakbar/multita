@@ -54,6 +54,7 @@ Route::get('/laporanpelanggaran/cetak','LaporanpelanggaranController@cetakpdf');
 
 //LAPORAN PRESTASI PERKELAS
 Route::get('/laporanprestasi','LaporanprestasiController@index');
+Route::get('/laporanprestasi/cetak','LaporanprestasiController@cetakpdf');
 
 //DASHBOARD
 Route::get('/dashboard','DashboardTKController@index');

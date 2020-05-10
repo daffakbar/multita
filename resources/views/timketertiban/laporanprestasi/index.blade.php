@@ -10,7 +10,7 @@
             <p class="grid-header"></p>
             <div class="grid-body">
               <div class="item-wrapper">
-                <form action="{{ url('timketertiban/laporanprestasi') }}" method="GET">
+                <form action="{{ url('timketertiban/laporanprestasi/cetak') }}" method="GET">
                   {{ csrf_field() }}
                 <div class="row mb-3">
                   <div class="col-md-8 mx-auto">

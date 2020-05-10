@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Pagination\Paginator;
-
+use PDF;
 
 class LaporanprestasiController extends Controller
 {
@@ -24,7 +24,8 @@ class LaporanprestasiController extends Controller
         join('prestasi_siswas as p', 's.id', '=', 'p.id_siswa')->
         join('master_jenispres as jp', 'p.idJenispresP', '=', 'jp.idJenispres')->
         join('master_kategoriprestasi as kp', 'jp.idKategoripresJP', '=', 'kp.idKategoripres')->
-        where('k.idKelas','=',$request->idKelas)->
+        // where('k.idKelas','=',$request->idKelas)->
+        orderBy('s.name','asc','k.kelas')->
         paginate(10);
         
         $kelas = DB::table('master_kelas')->
@@ -32,6 +33,34 @@ class LaporanprestasiController extends Controller
         // dd($pilihkelas);
         
         return view('timketertiban.laporanprestasi.index', compact('pilihkelas', 'kelas'));
+    }
+
+    public function cetakpdf(Request $request)
+    {
+        $pilihkelas = DB::table('siswas as s')->
+        join('kelassiswas as ks', 's.id', '=', 'ks.idSiswak')->
+        join('master_kelas as k', 'ks.idKelask', '=', 'k.idKelas')->
+        // join('master_kelas as k', 'ks.idKelask', '=', 'k.idKelas')->
+        join('prestasi_siswas as p', 's.id', '=', 'p.id_siswa')->
+        join('master_jenispres as jp', 'p.idJenispresP', '=', 'jp.idJenispres')->
+        join('master_kategoriprestasi as kp', 'jp.idKategoripresJP', '=', 'kp.idKategoripres')->
+        join('master_tahunajaran as ta', 'ks.idTahunajarank', '=', 'ta.idTahunajaran')->
+        where('k.idKelas','=',$request->idKelas)->
+        orderBy('name')->
+        get();
+        $kelas = DB::table('master_kelas')->
+        get();
+        
+        $ta = DB::table('master_tahunajaran as ta')->
+        join('kelassiswas as ks', 'ta.idTahunajaran', '=', 'ks.idSiswak')->
+        join('master_kelas as k', 'ks.idKelask', '=', 'k.idKelas')->
+        where('k.idKelas','=',$request->idKelas)->
+        groupBy('tahun')->
+        get();
+        // dd($ta);   
+        set_time_limit(500);
+        $pdf = PDF::loadview('timketertiban.laporanprestasi.cetakpdf',['pilihkelas'=>$pilihkelas, 'kelas'=>$kelas, 'ta'=>$ta]);
+        return $pdf->stream();
     }
 
     /**
