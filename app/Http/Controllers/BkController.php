@@ -68,7 +68,7 @@ class BkController extends Controller
      */
     public function edit($id)
     {
-        $siswaedit = DB::table('siswas')->where('nis', $id)->get();
+        $siswaedit = DB::table('siswas')->where('id', $id)->get();
 
         return view('bk.mastersiswa.edit', ['siswaedit' => $siswaedit]);
     }
