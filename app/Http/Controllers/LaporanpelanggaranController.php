@@ -58,7 +58,7 @@ class LaporanpelanggaranController extends Controller
         where('ks.idKelask','=',$request->idKelas)->
         // groupBy('tahun')->
         get();
-        dd($ta);   
+        // dd($ta);   
         set_time_limit(500);
         $pdf = PDF::loadview('timketertiban.laporanpelanggaran.cetakpdf',['pilihkelas'=>$pilihkelas, 'kelas'=>$kelas, 'ta'=>$ta]);
         return $pdf->stream();
