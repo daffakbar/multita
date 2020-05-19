@@ -53,11 +53,12 @@ class LaporanpelanggaranController extends Controller
         
         $ta = DB::table('master_tahunajaran as ta')->
         join('kelassiswas as ks', 'ta.idTahunajaran', '=', 'ks.idSiswak')->
-        join('master_kelas as k', 'ks.idKelask', '=', 'k.idKelas')->
-        where('k.idKelas','=',$request->idKelas)->
-        groupBy('tahun')->
+        // join('master_kelas as k', 'ks.idKelask', '=', 'k.idKelas')->
+        // where('k.idKelas','=',$request->idKelas)->
+        where('ks.idKelask','=',$request->idKelas)->
+        // groupBy('tahun')->
         get();
-        // dd($ta);   
+        dd($ta);   
         set_time_limit(500);
         $pdf = PDF::loadview('timketertiban.laporanpelanggaran.cetakpdf',['pilihkelas'=>$pilihkelas, 'kelas'=>$kelas, 'ta'=>$ta]);
         return $pdf->stream();

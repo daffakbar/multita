@@ -22,7 +22,7 @@
               <input type="hidden" name="id" value="{{ $wm->id }}"> <br/>
               <div class="form-group">
                 <label for="kelas">Nama Wali Murid</label>
-                <input type="text" class="form-control" name="namaWalimurid" value="{{$wm->namaWalimurid}}">
+                <input type="text" class="form-control" name="namaWalimurid" value="{{$wm->namewm}}">
               </div>
               <div class="form-group">
                 <label for="kelas">Alamat</label>

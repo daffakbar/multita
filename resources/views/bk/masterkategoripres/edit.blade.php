@@ -21,7 +21,7 @@
             
             <form action="/bk/masterkategoripres/update" method="POST">
               {{ csrf_field() }}
-              <input type="hidden" name="id" value="{{ $kp->id }}"> <br/>
+              <input type="hidden" name="id" value="{{ $kp->idKategoripres }}"> <br/>
               <div class="form-group">
                 <label for="kategoriprestasi">Kategori Prestasi</label>
                 <input type="text" class="form-control" name="kategoripres" value="{{$kp->kategoriprestasi}}">

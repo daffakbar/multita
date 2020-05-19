@@ -61,7 +61,7 @@ class KategoripelController extends Controller
      */
     public function edit($id)
     {
-        $kategoripeledit = DB::table('master_kategoripelanggaran')->where('id', $id)->get();
+        $kategoripeledit = DB::table('master_kategoripelanggaran')->where('idKategoripel', $id)->get();
 
         return view('bk.masterkategoripel.edit', ['kategoripeledit' => $kategoripeledit]);
     }
@@ -75,7 +75,7 @@ class KategoripelController extends Controller
      */
     public function update(Request $request)
     {
-        DB::table('master_kategoripelanggaran')->where('id', $request->id)->update([
+        DB::table('master_kategoripelanggaran')->where('idKategoripel', $request->id)->update([
             'kategoripelanggaran' => $request->kategoripel
         ]);
         
@@ -90,7 +90,7 @@ class KategoripelController extends Controller
      */
     public function destroy($id)
     {
-        DB::table('master_kategoripelanggaran')->where('id', $id)->delete();
+        DB::table('master_kategoripelanggaran')->where('idKategoripel', $id)->delete();
         
         return redirect('bk/masterkategoripel')->with('success', 'Data Berhasil di Hapus!');
     }

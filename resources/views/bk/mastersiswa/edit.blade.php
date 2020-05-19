@@ -42,7 +42,7 @@
                 <label for="kelas">Agama</label>
                 <input type="text" class="form-control" name="agama" value="{{$s->agama}}">
               </div>
-              <input type="text" class="form-control" name="password" value="{{$s->password}}" hidden>
+              {{-- <input type="text" class="form-control" name="password" value="{{$s->password}}" hidden>
               <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                 <label for="kelas">Password</label>
                 <input id="password" type="password" class="form-control" name="password" value="{{$s->password}}">
@@ -51,7 +51,7 @@
                       <strong>{{ $errors->first('password') }}</strong>
                     </span>
                 @endif
-              </div>
+              </div> --}}
               <button type="submit" class="btn btn-sm btn-primary">Simpan</button>
             </form>
             @endforeach
