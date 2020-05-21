@@ -11,13 +11,11 @@ Route::get('/home', function () {
 })->name('home');
 
 //DASHBOARD
+Route::get('/dashboardsiswa','DashboardsiswaController@index');
 
 //LAPORAN PELANGGARAN
-Route::get('/laporanpelanggaran', function () {
-	return view('siswa/laporanpelanggaran/index');
-});
+Route::get('/laporanpelanggaransiswa','LaporanpelsiswaController@index');
 
 //LAPORAN PRESTASI
-Route::get('/laporanprestasi', function () {
-	return view('siswa/laporanprestasi/index');
-});
+Route::get('/laporanprestasisiswa','LaporanpressiswaController@index');
+

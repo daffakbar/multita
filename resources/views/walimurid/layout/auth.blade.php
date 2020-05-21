@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Aplikasi Pelanggaran dan Prestasi Trimurti</title>
+    <link rel="shortcut icon" href="{{asset('admin/assets/images/trim.ico')}}">
     <!-- plugins:css -->
     <link rel="stylesheet" href="{{asset('admin/assets/vendors/iconfonts/mdi/css/materialdesignicons.css')}}">
     <!-- endinject -->
@@ -17,7 +18,7 @@
     <!-- Layout style -->
     <link rel="stylesheet" href="{{asset('admin/assets/css/demo_1/style.css')}}">
     <!-- Layout style -->
-    <link rel="shortcut icon" href="{{asset('admin/assets/images/favicon.ico')}}" />
+    {{-- <link rel="shortcut icon" href="{{asset('admin/assets/images/favicon.ico')}}" /> --}}
   
   </head>
   <body class="header-fixed">
@@ -34,13 +35,13 @@
           <button class="t-header-toggler t-header-mobile-toggler d-block d-lg-none">
             <i class="mdi mdi-menu"></i>
           </button>
-          <form class="t-header-search-box" method="GET" action="/siswa/cari">
+          <form class="t-header-search-box" method="GET" action="/walimurid/cari">
             <div class="input-group">
               <input name="cari" type="search" class="form-control" id="inlineFormInputGroup" placeholder="Search" >
               <button class="btn btn-primary" type="submit"><i class="mdi mdi-arrow-right-thick"></i></button>
             </div>
           </form>
-          <ul class="nav ml-auto">
+          {{-- <ul class="nav ml-auto">
             <li class="nav-item dropdown">
               <a class="nav-link" href="#" id="notificationDropdown" data-toggle="dropdown" aria-expanded="false">
                 <i class="mdi mdi-bell-outline mdi-1x"></i>
@@ -131,7 +132,7 @@
                 </div>
               </div>
             </li>
-          </ul>
+          </ul> --}}
         </div>
       </div>
     </nav>
@@ -141,51 +142,31 @@
       <div class="sidebar">
         <div class="user-profile">
           <div class="display-avatar animated-avatar">
-            <img class="profile-img img-lg rounded-circle" src="{{asset('admin/assets/images/profile/male/image_1.png')}}" alt="profile image">
+            <img class="profile-img img-lg" src="{{asset('admin/assets/images/trimurti.gif')}}" style="height:90px;width:70px" alt="profile image">
           </div>
           <div class="info-wrapper">
-            <p class="user-name">{{auth()->user()->name}}</p>
-            <h6 class="display-income">$3,400,00</h6>
+            <p class="user-name">Hallo {{auth()->user()->name}}</p>
+            {{-- <h6 class="display-income">$3,400,00</h6> --}}
           </div>
         </div>
         <ul class="navigation-menu">
           <li class="nav-category-divider">MAIN</li>
           <li>
-            <a href="index.html">
+            <a href="{{ url('walimurid/dashboardsiswa') }}">
               <span class="link-title">Dashboard</span>
               <i class="mdi mdi-gauge link-icon"></i>
             </a>
           </li>
           <li>
-            <a href="#sample-pages" data-toggle="collapse" aria-expanded="false">
-              <span class="link-title">Import Master Data</span>
-              <i class="mdi mdi-table-large link-icon"></i>
-            </a>
-            <ul class="collapse navigation-submenu" id="sample-pages">
-              <li>
-                <a href="pages/sample-pages/login_1.html" target="_blank">Siswa</a>
-              </li>
-              <li>
-                <a href="pages/sample-pages/error_2.html" target="_blank">Wali Murid</a>
-              </li>
-            </ul>
-          </li>
-          <li>
-            <a href="pages/forms/form-elements.html">
-              <span class="link-title">Forms</span>
-              <i class="mdi mdi-clipboard-outline link-icon"></i>
+            <a href="{{ url('walimurid/laporanpelanggaransiswa') }}">
+              <span class="link-title">Laporan pelanggaran</span>
+              <i class="mdi mdi-account-minus link-icon"></i>
             </a>
           </li>
           <li>
-            <a href="pages/charts/chartjs.html">
-              <span class="link-title">Charts</span>
-              <i class="mdi mdi-chart-donut link-icon"></i>
-            </a>
-          </li>
-          <li>
-            <a href="pages/icons/material-icons.html">
-              <span class="link-title">Icons</span>
-              <i class="mdi mdi-flower-tulip-outline link-icon"></i>
+            <a href="{{ url('walimurid/laporanprestasisiswa') }}">
+              <span class="link-title">Laporan prestasi</span>
+              <i class="mdi mdi-account-plus link-icon"></i>
             </a>
           </li>
           <li class="nav-category-divider">Logout</li>
@@ -215,7 +196,7 @@
             
             <div class="col-sm-6 text-center text-sm-left mt-3 mt-sm-0">
               <small class="text-muted d-block">Copyright © 2020 <a href="http://smatrimurti.sch.id/" target="_blank">SMA Trimurti</a>. All rights reserved</small>
-              <small class="text-gray mt-2">Made by Daffa Akbar  <i class="mdi mdi-heart text-danger"></i></small>
+              {{-- <small class="text-gray mt-2">Made by Daffa Akbar  <i class="mdi mdi-heart text-danger"></i></small> --}}
             </div>
           </div>
         </footer>
@@ -235,7 +216,10 @@
     <!-- Vendor Js For This Page Ends-->
     <!-- build:js -->
     <script src="{{asset('admin/assets/js/template.js')}}"></script>
+    <script src="{{asset('admin/assets/vendors/js/vendor.addons.js')}}"></script>
+    <script src="{{asset('admin/assets/js/charts/chartjs.js')}}"></script>
     <script src="{{asset('admin/assets/js/dashboard.js')}}"></script>
     <!-- endbuild -->
+    @yield('footer');
   </body>
 </html>
