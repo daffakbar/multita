@@ -145,7 +145,7 @@
             <img class="profile-img img-lg" src="{{asset('admin/assets/images/trimurti.gif')}}" style="height:90px;width:70px" alt="profile image">
           </div>
           <div class="info-wrapper">
-            <p class="user-name">Hallo {{auth()->user()->name}}</p>
+            <p class="user-name">Hallo {{auth()->user()->namewm}}</p>
             {{-- <h6 class="display-income">$3,400,00</h6> --}}
           </div>
         </div>

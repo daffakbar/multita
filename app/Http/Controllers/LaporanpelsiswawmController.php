@@ -24,7 +24,7 @@ class LaporanpelsiswawmController extends Controller
         join('walimurids as w','s.id','=','w.niss')->
         join('kelassiswas as ks','s.id','=','ks.idSiswak')->
         join('master_kelas as k','k.idKelas','=','ks.idKelask')->
-        where('s.id','=',$idlogin)->
+        where('w.id','=',$idlogin)->
         get();
 
         $datapelsiswa = DB::table('siswas as s')->

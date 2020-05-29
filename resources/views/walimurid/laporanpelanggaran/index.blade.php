@@ -1,4 +1,4 @@
-@extends('siswa.layout.auth')
+@extends('walimurid.layout.auth')
 
 @section('content')
 <div class="container">
