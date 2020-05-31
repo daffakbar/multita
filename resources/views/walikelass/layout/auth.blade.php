@@ -87,13 +87,13 @@
           </li>
           <li class="nav-category-divider">Logout</li>
           <li>
-            <a href="{{ url('/timketertiban/logout') }}"
+            <a href="{{ url('/walikelass/logout') }}"
                 onclick="event.preventDefault();
                 document.getElementById('logout-form').submit();">
                 <span class="link-title">Logout</span>
                 <i class="mdi mdi-logout-variant link-icon"></i>
             </a>
-            <form id="logout-form" action="{{ url('/timketertiban/logout') }}" method="POST" style="display: none;">
+            <form id="logout-form" action="{{ url('/walikelass/logout') }}" method="POST" style="display: none;">
                 {{ csrf_field() }}
             </form>
 

@@ -10,3 +10,14 @@ Route::get('/home', function () {
     return view('kepalasekolah.home');
 })->name('home');
 
+//DASHBOARD
+Route::get('/dashboard','DashboardksController@index');
+
+//LAPORAN PELANGGARAN PERKELAS
+Route::get('/laporanpelanggaran','LaporanpelanggaranksController@index');
+Route::get('/laporanpelanggaran/cetak','LaporanpelanggaranksController@cetakpdf');
+
+
+//LAPORAN PRESTASI PERKELAS
+Route::get('/laporanprestasi','LaporanprestasiksController@index');
+Route::get('/laporanprestasi/cetak','LaporanprestasiksController@cetakpdf');
