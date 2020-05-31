@@ -17,7 +17,7 @@ class LaporanpelsiswawmController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $idlogin = Auth::user()->id;
         $datasiswa = DB::table('siswas as s')->
@@ -28,18 +28,20 @@ class LaporanpelsiswawmController extends Controller
         get();
 
         $datapelsiswa = DB::table('siswas as s')->
+        join('walimurids as w','s.id','=','w.niss')->
         join('pelanggaran_siswas as ps','s.id','=','ps.id_siswa')->
         join('master_jenispel as jp','ps.idJenispelP','=','jp.idJenispel')->
         join('master_kategoripelanggaran as kp','kp.idKategoripel','=','jp.idKategoripelJP')->
-        where('id','=',$idlogin)->
+        where('w.id','=',$idlogin)->
         orderBy('tanggalpelanggaran','desc')->
         paginate(5);
         
         $totpel = DB::table('siswas as s')->
         select(DB::raw('SUM(poin) as totpoin'))->
+        join('walimurids as w','s.id','=','w.niss')->
         join('pelanggaran_siswas as ps','s.id','=','ps.id_siswa')->
         join('master_jenispel as jp','ps.idJenispelP','=','jp.idJenispel')->
-        where('s.id','=',$idlogin)->
+        where('w.id','=',$idlogin)->
         value('totpoin');
 
         // dd($totpel);

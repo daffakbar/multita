@@ -20,30 +20,34 @@ class DashboardsiswawmController extends Controller
         $idlogin = Auth::user()->id;
         
         $totpel = DB::table('siswas as s')->
+        join('walimurids as w','s.id','=','w.niss')->
         join('pelanggaran_siswas as ps','s.id','=','ps.id_siswa')->
-        where('s.id','=',$idlogin)->
+        where('w.id','=',$idlogin)->
         count();
         
         $totpres = DB::table('siswas as s')->
+        join('walimurids as w','s.id','=','w.niss')->
         join('prestasi_siswas as ps','s.id','=','ps.id_siswa')->
-        where('s.id','=',$idlogin)->
+        where('w.id','=',$idlogin)->
         count();
         
         // $pelserin = DB::table('pelanggaran_siswas as ps')->
         $pelserin = DB::table('siswas as s')->
+        join('walimurids as w','s.id','=','w.niss')->
         join('pelanggaran_siswas as ps','s.id','=','ps.id_siswa')->
         select('jenisPelanggaran')->
         join('master_jenispel as jp', 'ps.idJenispelP','=','jp.idJenispel')->
-        where('s.id','=',$idlogin)->
+        where('w.id','=',$idlogin)->
         groupBy('jenisPelanggaran')->
         max('jenisPelanggaran');
         // dd($pelserin);
 
         $presserin = DB::table('siswas as s')->
         join('prestasi_siswas as ps','s.id','=','ps.id_siswa')->
+        join('walimurids as w','s.id','=','w.niss')->
         select('jenisPrestasi')->
         join('master_jenispres as jp', 'ps.idJenispresP','=','jp.idJenispres')->
-        where('s.id','=',$idlogin)->
+        where('w.id','=',$idlogin)->
         groupBy('jenisPrestasi')->
         max('jenisPrestasi');
         // dd($presserin);

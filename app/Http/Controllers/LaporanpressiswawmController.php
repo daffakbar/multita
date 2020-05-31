@@ -17,7 +17,7 @@ class LaporanpressiswawmController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $idlogin = Auth::user()->id;
         $datasiswa = DB::table('siswas as s')->
@@ -28,19 +28,21 @@ class LaporanpressiswawmController extends Controller
         get();
 
         $datapressiswa = DB::table('siswas as s')->
+        join('walimurids as w','s.id','=','w.niss')->
         join('prestasi_siswas as ps','s.id','=','ps.id_siswa')->
         join('master_jenispres as jp','ps.idJenispresP','=','jp.idJenispres')->
         join('master_kategoriprestasi as kp','kp.idKategoripres','=','jp.idKategoripresJP')->
-        where('id','=',$idlogin)->
+        where('w.id','=',$idlogin)->
         orderBy('tanggalprestasi','desc')->
         paginate(5);
         // dd($datapressiswa);
-
+        
         $totpres = DB::table('siswas as s')->
         select(DB::raw('SUM(poin) as totpoin'))->
+        join('walimurids as w','s.id','=','w.niss')->
         join('prestasi_siswas as ps','s.id','=','ps.id_siswa')->
         join('master_jenispres as jp','ps.idJenispresP','=','jp.idJenispres')->
-        where('s.id','=',$idlogin)->
+        where('w.id','=',$idlogin)->
         value('totpoin');
 
         return view('walimurid/laporanprestasi/index',compact('datasiswa','datapressiswa','totpres'));
