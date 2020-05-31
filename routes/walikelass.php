@@ -10,3 +10,14 @@ Route::get('/home', function () {
     return view('walikelass.home');
 })->name('home');
 
+//DASHBOARD
+Route::get('/dashboard','DashboardwkController@index');
+
+//LAPORAN PELANGGARAN PERKELAS
+Route::get('/laporanpelanggaran','LaporanpelanggaranwkController@index');
+Route::get('/laporanpelanggaran/cetak','LaporanpelanggaranwkController@cetakpdf');
+
+
+//LAPORAN PRESTASI PERKELAS
+Route::get('/laporanprestasi','LaporanprestasiwkController@index');
+Route::get('/laporanprestasi/cetak','LaporanprestasiwkController@cetakpdf');
