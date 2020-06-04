@@ -91,6 +91,7 @@
                                     <td style="text-align:left">{{$p->poin}}</td>
                                     <td style="text-align:left">{{$p->tanggalPelanggaran}}</td>
                                     <td class="actions">
+                                        <a href="/timketertiban/pelsiswa/hapus/{{$p->idPelanggaran}}" class="btn btn-rounded social-icon-btn btn-pinterest" onclick="return confirm('Apakah anda akan menghapus {{$p->jenisPelanggaran}} ?')"><i class="mdi mdi-delete"></i></a>
                                     </td>
                                 </tr>
                                 @endforeach

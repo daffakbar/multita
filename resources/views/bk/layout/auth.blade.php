@@ -14,8 +14,8 @@
     <link rel="stylesheet" href="{{asset('admin/assets/css/shared/style.css')}}">
     
     {{-- sweetalert2 --}}
-    <script src="{{asset('admin/assets/sweetalert2/sweetalert2.min.js')}}"></script>
-    <link rel="stylesheet" href="{{asset('admin/assets/sweetalert2/sweetalert2.min.css')}}">
+    {{-- <script src="{{asset('admin/assets/sweetalert2/sweetalert2.min.js')}}"></script>
+    <link rel="stylesheet" href="{{asset('admin/assets/sweetalert2/sweetalert2.min.css')}}"> --}}
     
 
     <!-- endinject -->
@@ -25,7 +25,7 @@
     {{-- <link rel="shortcut icon" href="{{asset('admin/assets/images/favicon.ico')}}" /> --}}
     {{-- <link rel="stylesheet" type="text/css" href="/pathto/css/sweetalert.css"> --}}
     <script src="{{ asset('js/app.js') }}"></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    {{-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> --}}
 
     {{-- <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/8.11.8/sweetalert2.css"> --}}
   </head>

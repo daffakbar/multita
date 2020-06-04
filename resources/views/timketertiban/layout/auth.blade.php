@@ -239,7 +239,7 @@
       </div>
       <!-- page content ends -->
     </div>
-    {{-- @include('sweet::alert') --}}
+    @include('sweet::alert')
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <!--page body ends -->
     <!-- SCRIPT LOADING START FORM HERE /////////////-->

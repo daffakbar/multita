@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\DB;
 use App\PelanggaranSiswa;
 use Illuminate\Database\Eloquent\Model;
 use DateTime;
-
+use Alert;
 
 class PelanggaranController extends Controller
 {
@@ -54,7 +54,7 @@ class PelanggaranController extends Controller
         ->join('siswas as s','ps.id_siswa','=','s.id')
         ->join('master_jenispel as jp','ps.idJenispelP','=','jp.idJenispel')
         ->join('master_kategoripelanggaran as kp','jp.idKategoripelJP','=','kp.idKategoripel')
-        ->paginate(7);
+        ->paginate(6);
         // dd($pelanggaran);
         
         return view('timketertiban.datapelanggaran.index',compact('siswas','kategoripel','ajax','pelanggaran','poin','a'))->with('ajax',$ajax); 
@@ -157,7 +157,8 @@ class PelanggaranController extends Controller
         // ->select('batasAwal','batasAkhir')
         ->get();
 
-// dd($batasawal);
+        // dd($totals);
+        // dd($batasawal);
         // dd($batasawal);
         // $peringatan = 'aaa';
 
@@ -281,8 +282,136 @@ class PelanggaranController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id, Request $request)
     {
-        //
+        
+        
+        //GET ID SISWA
+        $getidsiswa = DB::table('siswas as s')
+        ->select('s.id')
+        ->join('pelanggaran_siswas as ps','s.id','=','ps.id_siswa')
+        ->where('idPelanggaran','=',$id)
+        ->get();
+        
+        $idsiswas = json_decode($getidsiswa,true);
+        $getsiswaid = $idsiswas[0]['id'];
+        // dd($getsiswaid);
+        // dd($totalpel);
+        
+        
+        $totalpel = DB::table('pelanggaran_siswas as ps')
+        ->select(DB::raw('sum(jp.poin) as total_pelanggaran'))
+        ->join('master_jenispel as jp','ps.idJenispelP','=','jp.idJenispel')
+        ->where('id_siswa','=',$getsiswaid)
+        ->get();
+        $totalpeljson = json_decode($totalpel,true);
+        // dd($totalpeljson);
+        
+        
+        $totalpres = DB::table('prestasi_siswas as ps')
+        ->select(DB::raw('sum(jp.poin) as total_prestasi'))
+        ->join('master_jenispres as jp','ps.idJenispresP','=','jp.idJenispres')
+        ->where('id_siswa','=', $getsiswaid)
+        ->get();
+        $totalpresjson = json_decode($totalpres,true);
+        
+        foreach($totalpel as $totpel){
+            foreach($totalpres as $totpres){
+                
+                $total = $totpel->total_pelanggaran + $totpres->total_prestasi;
+            }
+        }
+        if($totalpeljson >= 75){
+            $totals = $totalpeljson[0]['total_pelanggaran'] - $totalpresjson[0]['total_prestasi'];
+            
+        }else{
+            $totals = $totalpeljson[0]['total_pelanggaran'];
+        }
+        // dd($totalpresjson);
+        $batasawal = DB::table('master_sanksi')
+        // ->select('batasAwal','batasAkhir')
+        ->get();
+        
+        // dd($batasawal);
+        // dd($batasawal);
+        // $peringatan = 'aaa';
+        // dd($totals);
+        //KODE YG BENARR!!
+        //     foreach ($batasawal as $sk){
+            //         if($sk->batasAwal <= $totals AND $sk->batasAkhir >= $totals){
+                //             $peringatan = $sk->idSanksi;
+                //         // break;
+                //     }
+                //     dd($peringatan);
+                // }
+                
+        //KODE DARURAT!!!
+        if('10' <= $totals AND '35' >= $totals){
+        $peringatan = DB::table('master_sanksi')
+            ->select('idSanksi')
+            ->where('idSanksi','=','6')
+            ->get();
+            $per = json_decode($peringatan,true);
+        }elseif('36' <= $totals AND '55' >= $totals){
+            $peringatan = DB::table('master_sanksi')
+            ->select('idSanksi')
+            ->where('idSanksi','=', '7')
+            ->get();
+            $per = json_decode($peringatan,true);
+        }elseif ('56' <= $totals AND '75' >= $totals) {
+            $peringatan = DB::table('master_sanksi')
+            ->select('idSanksi')
+            ->where('idSanksi','=', '8')
+            ->get();
+            $per = json_decode($peringatan,true);
+        }elseif ('76' <= $totals AND '95' >= $totals) {
+            $peringatan = DB::table('master_sanksi')
+            ->select('idSanksi')
+            ->where('idSanksi','=', '9')
+            ->get();
+            $per = json_decode($peringatan,true);
+        }elseif ('96' <= $totals AND '150' >= $totals) {
+            $peringatan = DB::table('master_sanksi')
+            ->select('idSanksi')
+            ->where('idSanksi','=', '10')
+            ->get();
+            $per = json_decode($peringatan,true);
+        }elseif ('151' <= $totals AND '249' >= $totals) {
+            $peringatan = DB::table('master_sanksi')
+            ->select('idSanksi')
+            ->where('idSanksi','=', '11')
+            ->get();
+            $per = json_decode($peringatan,true);
+        }elseif ('250' <= $totals AND '300' >= $totals) {
+            $peringatan = DB::table('master_sanksi')
+            ->select('idSanksi')
+            ->where('idSanksi','=', '12')
+            ->get();
+            $per = json_decode($peringatan,true);
+        }
+        
+        // dd($peringatan);
+        // dd($per);
+        // dd($peringatan);
+        // dd($total,$totalpel,$totalpres);
+        $history = DB::table('historysiswas')
+        ->updateOrInsert(
+            ['id_siswa'=> $getsiswaid],
+            [
+                'id_siswa'=> $getsiswaid,
+                'total_pelanggaran'=> $totalpeljson[0]['total_pelanggaran'],
+                'total_prestasi'=> $totalpresjson[0]['total_prestasi'],
+                'total'=> $totals,
+                'id_sangsi' => $per[0]['idSanksi']
+                ]
+                
+                // ['total_pelanggaran'=> $totalpeljson[0]['total_pelanggaran']],
+                // ['total_prestasi'=> $totalpresjson[0]['total_prestasi']],
+                // ['total'=> $totals],
+                // ['id_sangsi' => $peringatan]
+            );
+            DB::table('pelanggaran_siswas')->where('idPelanggaran', $id)->delete();
+            
+            return redirect('timketertiban/pelsiswa')->with('success', 'Data berhasil di hapus');
     }
 }
