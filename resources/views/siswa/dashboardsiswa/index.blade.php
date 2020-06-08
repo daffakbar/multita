@@ -73,10 +73,49 @@
         <div class="grid-body">
           <h2 class="grid-title">Total Pelanggaran dan Prestasi</h2>
           <div class="item-wrapper"><div style="position: absolute; inset: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;" class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
-            <canvas id="chartjs-pie-chart" width="540" height="360" style="display: block; width: 540px; height: 360px;" class="chartjs-render-monitor"></canvas>
-          </div>
+          <canvas id="chartjs-pie-chart" width="540" height="360" style="display: block; width: 540px; height: 360px;" class="chartjs-render-monitor"></canvas>
         </div>
       </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    {{-- <div class="grid"> --}}
+      <div class="grid table-responsive">
+        <div class="grid-body">
+          <h2 class="grid-title">History Pelanggaran dan Prestasi</h2>
+          <table class="table table-stretched">
+            <thead>
+              <tr>
+                <th>Symbol</th>
+                <th>Price</th>
+                <th>Change</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <p class="mb-n1 font-weight-medium">AAPL</p>
+                  <small class="text-gray">Apple Inc.</small>
+                </td>
+                <td class="font-weight-medium">198.18</td>
+                <td class="text-danger font-weight-medium">
+                  <div class="badge badge-success">-1.39%</div>
+                </td>
+              </tr>
+              
+                <td>
+                  <p class="mb-n1 font-weight-medium">SBUX</p>
+                  <small class="text-gray">Starbucks Corporation</small>
+                </td>
+                <td class="font-weight-medium">08.42</td>
+                <td class="text-danger font-weight-medium">
+                  <div class="badge badge-danger">+0.67%</div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      {{-- </div> --}}
     </div>
     {{-- <div class="col-md-8 equel-grid">
       <div class="grid">

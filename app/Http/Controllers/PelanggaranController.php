@@ -139,20 +139,18 @@ class PelanggaranController extends Controller
         ->where('id_siswa','=',$request->idKelassiswaP)
         ->get();
         $totalpresjson = json_decode($totalpres,true);
-        
-        foreach($totalpel as $totpel){
-            foreach($totalpres as $totpres){
-
-                $total = $totpel->total_pelanggaran + $totpres->total_prestasi;
-            }
-        }
-        if($totalpeljson >= 75){
+        // dd($totalpeljson);
+        // dd($totalpeljson[0]['total_pelanggaran']);
+        if($totalpeljson[0]['total_pelanggaran'] >= 75){
             $totals = $totalpeljson[0]['total_pelanggaran'] - $totalpresjson[0]['total_prestasi'];
             
         }else{
             $totals = $totalpeljson[0]['total_pelanggaran'];
         }
-        // dd($totalpresjson);
+        // dd($totals);
+        
+
+
         $batasawal = DB::table('master_sanksi')
         // ->select('batasAwal','batasAkhir')
         ->get();
@@ -172,7 +170,14 @@ class PelanggaranController extends Controller
         // }
 
         //KODE DARURAT!!!
-        if('10' <= $totals AND '35' >= $totals){
+        if( null <= $totals AND '9' >= $totals){
+            $peringatan = DB::table('master_sanksi')
+            ->select('idSanksi')
+            ->where('idSanksi','=','1')
+            ->get();
+            $per = json_decode($peringatan,true);
+        }
+        elseif('10' <= $totals AND '35' >= $totals){
             $peringatan = DB::table('master_sanksi')
             ->select('idSanksi')
             ->where('idSanksi','=','6')
@@ -297,6 +302,7 @@ class PelanggaranController extends Controller
         $getsiswaid = $idsiswas[0]['id'];
         // dd($getsiswaid);
         // dd($totalpel);
+        DB::table('pelanggaran_siswas')->where('idPelanggaran', $id)->delete();
         
         
         $totalpel = DB::table('pelanggaran_siswas as ps')
@@ -315,19 +321,15 @@ class PelanggaranController extends Controller
         ->get();
         $totalpresjson = json_decode($totalpres,true);
         
-        foreach($totalpel as $totpel){
-            foreach($totalpres as $totpres){
-                
-                $total = $totpel->total_pelanggaran + $totpres->total_prestasi;
-            }
-        }
-        if($totalpeljson >= 75){
+        
+        if($totalpeljson[0]['total_pelanggaran'] >= 75){
             $totals = $totalpeljson[0]['total_pelanggaran'] - $totalpresjson[0]['total_prestasi'];
             
         }else{
             $totals = $totalpeljson[0]['total_pelanggaran'];
         }
-        // dd($totalpresjson);
+
+        // dd($totals);
         $batasawal = DB::table('master_sanksi')
         // ->select('batasAwal','batasAkhir')
         ->get();
@@ -346,7 +348,14 @@ class PelanggaranController extends Controller
                 // }
                 
         //KODE DARURAT!!!
-        if('10' <= $totals AND '35' >= $totals){
+        if( null <= $totals AND '9' >= $totals){
+            $peringatan = DB::table('master_sanksi')
+            ->select('idSanksi')
+            ->where('idSanksi','=','1')
+            ->get();
+            $per = json_decode($peringatan,true);
+        }
+        elseif('10' <= $totals AND '35' >= $totals){
         $peringatan = DB::table('master_sanksi')
             ->select('idSanksi')
             ->where('idSanksi','=','6')
@@ -392,7 +401,7 @@ class PelanggaranController extends Controller
         
         // dd($peringatan);
         // dd($per);
-        // dd($peringatan);
+        // dd($totalpeljson);
         // dd($total,$totalpel,$totalpres);
         $history = DB::table('historysiswas')
         ->updateOrInsert(
@@ -410,7 +419,6 @@ class PelanggaranController extends Controller
                 // ['total'=> $totals],
                 // ['id_sangsi' => $peringatan]
             );
-            DB::table('pelanggaran_siswas')->where('idPelanggaran', $id)->delete();
             
             return redirect('timketertiban/pelsiswa')->with('success', 'Data berhasil di hapus');
     }
