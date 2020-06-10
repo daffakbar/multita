@@ -61,8 +61,25 @@ class DashboardsiswaController extends Controller
         $stats = $statss[0]['id_sangsi'];
         // dd($stats);
         
+        $historyp = DB::table('siswas as s')->
+        join('pelanggaran_siswas as pel','pel.id_siswa','=','s.id')->
+        join('master_jenispel as jpel','pel.idjenispelP','=','jpel.idJenispel')->
+        join('master_kategoripelanggaran as kpel','jpel.idKategoripelJP','=','kpel.idKategoripel')->
+        where('s.id','=',$idlogin)->
+        orderBy('idPelanggaran','desc')->
+        limit(1)->
+        get();
 
-        return view('siswa/dashboardsiswa/index', compact('totpel','totpres','pelserin','presserin','stats'));
+        $historypp = DB::table('siswas as s')->
+        join('prestasi_siswas as pres','pres.id_siswa','=','s.id')->
+        join('master_jenispres as jpres','pres.idjenispresP','=','jpres.idJenispres')->
+        join('master_kategoriprestasi as kpres','jpres.idKategoripresJP','=','kpres.idKategoripres')->
+        where('s.id','=',$idlogin)->
+        orderBy('idPrestasi','desc')->
+        limit(1)->
+        get();
+
+        return view('siswa/dashboardsiswa/index', compact('totpel','totpres','pelserin','presserin','stats','historyp','historypp'));
     }
 
     /**

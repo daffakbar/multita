@@ -86,7 +86,7 @@
         </div>
       </div>
     </div> --}}
-    <div class="col-md-8 equel-grid">
+    <div class="col-md-6 equel-grid">
       <div class="grid">
         <div class="grid-body py-3">
           <p class="card-title ml-n1">Penerbitan Surat Peringatan</p>

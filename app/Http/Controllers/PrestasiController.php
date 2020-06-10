@@ -53,6 +53,7 @@ class PrestasiController extends Controller
         ->join('siswas as s','ps.id_siswa','=','s.id')
         ->join('master_jenispres as jp','ps.idJenispresP','=','jp.idJenispres')
         ->join('master_kategoriprestasi as kp','jp.idKategoripresJP','=','kp.idKategoripres')
+        ->orderBy('idPrestasi','desc')
         ->paginate(6);
         
 
@@ -131,7 +132,9 @@ class PrestasiController extends Controller
         DB::table('prestasi_siswas')->insert([
             'id_siswa' =>$request->idKelassiswapres,
             'idJenispresP' => $request->idJenispresP,
-            'tanggalPrestasi' => $request->tanggalPrestasi
+            'tanggalPrestasi' => $request->tanggalPrestasi,
+            'created_at'        => now(),
+            'updated_at'        => now()
         ]);
         
 

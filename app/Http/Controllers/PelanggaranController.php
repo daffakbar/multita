@@ -54,6 +54,7 @@ class PelanggaranController extends Controller
         ->join('siswas as s','ps.id_siswa','=','s.id')
         ->join('master_jenispel as jp','ps.idJenispelP','=','jp.idJenispel')
         ->join('master_kategoripelanggaran as kp','jp.idKategoripelJP','=','kp.idKategoripel')
+        ->orderBy('idPelanggaran','desc')
         ->paginate(6);
         // dd($pelanggaran);
         
@@ -119,7 +120,9 @@ class PelanggaranController extends Controller
         DB::table('pelanggaran_siswas')->insert([
             'id_siswa' =>$request->idKelassiswaP,
             'idJenispelP' => $request->idJenispelP,
-            'tanggalPelanggaran' => $request->tanggalPelanggaran
+            'tanggalPelanggaran' => $request->tanggalPelanggaran,
+            'created_at'        => now(),
+            'updated_at'        => now()
         ]);
 
 
