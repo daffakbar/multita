@@ -83,7 +83,7 @@
                                     <tr>
                                         <th>No</th>
                                         <th style="text-align:left">Nama siswa</th>
-                                        <th style="text-align:left">Kategori</th>
+                                        {{-- <th style="text-align:left">Kategori</th> --}}
                                         <th style="text-align:left">Bentuk prestasi</th>
                                         <th style="text-align:left">Poin</th>
                                         <th style="text-align:left">Tanggal</th>
@@ -96,7 +96,7 @@
                                     <tr>
                                         <td>{{$no++}}</td>
                                         <td style="text-align:left">{{$p->name}}</td>
-                                        <td style="text-align:left">{{$p->kategoriprestasi}}</td>
+                                        {{-- <td style="text-align:left">{{$p->kategoriprestasi}}</td> --}}
                                         <td style="text-align:left">{{$p->jenisPrestasi}}</td>
                                         <td style="text-align:left">{{$p->poin}}</td>
                                         <td style="text-align:left">{{$p->tanggalPrestasi}}</td>
@@ -111,6 +111,11 @@
                                     @endforeach    
                                 </tbody>
                             </table>
+                            <br>
+                            {{ $prestasi->links() }}
+                        Halaman : {{ $prestasi->currentPage() }} <br/>
+                        Jumlah Data : {{ $prestasi->total() }} <br/>
+                        Data Per Halaman : {{ $prestasi->perPage() }} <br/>
                         </div>
                     </div>
                 </div>

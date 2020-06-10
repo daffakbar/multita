@@ -68,7 +68,7 @@
         </div>
       </div>
     </div> --}}
-    <div class="col-md-6">
+    <div class="col-md-6" >
       <div class="grid">
         <div class="grid-body">
           <h2 class="grid-title">Total Pelanggaran dan Prestasi</h2>
@@ -78,45 +78,71 @@
       </div>
     </div>
   </div>
-  <div class="col-md-6">
+  
+  <div class="col-md-4">
     {{-- <div class="grid"> --}}
+        
       <div class="grid table-responsive">
         <div class="grid-body">
           <h2 class="grid-title">History Pelanggaran dan Prestasi</h2>
           <table class="table table-stretched">
             <thead>
               <tr>
-                <th>Symbol</th>
-                <th>Price</th>
-                <th>Change</th>
+                <th>Bentuk</th>
+                {{-- <th>Price</th> --}}
+                <th>Poin</th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td>
-                  <p class="mb-n1 font-weight-medium">AAPL</p>
+                  <p class="mb-n1 font-weight-medium">Pelanggaran</p>
                   <small class="text-gray">Apple Inc.</small>
                 </td>
-                <td class="font-weight-medium">198.18</td>
+                {{-- <td class="font-weight-medium">198.18</td> --}}
                 <td class="text-danger font-weight-medium">
                   <div class="badge badge-success">-1.39%</div>
                 </td>
               </tr>
               
                 <td>
-                  <p class="mb-n1 font-weight-medium">SBUX</p>
+                  <p class="mb-n1 font-weight-medium">Prestasi</p>
                   <small class="text-gray">Starbucks Corporation</small>
                 </td>
-                <td class="font-weight-medium">08.42</td>
+                {{-- <td class="font-weight-medium">08.42</td> --}}
                 <td class="text-danger font-weight-medium">
                   <div class="badge badge-danger">+0.67%</div>
                 </td>
               </tr>
+            </tr>
+              
+            <td>
+              <p class="mb-n1 font-weight-medium">Prestasi</p>
+              <small class="text-gray">Starbucks Corporation</small>
+            </td>
+            {{-- <td class="font-weight-medium">08.42</td> --}}
+            <td class="text-danger font-weight-medium">
+              <div class="badge badge-danger">+0.67%</div>
+            </td>
+          </tr>
+        </tr>
+              
+        <td>
+          <p class="mb-n1 font-weight-medium">Prestasi</p>
+          <small class="text-gray">Starbucks Corporation</small>
+        </td>
+        {{-- <td class="font-weight-medium">08.42</td> --}}
+        <td class="text-danger font-weight-medium">
+          <div class="badge badge-danger">+0.67%</div>
+        </td>
+      </tr>
             </tbody>
           </table>
         </div>
       {{-- </div> --}}
+
     </div>
+
     {{-- <div class="col-md-8 equel-grid">
       <div class="grid">
         <div class="grid-body py-3">
@@ -165,6 +191,84 @@
     </div> --}}
    
   </div>
+  <div class="col-md-2">
+    <div class="grid">
+        <div class="grid-body">
+          {{-- <button class="btn btn-dark">Peringatan I</button> --}}
+          <h2 class="grid-title">Status</h2>
+          {{-- @foreach ($stats as $sts) --}}
+            @if ($stats == 1)
+            <button class=" btn-success">Tidak ada sanksi</button>
+            @elseif ($stats == 6)
+            <button class=" btn-warning">Peringatan I</button>
+            @elseif ($stats == 7)
+            <button class=" btn-warning">Peringatan II</button>
+            @elseif ($stats == 8)
+            <button class=" btn-danger">Surat Peringatan I</button>
+            @elseif ($stats == 9)
+            <button class=" btn-danger">Surat Peringatan II</button>
+            @elseif ($stats == 10)
+            <button class=" btn-danger">Surat Peringatan III</button>
+            @elseif ($stats == 11)
+            <button class=" btn-dark">Skorsing</button>
+            @else
+            <button class=" btn-dark">Dikembalikan ke orang tua 	</button>
+            @endif
+          {{-- @endforeach --}}
+        </div>
+        </div>
+    </div>
+
+    {{-- <div class="col-md-8 equel-grid">
+      <div class="grid">
+        <div class="grid-body py-3">
+          <p class="card-title ml-n1">Penerbitan Surat Peringatan</p>
+        </div>
+        <div class="table-responsive">
+          <table class="table table-hover table-sm">
+            <thead>
+              <tr class="solid-header">
+                <th>No.</th>
+                <th>Nama</th>
+                <th>Poin</th>
+                <th>Sanksi</th>
+                <th>Aksi</th>
+              </tr>
+            </thead>
+            <tbody>
+              @php
+               $no = 1;   
+              @endphp
+              @foreach ($suratperingatan as $sp)
+              <tr>
+                <td>{{$no++}}</td>
+                <td>
+                  <small class="text-black font-weight-medium d-block">{{$sp->name}}</small>
+                  <span class="text-gray">
+                    <span class="status-indicator rounded-indicator small bg-danger"></span>{{$sp->kelas}}</span>
+                  </td>
+                  <td>
+                    <small>{{$sp->total}}</small>
+                  </td>
+                  <td> {{$sp->sanksi}} </td>
+                  <td> 
+                    <a href="https://wa.me/{{$sp->noHp}}?text=Anak anda bernama {{$sp->name}} mempunyai poin pelanggaran {{$sp->total}} dan mendapatkan sanksi berupa {{$sp->sanksi}}. Dari SMA Trimurti Surabaya 
+                      
+                      Terima kasih " class="btn btn-rounded social-icon-btn btn-behance" target="_blank">
+                      <i class="mdi mdi-comment-processing-outline"></i>
+                    </a>
+                  </td>
+                </tr>
+                @endforeach
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div> --}}
+   
+  </div>
+   
+  </div>  
 </div>
 @endsection
 @section('footer')

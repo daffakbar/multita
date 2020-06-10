@@ -49,9 +49,20 @@ class DashboardsiswaController extends Controller
         groupBy('jenisPrestasi')->
         max('jenisPrestasi');
         // dd($presserin);
+
+        $status = DB::table('siswas as s')->
+        select('hs.id_sangsi')->
+        join('historysiswas as hs','hs.id_siswa','=','s.id')->
+        join('master_sanksi as ms','hs.id_sangsi','=','ms.idSanksi')->
+        where('s.id','=',$idlogin)->
+        get();
+
+        $statss = json_decode($status, true);
+        $stats = $statss[0]['id_sangsi'];
+        // dd($stats);
         
 
-        return view('siswa/dashboardsiswa/index', compact('totpel','totpres','pelserin','presserin'));
+        return view('siswa/dashboardsiswa/index', compact('totpel','totpres','pelserin','presserin','stats'));
     }
 
     /**

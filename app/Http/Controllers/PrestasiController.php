@@ -53,7 +53,7 @@ class PrestasiController extends Controller
         ->join('siswas as s','ps.id_siswa','=','s.id')
         ->join('master_jenispres as jp','ps.idJenispresP','=','jp.idJenispres')
         ->join('master_kategoriprestasi as kp','jp.idKategoripresJP','=','kp.idKategoripres')
-        ->get();
+        ->paginate(6);
         
 
         // document.getElementById("demo").val = "{{poin}}";
@@ -183,8 +183,7 @@ class PrestasiController extends Controller
             ->where('idSanksi','=','1')
             ->get();
             $per = json_decode($peringatan,true);
-        }
-        elseif('10' <= $totals AND '35' >= $totals){
+        }elseif('10' <= $totals AND '35' >= $totals){
             $peringatan = DB::table('master_sanksi')
             ->select('idSanksi')
             ->where('idSanksi','=','6')
@@ -346,9 +345,8 @@ class PrestasiController extends Controller
             ->where('idSanksi','=','1')
             ->get();
             $per = json_decode($peringatan,true);
-        }
-        elseif('10' <= $totals AND '35' >= $totals){
-        $peringatan = DB::table('master_sanksi')
+        }elseif('10' <= $totals AND '35' >= $totals){
+            $peringatan = DB::table('master_sanksi')
             ->select('idSanksi')
             ->where('idSanksi','=','6')
             ->get();

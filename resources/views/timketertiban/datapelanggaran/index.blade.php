@@ -73,7 +73,7 @@
                                 <tr>
                                     <th>No</th>
                                     <th style="text-align:left">Nama siswa</th>
-                                    <th style="text-align:left">Kategori</th>
+                                    {{-- <th style="text-align:left">Kategori</th> --}}
                                     <th style="text-align:left">Bentuk pelanggaran</th>
                                     <th style="text-align:left">Poin</th>
                                     <th style="text-align:left">Tanggal</th>
@@ -86,7 +86,7 @@
                                 <tr>
                                     <td>{{$no++}}</td>
                                     <td style="text-align:left">{{$p->name}}</td>
-                                    <td style="text-align:left">{{$p->kategoripelanggaran}}</td>
+                                    {{-- <td style="text-align:left">{{$p->kategoripelanggaran}}</td> --}}
                                     <td style="text-align:left">{{$p->jenisPelanggaran}}</td>
                                     <td style="text-align:left">{{$p->poin}}</td>
                                     <td style="text-align:left">{{$p->tanggalPelanggaran}}</td>
