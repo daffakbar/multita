@@ -49,7 +49,7 @@
       <div class="row">
           <div class="col-lg-12">
               <div class="grid">
-                  <p class="grid-header">Laporan pelanggaran perkelas</p>
+                  <p class="grid-header">Laporan prestasi perkelas</p>
                   <div class="item-wrapper">
                       <div class="table-responsive">
                           <table class="table info-table">

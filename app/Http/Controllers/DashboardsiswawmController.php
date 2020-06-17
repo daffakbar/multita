@@ -31,26 +31,63 @@ class DashboardsiswawmController extends Controller
         where('w.id','=',$idlogin)->
         count();
         
-        // $pelserin = DB::table('pelanggaran_siswas as ps')->
-        $pelserin = DB::table('siswas as s')->
+        $cekpel = DB::table('siswas as s')->
         join('walimurids as w','s.id','=','w.niss')->
+        // join('prestasi_siswas as ps','s.id','=','ps.id_siswa')->
         join('pelanggaran_siswas as ps','s.id','=','ps.id_siswa')->
-        select('jenisPelanggaran')->
-        join('master_jenispel as jp', 'ps.idJenispelP','=','jp.idJenispel')->
         where('w.id','=',$idlogin)->
-        groupBy('jenisPelanggaran')->
-        max('jenisPelanggaran');
+        get();
+        
+        if ($cekpel->isEmpty()) {
+            $seripres = "Tidak ada";
+        }else{
+            $pelserin = DB::table('siswas as s')->
+            join('walimurids as w','s.id','=','w.niss')->
+            select('jenisPelanggaran')->
+            select(DB::raw('count(*) as pelsis, jenisPelanggaran'))->
+            join('pelanggaran_siswas as ps','s.id','=','ps.id_siswa')->
+            join('master_jenispel as jp', 'ps.idJenispelP','=','jp.idJenispel')->
+            where('w.id','=',$idlogin)->
+            groupBy('jenisPelanggaran')->
+            orderBy('pelsis','desc')->
+            limit(1)->
+            get();
+            
+            $seringpel = json_decode($pelserin, true);
+            $seripel = $seringpel[0]['jenisPelanggaran'];
+        }
+        
+        // dd($cekpel);
+        // $pelserin = DB::table('pelanggaran_siswas as ps')->
         // dd($pelserin);
         
-        $presserin = DB::table('siswas as s')->
-        join('prestasi_siswas as ps','s.id','=','ps.id_siswa')->
+        $cek = DB::table('siswas as s')->
         join('walimurids as w','s.id','=','w.niss')->
-        select('jenisPrestasi')->
-        join('master_jenispres as jp', 'ps.idJenispresP','=','jp.idJenispres')->
+        join('prestasi_siswas as ps','s.id','=','ps.id_siswa')->
         where('w.id','=',$idlogin)->
-        groupBy('jenisPrestasi')->
-        max('jenisPrestasi');
-        // dd($presserin);
+        get();
+        
+        
+        
+        // dd($cek);
+        if ($cek->isEmpty()) {
+            $seripres = "Tidak ada";
+        }else{
+            // $seripres = "ada data"; 
+            $presserin = DB::table('siswas as s')->
+            join('walimurids as w','s.id','=','w.niss')->
+            select('jenisPrestasi')->
+            select(DB::raw('count(*) as pelsis, jenisPrestasi'))->
+            join('prestasi_siswas as ps','s.id','=','ps.id_siswa')->
+            join('master_jenispres as jp', 'ps.idJenispresP','=','jp.idJenispres')->
+            where('w.id','=',$idlogin)->
+            groupBy('jenisPrestasi')->
+            orderBy('pelsis','desc')->
+            limit(1)->
+            get();
+            $seringpres = json_decode($presserin, true);
+            $seripres = $seringpres[0]['jenisPrestasi'];
+        }
         
         $status = DB::table('siswas as s')->
         join('walimurids as w','s.id','=','w.niss')->
@@ -84,7 +121,7 @@ class DashboardsiswawmController extends Controller
         limit(1)->
         get();
 
-        return view('walimurid/dashboardsiswa/index', compact('totpel','totpres','pelserin','presserin','stats','historyp','historypp'));
+        return view('walimurid/dashboardsiswa/index', compact('totpel','totpres','pelserin','stats','historyp','historypp','seripel','seripres'));
     }
 
     /**

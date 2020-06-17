@@ -26,7 +26,7 @@ class LaporanpressiswawmController extends Controller
         join('master_kelas as k','k.idKelas','=','ks.idKelask')->
         where('w.id','=',$idlogin)->
         get();
-
+        
         $datapressiswa = DB::table('siswas as s')->
         join('walimurids as w','s.id','=','w.niss')->
         join('prestasi_siswas as ps','s.id','=','ps.id_siswa')->
@@ -35,6 +35,7 @@ class LaporanpressiswawmController extends Controller
         where('w.id','=',$idlogin)->
         orderBy('tanggalprestasi','desc')->
         paginate(5);
+
         // dd($datapressiswa);
         
         $totpres = DB::table('siswas as s')->
