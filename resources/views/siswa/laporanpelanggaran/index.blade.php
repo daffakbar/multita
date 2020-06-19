@@ -66,7 +66,7 @@
                         <tr>
                           <th>Tanggal</th>
                           <th style="text-align:left">Kategori</th>
-                          <th style="text-align:left">Jenis pelanggaran</th>
+                          <th style="text-align:left">Bentuk pelanggaran</th>
                           <th style="text-align:right">Poin</th>
                         </tr>
                       </thead>

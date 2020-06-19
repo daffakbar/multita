@@ -66,7 +66,7 @@
                         <tr>
                           <th>Tanggal</th>
                           <th style="text-align:left">Kategori</th>
-                          <th style="text-align:left">Jenis Prestasi</th>
+                          <th style="text-align:left">Bentuk Prestasi</th>
                           <th style="text-align:right">Poin</th>
                         </tr>
                       </thead>
