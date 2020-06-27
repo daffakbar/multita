@@ -27,6 +27,7 @@ class PelanggaranController extends Controller
 
         $siswas = DB::table('kelassiswas as ks')
         ->join('siswas as s','ks.idSiswak','=','s.id')
+        // ->join('walimurids as wm', 'wm.niss', '=','s.id')
         ->get();
         // dd($siswas);
         $kategoripel = DB::table('master_jenispel as jp')

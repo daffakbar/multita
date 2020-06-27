@@ -22,6 +22,10 @@
     {{-- <link rel="shortcut icon" href="{{asset('admin/assets/images/favicon.ico')}}" /> --}}
 
     <script src="{{ asset('js/app.js') }}"></script>
+    {{-- SCRIPT TABULATOR DAN DOWNLOAD PDF --}}
+    <link href="https://unpkg.com/tabulator-tables@4.7.0/dist/css/tabulator.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.0.5/jspdf.plugin.autotable.js"></script>
     {{-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> --}}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
   </head>
@@ -39,12 +43,12 @@
           <button class="t-header-toggler t-header-mobile-toggler d-block d-lg-none">
             <i class="mdi mdi-menu"></i>
           </button>
-          <form class="t-header-search-box" method="GET" action="/siswa/cari">
+          {{-- <form class="t-header-search-box" method="GET" action="/siswa/cari">
             <div class="input-group">
               <input name="cari" type="search" class="form-control" id="inlineFormInputGroup" placeholder="Search" >
               <button class="btn btn-primary" type="submit"><i class="mdi mdi-arrow-right-thick"></i></button>
             </div>
-          </form>
+          </form> --}}
           {{-- <ul class="nav ml-auto">
             <li class="nav-item dropdown">
               <a class="nav-link" href="#" id="notificationDropdown" data-toggle="dropdown" aria-expanded="false">

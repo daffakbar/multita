@@ -35,12 +35,12 @@
           <button class="t-header-toggler t-header-mobile-toggler d-block d-lg-none">
             <i class="mdi mdi-menu"></i>
           </button>
-          <form class="t-header-search-box" method="GET" action="/walimurid/cari">
+          {{-- <form class="t-header-search-box" method="GET" action="/walimurid/cari">
             <div class="input-group">
               <input name="cari" type="search" class="form-control" id="inlineFormInputGroup" placeholder="Search" >
               <button class="btn btn-primary" type="submit"><i class="mdi mdi-arrow-right-thick"></i></button>
             </div>
-          </form>
+          </form> --}}
           {{-- <ul class="nav ml-auto">
             <li class="nav-item dropdown">
               <a class="nav-link" href="#" id="notificationDropdown" data-toggle="dropdown" aria-expanded="false">

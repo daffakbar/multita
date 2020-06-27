@@ -25,12 +25,15 @@ class LaporanpelanggaranksController extends Controller
         join('master_jenispel as jp', 'p.idJenispelP', '=', 'jp.idJenispel')->
         join('master_kategoripelanggaran as kp', 'jp.idKategoripelJP', '=', 'kp.idKategoripel')->
         // where('k.idKelas','=',$request->idKelas)->
+        join('master_tahunajaran as ta', 'ks.idTahunajarank', '=', 'ta.idTahunajaran')->
         orderBy('s.name','asc','k.kelas')->
-        paginate(10);
+        // paginate(10);
+        get();
         
         $kelas = DB::table('master_kelas')->
         get();
 
+        // dd($kelas);
         // dd($pilihkelas);
         
         return view('kepalasekolah.laporanpelanggaran.index', compact('pilihkelas', 'kelas'));

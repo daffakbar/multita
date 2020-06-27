@@ -25,8 +25,9 @@ class LaporanprestasiController extends Controller
         join('master_jenispres as jp', 'p.idJenispresP', '=', 'jp.idJenispres')->
         join('master_kategoriprestasi as kp', 'jp.idKategoripresJP', '=', 'kp.idKategoripres')->
         // where('k.idKelas','=',$request->idKelas)->
+        join('master_tahunajaran as ta', 'ks.idTahunajarank', '=', 'ta.idTahunajaran')->
         orderBy('s.name','asc','k.kelas')->
-        paginate(10);
+        get();
         
         $kelas = DB::table('master_kelas')->
         get();

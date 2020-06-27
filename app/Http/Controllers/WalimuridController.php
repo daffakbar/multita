@@ -77,7 +77,9 @@ class WalimuridController extends Controller
     public function update(Request $request)
     {
         DB::table('walimurids')->where('id', $request->id)->update([
+            'niss' => $request->nisSiswa,
             'namewm' => $request->namaWalimurid,
+            'email' => $request->emailWalimurid,
             'alamat'=>$request->alamat,
             'noHp'=>$request->noHp
         ]);

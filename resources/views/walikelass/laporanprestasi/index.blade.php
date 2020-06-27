@@ -4,93 +4,132 @@
 
   <div class="page-content-wrapper-inner">
     <div class="content-viewport">
-      <div class="row">
-        <div class="col-lg-12">
-          <div class="grid">
-            <p class="grid-header"></p>
-            <div class="grid-body">
-              <div class="item-wrapper">
-                <form action="{{ url('walikelass/laporanprestasi/cetak') }}" method="GET">
-                  {{ csrf_field() }}
-                <div class="row mb-3">
-                  <div class="col-md-8 mx-auto">
-                    <div class="form-group row showcase_row_area">
-                      <div class="col-md-3 showcase_text_area">
-                        <label for="inputType1">Pilih kelas</label>
-                      </div>
-                      <div class="col-md-9 showcase_content_area">
-                        <select class="js-example-basic-single form-control" name="idKelas">
-                          @foreach ($kelas as $k)
-                          <option value="{{$k->idKelas}}">{{$k->kelas}}</option>
-                          @endforeach
-                        </select>
-                      </div>
-                    </div>
-                    <div class="form-group row showcase_row_area">
-                      <div class="col-md-3 showcase_text_area">
-                        {{-- <label for="inputType1">Name</label> --}}
-                      </div>
-                      <div class="col-md-9 showcase_content_area">
-                        {{-- <button type="submit" class="btn btn-sm btn-primary">Pilih</button> --}}
-                        
-                        <button type="submit" class="btn btn-sm btn-primary"><a class="mdi mdi-file-pdf link-icon"> Cetak</a> </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="content-viewport">
-      <div class="row">
-          <div class="col-lg-12">
-              <div class="grid">
-                  <p class="grid-header">Laporan pelanggaran perkelas</p>
-                  <div class="item-wrapper">
-                      <div class="table-responsive">
-                          <table class="table info-table">
-                              <thead>
-                                  <tr>
-                                      <th>No</th>
-                                      <th style="text-align:left">Nama</th>
-                                      <th style="text-align:left">Kelas</th>
-                                      {{-- <th style="text-align:left">Kategori prestasi</th> --}}
-                                      <th style="text-align:left">Bentuk prestasi</th>
-                                      <th style="text-align:left">Poin</th>
-                                      <th style="text-align:left">Tanggal</th>
-                                  </tr>
-                              </thead>
-                              <tbody>
-                                  @php $no = 1 @endphp
-                                  @foreach ($pilihkelas as $pk)
-                                  <tr>
-                                      <td>{{$no++}}</td>
-                                      <td style="text-align:left">{{$pk->name}}</td>
-                                      <td style="text-align:left">{{$pk->kelas}}</td>
-                                      {{-- <td style="text-align:left">{{$pk->kategoriprestasi}}</td> --}}
-                                      <td style="text-align:left">{{$pk->jenisPrestasi}}</td>
-                                      <td style="text-align:left">{{$pk->poin}}</td>
-                                      <td style="text-align:left">{{$pk->tanggalPrestasi}}</td>
-                                  </tr>    
-                                  @endforeach
-                              </tbody>
-                          </table>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="grid">
+                  <p class="grid-header"> Laporan prestasi perkelas</p>
+                    <div class="item-wrapper">
+                        <div class="table-responsive">
+                          <div>
+                            <button id="download-pdf" class="btn btn-danger">Download PDF</button>
+                          </div>
                           <br>
-                            {{ $pilihkelas->links() }}
-                            Halaman : {{ $pilihkelas->currentPage() }} <br/>
-                            Jumlah Data : {{ $pilihkelas->total() }} <br/>
-                            Data Per Halaman : {{ $pilihkelas->perPage() }} <br/>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </div>
+                          <div id="example-table"class=""></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
   </div>
 
+@endsection
 
+@section('footer')
+
+<script type="text/javascript" src="https://unpkg.com/tabulator-tables@4.7.0/dist/js/tabulator.min.js"></script>
+
+<script>
+  var minMaxFilterEditor = function(cell, onRendered, success, cancel, editorParams){
+
+  var end;
+
+  var container = document.createElement("span");
+
+  //create and style inputs
+  var start = document.createElement("input");
+  start.setAttribute("type", "number");
+  start.setAttribute("placeholder", "Min");
+  start.setAttribute("min", 0);
+  start.setAttribute("max", 100);
+  start.style.padding = "4px";
+  start.style.width = "50%";
+  start.style.boxSizing = "border-box";
+
+  start.value = cell.getValue();
+
+  function buildValues(){
+      success({
+          start:start.value,
+          end:end.value,
+      });
+  }
+
+  function keypress(e){
+      if(e.keyCode == 13){
+          buildValues();
+      }
+
+      if(e.keyCode == 27){
+          cancel();
+      }
+  }
+
+  end = start.cloneNode();
+  end.setAttribute("placeholder", "Max");
+
+  start.addEventListener("change", buildValues);
+  start.addEventListener("blur", buildValues);
+  start.addEventListener("keydown", keypress);
+
+  end.addEventListener("change", buildValues);
+  end.addEventListener("blur", buildValues);
+  end.addEventListener("keydown", keypress);
+
+
+  container.appendChild(start);
+  container.appendChild(end);
+
+  return container;
+  }
+  //custom max min filter function
+  function minMaxFilterFunction(headerValue, rowValue, rowData, filterParams){
+  
+
+      if(rowValue){
+          if(headerValue.start != ""){
+              if(headerValue.end != ""){
+                  return rowValue >= headerValue.start && rowValue <= headerValue.end;
+              }else{
+                  return rowValue >= headerValue.start;
+              }
+          }else{
+              if(headerValue.end != ""){
+                  return rowValue <= headerValue.end;
+              }
+          }
+      }
+
+  return true; //must return a boolean, true if it passes the filter.
+  }
+      //define some sample data
+  var tabledata = {!! json_encode($pilihkelas) !!};
+  
+      var table = new Tabulator("#example-table", {
+          data:tabledata,
+          layout:"fitColumns",
+      height:"311px",
+      columns:[
+        //   {title:"No.", formatter:"rownum", width:30},
+          {title:"Semester", field:"semester", width:150, headerFilter:"input"},
+          {title:"Tahun", field:"tahun", width:150, headerFilter:"input"},
+          {title:"Nama", field:"name", width:150, headerFilter:"input"},
+          {title:"Kelas", field:"kelas", width:150, headerFilter:"input"},
+          {title:"Jenis Prestasi", field:"jenisPrestasi", width:150, headerFilter:"input"},
+          {title:"Poin", field:"poin", width:150, sorter:"number", headerFilter:minMaxFilterEditor, headerFilterFunc:minMaxFilterFunction},       
+          {title:"Tanggal", field:"tanggalPrestasi", hozAlign:"center", sorter:"input",  headerFilter:"input"},     
+      ],
+  });
+  //trigger download of data.pdf file
+  document.getElementById("download-pdf").addEventListener("click", function(){
+      table.download("pdf", "data.pdf", {
+          orientation:"landscape", //set page orientation to portrait
+          title:"Laporan Prestasi Siswa SMA Trimurti Surabaya", //add title to report
+        
+      autoTable:{ //advanced table styling
+          margin: {top: 60},    
+      },
+      });
+  });
+</script>
 @endsection

@@ -18,6 +18,9 @@ class DashboardwkController extends Controller
         count();
         // dd($jumlahsiswa);
 
+        $pelserin = DB::table('walimurids')->
+        count();
+
         $totpel = DB::table('pelanggaran_siswas')->
         count();
 
@@ -114,53 +117,29 @@ class DashboardwkController extends Controller
         // join('historysiswas as hs','s.id','=','hs.id_siswa')->
         // get();
         
+        //TOP 5 Pelanggaran Terbanyak
         $pelsering = DB::table('pelanggaran_siswas as ps')->
-        select(DB::raw('count(jenisPelanggaran) as jumlah'))->
+        select(DB::raw('count(jenisPelanggaran) as jumlah, jenisPelanggaran'))->
+        // select('jenisPelanggaran')->
         join('master_jenispel as jp', 'ps.idJenispelP','=','jp.idJenispel')->
         groupBy('jenisPelanggaran')->
         orderBy('jumlah','desc')->
-        limit(1)->
-        value('jumlah');
+        limit(5)->
+        // value('jumlah');
+        get();
         
-        // dd($pelsering);
-        // where('jumlah')->
-        // select('jenisPelanggaran')->
-        // orderBy('jenisPelanggaran')->
-        // max('jenisPelanggaran')->
-        // get();
-        
-        // $pelser =json_decode($pelsering);
 
-        // dd($pelsering);
-        // $pelser = [];
-        // foreach ($pelsering as $p ) {
-        //     $pelser[] = $p->jumlah;
-        // }
-
-        $pelserin = DB::table('pelanggaran_siswas as ps')->
-        select('jenisPelanggaran')->
-        join('master_jenispel as jp', 'ps.idJenispelP','=','jp.idJenispel')->
-        groupBy('jenisPelanggaran')->
-        // select('jenisPelanggaran')->
-        // orderBy('jenisPelanggaran')->
-        // orderBy('jumlah','desc')->
-        max('jenisPelanggaran');
-        // get();
-        // first();
-
-        // $sering = json_decode($pelsering);
-        // dd($sering);
-        
-        // $tes1t = DB::table('polling')->
-        // select('kandidat')->
-        // select(DB::raw('count(kandidat) as jumlah'))->
-        // groupBy('kandidat')->
-        // orderBy('jumlah','desc')->
-        // get();
+        $pelsiswa = DB::table('historysiswas as hs')->
+        select('s.name','total')->
+        join('siswas as s', 's.id','=','hs.id_siswa')->
+        // groupBy('total')->
+        orderBy('total','desc')->
+        limit(4)->
+        get();
 
 
 
-        return view('walikelass.dashboard.index', compact('jumlahsiswa','totpel', 'totpres', 'sispel','arraykelas','suratperingatan','arraypel','arraypres','pelsering','pelserin'));
+        return view('walikelass.dashboard.index', compact('jumlahsiswa','totpel', 'totpres', 'sispel','arraykelas','suratperingatan','arraypel','arraypres','pelsering','pelserin','pelsiswa'));
     }
 
     /**

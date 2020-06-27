@@ -54,7 +54,7 @@
             <p>{{$ps->jumlah}}</p>
                  --}}
             {{-- <p>{!!json_encode($pelser)!!}</p> --}}
-            <p class="text-black">Pelanggaran Terbanyak </p>
+            <p class="text-black">Jumlah Wali murid</p>
             {{-- @endforeach --}}
           </div>
           {{-- @foreach ($pelsering as $p) --}}
@@ -66,6 +66,33 @@
         </div>
       </div>
     </div>
+
+
+    <div class="col-md-12 equel-grid">
+      {{-- <div class="grid"> --}}
+          {{-- <hr> --}}
+          <p class="text-black">Top 4 pelanggaran siswa </p>
+          <hr>
+  {{-- </div> --}}
+  
+</div>
+@foreach ($pelsiswa as $ps)            
+<div class="col-md-3 col-sm-6 col-6 equel-grid">
+  <div class="grid">
+      <div class="grid-body text-gray">
+          <div class="d-flex justify-content-between">
+              <p>Poin</p>
+              <p class="badge badge-danger">{{$ps->total}}</p>
+          </div>
+          <hr>
+          <p class="text-black">{{$ps->name}}</p>
+          
+      </div>
+  </div>
+</div>
+@endforeach
+
+
     <div class="col-md-6">
       <div class="grid">
         <div class="grid-body">
@@ -132,9 +159,39 @@
         </div>
       </div>
     </div>
-    {{-- <div id="container">
 
-    </div> --}}
+
+    <div class="col-md-6">
+      <div class="grid table-responsive">
+        <table class="table table-stretched">
+          <thead>
+            <tr>
+              <th>Top 5 pelanggaran terbanyak</th>
+              {{-- <th>Price</th> --}}
+              <th>jumlah</th>
+            </tr>
+          </thead>
+          <tbody>
+              @foreach ($pelsering as $p)
+              <tr>
+                <td>
+                  <p class="mb-n1">{{$p->jenisPelanggaran}}</p>
+                  {{-- <small class="text-gray">Apple Inc.</small> --}}
+                </td>
+                {{-- <td class="font-weight-medium">198.18</td> --}}
+                <td class="text-danger font-weight-medium">
+                  <div class="badge badge-danger">{{$p->jumlah}}</div>
+                </td>
+              </tr>
+              @endforeach
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+
+
   </div>
 </div>
 @endsection

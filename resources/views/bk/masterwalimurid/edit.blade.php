@@ -21,8 +21,16 @@
               {{ csrf_field() }}
               <input type="hidden" name="id" value="{{ $wm->id }}"> <br/>
               <div class="form-group">
+                <label for="kelas">NIS Siswa</label>
+                <input type="text" class="form-control" name="nisSiswa" value="{{$wm->niss}}">
+              </div>
+              <div class="form-group">
                 <label for="kelas">Nama Wali Murid</label>
                 <input type="text" class="form-control" name="namaWalimurid" value="{{$wm->namewm}}">
+              </div>
+              <div class="form-group">
+                <label for="kelas">Email Wali Murid</label>
+                <input type="text" class="form-control" name="emailWalimurid" value="{{$wm->email}}">
               </div>
               <div class="form-group">
                 <label for="kelas">Alamat</label>

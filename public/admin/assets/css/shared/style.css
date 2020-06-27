@@ -44,7 +44,7 @@
  * Copyright 2011-2019 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
-:root {
+ :root {
   --blue: #007bff;
   --indigo: #6610f2;
   --purple: #6f42c1;
@@ -9822,7 +9822,7 @@ table {
   display: flex;
   align-items: center; }
 
-/* .item-purchase-banner {
+.item-purchase-banner {
   position: fixed;
   top: 0px;
   width: 100%;
@@ -9852,9 +9852,9 @@ table {
     color: #fff; }
     .rtl .item-purchase-banner .toggler-close {
       margin-right: auto;
-      margin-left: 0; } */
+      margin-left: 0; }
 
-/* .sidebar-upgrade-banner {
+.sidebar-upgrade-banner {
   margin: 0px 20px;
   border-radius: 4px;
   padding: 145px 20px 30px 20px;
@@ -9876,7 +9876,7 @@ table {
   padding-top: 55px; }
 
 .purchase-banner-active .page-body {
-  top: 55px; } */
+  top: 55px; }
 
 /* === Pages === */
 /* Authentication Pages */

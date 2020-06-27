@@ -25,9 +25,10 @@
         "webpack-cli": "^3.3.10"
     },
     "dependencies": {
+        "@select2/select2": "4.0.12",
         "sweetalert": "^2.1.2",
         "sweetalert2": "^9.5.4",
-        "webpack": "^4.41.5",
-        "@select2/select2": "4.0.12" 
+        "tabulator-tables": "^4.7.0",
+        "webpack": "^4.41.5"
     }
 }
