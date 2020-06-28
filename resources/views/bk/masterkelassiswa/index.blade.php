@@ -19,7 +19,8 @@
                   {{ csrf_field() }}
                 <div class="form-group">
                   <label for="inputEmail1">Tahunajaran</label>
-                  <select name="idTahunajarank" class="custom-select form-control js-example-basic-single" id="">
+                  <select name="idTahunajarank" class="custom-select form-control js-example-basic-single"  required>
+                    <option value="" selected>Pilih</option>
                     @foreach ($tahunajaran as $ta)
                     <option value="{{$ta->idTahunajaran}}">{{$ta->semester}} / {{$ta->tahun}}</option>
                     @endforeach
@@ -27,7 +28,8 @@
                 </div>
                 <div class="form-group">
                   <label for="inputEmail1">Kelas</label>
-                  <select name="idKelask" class="custom-select  js-example-basic-single" id="">
+                  <select name="idKelask" class="custom-select  js-example-basic-single" required>
+                    <option value="" selected>Pilih</option>
                     @foreach ($kelas as $ks)
                     <option value="{{$ks->idKelas}}">{{$ks->kelas}}</option>
                     @endforeach
@@ -35,7 +37,8 @@
                 </div>
                 <div class="form-group">
                   <label for="inputEmail1">Siswa</label>
-                  <select name="idSiswak" class="custom-select form-control  js-example-basic-single" id="">
+                  <select name="idSiswak" class="custom-select form-control  js-example-basic-single" id="" required>
+                    <option value="" selected>Pilih</option>
                     @foreach ($siswas as $s)
 
                     {{-- @if ($s->idSiswak == null) --}}

@@ -26,7 +26,7 @@
                         {{ csrf_field() }}
                       <div class="form-group">
                         <label for="inputEmail1">Kelas</label>
-                        <input type="text" class="form-control" name="kelas" placeholder="">
+                        <input type="text" class="form-control" name="kelas" placeholder="" required>
                       </div>
                   </div>
                 </div>

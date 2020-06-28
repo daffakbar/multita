@@ -33,11 +33,11 @@
                       </div>
                       <div class="form-group">
                         <label >Bentuk Prestasi</label>
-                        <input type="text" class="form-control" name="jenisPres" placeholder="">
+                        <input type="text" class="form-control" name="jenisPres" placeholder="" required>
                       </div>
                       <div class="form-group">
                         <label for="inputEmail1">Poin</label>
-                        <input type="number" class="form-control" name="poin" placeholder="">
+                        <input type="number" class="form-control" name="poin" placeholder="" required>
                       </div>
                   </div>
                 </div>

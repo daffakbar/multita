@@ -16,7 +16,8 @@
                     {{-- <input type="text" class="form-control" id="inputType8" readonly="readonly" name="idPrestasi"> --}}
                     <div class="form-group">
                         <label for="inputPassword1">Nama siswa</label>
-                        <select class="js-example-basic-single form-control" name="idKelassiswapres">
+                        <select class="js-example-basic-single form-control" name="idKelassiswapres" required>
+                            <option value=""> Pilih </option>
                             @foreach ($siswas as $s)
                             <option value="{{ $s->id}}">{{$s->name}}</option>
                             @endforeach
@@ -24,7 +25,7 @@
                     </div>
                     <div class="form-group"> 
                       <label for="inputPassword1">Kategori prestasi</label>
-                      <select class="js-example-basic-single form-control" name="idKategoripres" id="kategoriprestasi" data-dependent="jenisPrestasi">
+                      <select class="js-example-basic-single form-control" name="idKategoripres" id="kategoriprestasi" data-dependent="jenisPrestasi" required>
                           <option value=""> Pilih </option>
                           @foreach ($ajax as $key =>$value)
                           <option value="{{$key}}">{{$value}} </option>
@@ -33,7 +34,7 @@
                   </div>
                   <div class="form-group"> 
                     <label for="inputPassword1">Bentuk prestasi</label>
-                    <select class="js-example-basic-single form-control" name="idJenispresP" id="bentukprestasi" data-dependent="jenisPrestasi">
+                    <select class="js-example-basic-single form-control" name="idJenispresP" id="bentukprestasi" data-dependent="jenisPrestasi" required>
                         <option value=""> Pilih </option>
                       @foreach ($poin as $key => $value)
                       <option value="{{$key}}">{{$value}} </option>

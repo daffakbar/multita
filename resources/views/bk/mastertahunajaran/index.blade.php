@@ -24,15 +24,15 @@
                         {{ csrf_field() }}
                       <div class="form-group">
                         <label for="inputEmail1">Semester</label>
-                        <input type="text" class="form-control" name="semester" placeholder="">
+                        <input type="text" class="form-control" name="semester" placeholder="" required>
                       </div>
                       <div class="form-group">
                         <label for="inputEmail1">Tahun</label>
-                        <input type="text" class="form-control" name="tahun" placeholder="">
+                        <input type="text" class="form-control" name="tahun" placeholder="" required>
                       </div>
                       <div class="form-group">
                         <label for="inputEmail1">Tanggal Mulai</label>
-                        <input type="date" class="form-control" name="tanggalMulai" placeholder="">
+                        <input type="date" class="form-control" name="tanggalMulai" placeholder="" required>
                       </div>
                   </div>
                 </div>

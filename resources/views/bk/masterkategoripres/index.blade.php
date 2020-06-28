@@ -24,7 +24,7 @@
                         {{ csrf_field() }}
                       <div class="form-group">
                         <label for="inputEmail1">Kategori prestasi</label>
-                        <input type="text" class="form-control" name="kategoripres" placeholder="">
+                        <input type="text" class="form-control" name="kategoripres" placeholder="" required>
                       </div>
                   </div>
                 </div>

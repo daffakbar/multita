@@ -32,11 +32,11 @@
                       </div>
                       <div class="form-group">
                         <label >Bentuk Pelanggaran</label>
-                        <input type="text" class="form-control" name="jenisPel" placeholder="">
+                        <input type="text" class="form-control" name="jenisPel" placeholder="" required>
                       </div>
                       <div class="form-group">
                         <label >Poin</label>
-                        <input type="number" class="form-control" name="poin" placeholder="">
+                        <input type="number" class="form-control" name="poin" placeholder="" required>
                       </div>
                   </div>
                 </div>

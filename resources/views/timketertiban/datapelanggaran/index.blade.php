@@ -21,7 +21,8 @@
                                 {{ csrf_field() }}
                                 <div class="form-group">
                                     <label for="inputPassword1">Nama siswa</label>
-                                    <select class="js-example-basic-single form-control" name="idKelassiswaP">
+                                    <select class="js-example-basic-single form-control" name="idKelassiswaP" required>
+                                        <option value=""> Pilih </option>
                                         @foreach ($siswas as $s)
                                         <option value="{{ $s->id}}">{{$s->name}}</option>
                                         @endforeach
@@ -29,7 +30,7 @@
                                 </div>
                         <div class="form-group"> 
                             <label for="inputPassword1">Kategori pelanggaran</label>
-                            <select class="js-example-basic-single form-control" name="idKategoripel" id="kategoripelanggaran" data-dependent="jenisPelanggaran">
+                            <select class="js-example-basic-single form-control" name="idKategoripel" id="kategoripelanggaran" data-dependent="jenisPelanggaran" required>
                                 <option value=""> Pilih </option>
                                 @foreach ($ajax as $key =>$value)
                                 <option value="{{$key}}">{{$value}} </option>
@@ -38,7 +39,7 @@
                         </div>
                         <div class="form-group"> 
                             <label for="inputPassword1">Bentuk pelanggaran</label>
-                            <select class="js-example-basic-single form-control" name="idJenispelP" id="bentukpelanggaran" data-dependent="jenisPelanggaran">
+                            <select class="js-example-basic-single form-control" name="idJenispelP" id="bentukpelanggaran" data-dependent="jenisPelanggaran" required>
                                 <option value=""> Pilih </option>
                               @foreach ($poin as $key => $value)
                               <option value="{{$key}}">{{$value}} </option>

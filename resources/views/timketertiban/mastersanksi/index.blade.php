@@ -25,15 +25,15 @@
                         {{ csrf_field() }}
                       <div class="form-group">
                         <label for="inputEmail1">Sanksi</label>
-                        <input type="text" class="form-control" name="sanksi" placeholder="">
+                        <input type="text" class="form-control" name="sanksi" placeholder="" required>
                       </div>
                       <div class="form-group">
                         <label for="inputEmail1">Batas poin awal</label>
-                        <input type="number" class="form-control" name="batasAwal" placeholder="">
+                        <input type="number" class="form-control" name="batasAwal" placeholder="" required>
                       </div>
                       <div class="form-group">
                         <label for="inputEmail1">Batas poin akhir</label>
-                        <input type="number" class="form-control" name="batasAkhir" placeholder="">
+                        <input type="number" class="form-control" name="batasAkhir" placeholder="" required>
                       </div>
                   </div>
                 </div>
