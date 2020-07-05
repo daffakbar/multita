@@ -36,6 +36,15 @@
                   </select>
                 </div>
                 <div class="form-group">
+                  <label for="inputEmail1">Wali kelas</label>
+                  <select name="idWalikelas" class="custom-select  js-example-basic-single" required>
+                    <option value="" selected>Pilih</option>
+                    @foreach ($walikelas as $w)
+                    <option value="{{$w->id}}">{{$w->namewk}}</option>
+                    @endforeach
+                  </select>
+                </div>
+                <div class="form-group">
                   <label for="inputEmail1">Siswa</label>
                   <select name="idSiswak" class="custom-select form-control  js-example-basic-single" id="" required>
                     <option value="" selected>Pilih</option>
@@ -65,6 +74,7 @@
                                   <th>No</th>
                                   <th>Tahun ajaran</th>
                                   <th>Kelas</th>
+                                  <th>Wali siswa</th>
                                   <th>Nama siswa</th>
                                   <th>Action</th>
                               </tr>
@@ -76,6 +86,7 @@
                                   <td>{{$no++}}</td>
                                   <td>{{$k->semester}}/{{$k->tahun}}</td>
                                   <td>{{$k->kelas}}</td>
+                                  <td>{{$k->namewk}}</td>
                                   <td>{{$k->name}}</td>
                                   <td class="actions">
                                   {{-- <a href="/bk/masterkelassiswa/edit/{{$k->idKelassiswa}}" class="btn btn-rounded social-icon-btn btn-google"><i

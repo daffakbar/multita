@@ -21,10 +21,12 @@ class KelassiswaController extends Controller
         $kelassiswa = DB::table('kelassiswas')->
         join('siswas','kelassiswas.idSiswak','=','siswas.id')->
         join('master_kelas','kelassiswas.idKelask','=','master_kelas.idKelas')->
+        join('walikelasses','kelassiswas.idWalikelas','=','walikelasses.id')->
         join('master_tahunajaran', 'kelassiswas.idTahunajarank','=','master_tahunajaran.idTahunajaran')->
         orderBy('idKelask','desc')->
         paginate(5);
 
+        
         $kelas = DB::table('master_kelas')->paginate(5);
         $siswas = DB::table('siswas')->
         // join('kelassiswas as k','s.id','=','k.idSiswak')->
@@ -46,9 +48,12 @@ class KelassiswaController extends Controller
         //     }
         //     // $a = "<option >.$ss.</option>";
         // }
+        $walikelas = DB::table('walikelasses')->
+        get();
+        // dd($walikelas);
         
 
-        return view('bk.masterkelassiswa.index',compact('kelassiswa','kelas','siswas','tahunajaran'));
+        return view('bk.masterkelassiswa.index',compact('kelassiswa','kelas','siswas','tahunajaran','walikelas'));
     }
 
     /**
@@ -73,6 +78,7 @@ class KelassiswaController extends Controller
 
             'idTahunajarank'    => $request->idTahunajarank,
             'idKelask'          => $request->idKelask,
+            'id'                => $request->idWalikelas,
             'idSiswak'          => $request->idSiswak,
             'created_at'        => now(),
             'updated_at'        => now()

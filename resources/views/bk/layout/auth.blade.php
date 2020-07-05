@@ -184,6 +184,9 @@
             </a>
             <ul class="collapse navigation-submenu" id="sample-pages1">
               <li>
+                <a href="{{ url('bk/masterwalikelas') }}" >Wali kelas</a>
+              </li>
+              <li>
                 <a href="{{ url('bk/masterkelas') }}" >Kelas</a>
               </li>
               <li>

@@ -43,6 +43,14 @@ Route::get('/masterwalmur/download', function () {
     return response()->download($file, "format_wali_murid.xlsx", $headers);
 });
 
+// MASTER WALI KELAS
+Route::get('/masterwalikelas', 'WalikelasController@index')->name('masterwalikelas');
+Route::post('/masterwalikelas/tambah', 'WalikelasController@store')->name('tambahwalikelas');
+Route::get('/masterwalikelas/hapus/{id}', 'WalikelasController@destroy')->name('hapuswalikelas');
+Route::get('/masterwalikelas/edit/{id}', 'WalikelasController@edit')->name('editwalikelas');
+Route::post('/masterwalikelas/update', 'WalikelasController@update')->name('updatewalikelas');
+
+
 // MASTER KELAS
 Route::get('/masterkelas', 'KelasController@index')->name('masterkelas');
 Route::post('/masterkelas/tambah', 'KelasController@store')->name('tambahkelas');
