@@ -49,6 +49,8 @@ Route::get('/pressiswa/hapus/{id}', 'PrestasiController@destroy')->name('hapuspr
 Route::get('/pressiswa/bp/{id}','PrestasiController@btuk');
 Route::get('/pressiswa/poin/{id}','PrestasiController@poin');
 Route::post('/pressiswa/fetch', 'PrestasiController@fetch')->name('fetch');
+Route::get('/pressiswa/findKelas','PrestasiController@findKelas');
+Route::get('/pressiswa/findSiswa', 'PrestasiController@findSiswa');
 
 
 //LAPORAN PELANGGARAN PERKELAS

@@ -170,49 +170,49 @@
 </script>
 
 <script type="text/javascript">
-$(document).ready(function () {
-	$('select[name="tahun"]').on('change', function () {
-		
-        var baru = $(this).val();
-		console.log("coba:", baru);
-		
-		$(document).on('change', '.kelas', function () {
-			
-			var idKelas = $(this).val();	
-			console.log("idKelas:", idKelas);
-			var div = $(this).parent();
-			var op = " ";
-		
-        $.ajax({
-			type: 'get',
-			url: '{!!URL::to('timketertiban/pelsiswa/findSiswa')!!}', 
-			data: {'id': idKelas, 'ids' :baru},
-			success: function (data) {
-				console.log(data);
-				// console.log(idKelas);
-				op += '<option value="0" selected disabled>Pilih siswa</option>';
-				for (var i = 0; i < data.length; i++) {
-					op += '<option value="' + data[i].idKelassiswa + '">' + data[i].name + '</option>';
-				}
+    $(document).ready(function () {
+        $('select[name="tahun"]').on('change', function () {
+            
+            var baru = $(this).val();
+            console.log("coba:", baru);
+            
+            $(document).on('change', '.kelas', function () {
+                
+                var idKelas = $(this).val();	
+                console.log("idKelas:", idKelas);
+                var div = $(this).parent();
+                var op = " ";
+            
+            $.ajax({
+                type: 'get',
+                url: '{!!URL::to('timketertiban/pelsiswa/findSiswa')!!}', 
+                data: {'id': idKelas, 'ids' :baru},
+                success: function (data) {
+                    console.log(data);
+                    // console.log(idKelas);
+                    op += '<option value="0" selected disabled>Pilih siswa</option>';
+                    for (var i = 0; i < data.length; i++) {
+                        op += '<option value="' + data[i].idKelassiswa + '">' + data[i].name + '</option>';
+                    }
 
-				$('#pilihsiswa').find("option")
-                    .not(":first")
-                    .remove();
-                    // $('#pilihkelas').append(op);
-                    $.each(data, function(key, value){
-                    $("#pilihsiswa").append(
-                        $('<option></option>')
-                        .attr("value", value.idKelassiswa)
-                        .text(value.name)
-                    );
-                    });
-			},
-			error: function () {
-			}
-		});
-	});
-	});
-});
+                    $('#pilihsiswa').find("option")
+                        .not(":first")
+                        .remove();
+                        // $('#pilihkelas').append(op);
+                        $.each(data, function(key, value){
+                        $("#pilihsiswa").append(
+                            $('<option></option>')
+                            .attr("value", value.idKelassiswa)
+                            .text(value.name)
+                        );
+                        });
+                },
+                error: function () {
+                }
+            });
+        });
+        });
+    });
 </script>
 
 <script>
@@ -221,7 +221,7 @@ $(document).ready(function () {
             var idKategoripel = $(this).val();
             if(idKategoripel){
                 $.ajax({
-                    url: 'bp/'+idKategoripel,
+                    url: 'pelsiswa/bp/'+idKategoripel,
                     type: 'get',
                     dataType: 'json',
                     success:function(data){
@@ -254,7 +254,7 @@ $(document).ready(function () {
 
             if(idJenispelP){
                 $.ajax({
-                    url: 'poin/'+idJenispelP,
+                    url: 'pelsiswa/poin/'+idJenispelP,
                     type: 'get',
                     dataType: 'json',
                     success:function(data){

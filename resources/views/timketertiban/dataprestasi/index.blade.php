@@ -1,6 +1,7 @@
 @extends('timketertiban.layout.auth')
 
 @section('content')
+
 <div class="container">
    
     <div class="content-viewport">
@@ -13,16 +14,28 @@
                 <div class="item-wrapper">
                   <form action="{{ url('timketertiban/pressiswa/tambah') }}" method="post">
                     {{ csrf_field() }}
-                    {{-- <input type="text" class="form-control" id="inputType8" readonly="readonly" name="idPrestasi"> --}}
                     <div class="form-group">
-                        <label for="inputPassword1">Nama siswa</label>
-                        <select class="js-example-basic-single form-control" name="idKelassiswapres" required>
-                            <option value=""> Pilih </option>
-                            @foreach ($siswas as $s)
-                            <option value="{{ $s->id}}">{{$s->name}}</option>
+                        <label> Tahun ajaran</label>
+                        <select class="tahunajaran form-control" id="idTahunajarank" name="tahun" required>
+                            <option value="0" selected="true"> Pilih </option>
+                            @foreach ($kelassiswa as $key)
+                            <option value="{{$key->idTahunajaran}}">{{$key->tahun}}/{{$key->semester}} </option>
                             @endforeach
                         </select>
                     </div>
+                    <div class="form-group">
+                        <label> Kelas</label>
+                        <select class="kelas form-control" id="pilihkelas">
+                            <option value="0" selected="true"> Pilih </option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label> Nama</label>
+                        <select class="namasiswa form-control" id="pilihsiswa" name="idKelassiswapres" required>
+                            <option value="0" selected="true"> Pilih </option>
+                        </select>
+                    </div>
+
                     <div class="form-group"> 
                       <label for="inputPassword1">Kategori prestasi</label>
                       <select class="js-example-basic-single form-control" name="idKategoripres" id="kategoriprestasi" data-dependent="jenisPrestasi" required>
@@ -127,6 +140,95 @@
 @endsection
 
 @section('footer')
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$(document).on('change','.tahunajaran',function(){
+
+			var cat_id=$(this).val();
+			var test=$(this).parent();
+			var op=" ";
+			console.log(cat_id);
+
+			$.ajax({
+				type:'get',
+				url:'{!!URL::to('timketertiban/pressiswa/findKelas')!!}',
+				data:{'id':cat_id},
+				success:function(data){
+                    console.log(data);
+
+					op+='<option value="0" selected disabled>Pilih kelas</option>';
+					for(var i=0;i<data.length;i++){
+                        op+='<option value="'+data[i].idKelas+'">'+data[i].kelas+'</option>';
+				   }
+
+					console.log(op);
+                    $('#pilihkelas').find("option")
+                    .not(":first")
+                    .remove();
+
+                    $.each(data, function(key, value){
+                    $("#pilihkelas").append(
+                        $('<option></option>')
+                        .attr("value", value.idKelas)
+                        .text(value.kelas)
+                    );
+                    });
+				},
+				error:function(){
+				}
+			});
+		}
+        );
+	});
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('select[name="tahun"]').on('change', function () {
+            
+            var baru = $(this).val();
+            console.log("coba:", baru);
+            
+            $(document).on('change', '.kelas', function () {
+                
+                var idKelas = $(this).val();	
+                console.log("idKelas:", idKelas);
+                var div = $(this).parent();
+                var op = " ";
+            
+            $.ajax({
+                type: 'get',
+                url: '{!!URL::to('timketertiban/pressiswa/findSiswa')!!}', 
+                data: {'id': idKelas, 'ids' :baru},
+                success: function (data) {
+                    console.log(data);
+                    // console.log(idKelas);
+                    op += '<option value="0" selected disabled>Pilih siswa</option>';
+                    for (var i = 0; i < data.length; i++) {
+                        op += '<option value="' + data[i].idKelassiswa + '">' + data[i].name + '</option>';
+                    }
+
+                    $('#pilihsiswa').find("option")
+                        .not(":first")
+                        .remove();
+                        // $('#pilihkelas').append(op);
+                        $.each(data, function(key, value){
+                        $("#pilihsiswa").append(
+                            $('<option></option>')
+                            .attr("value", value.idKelassiswa)
+                            .text(value.name)
+                        );
+                        });
+                },
+                error: function () {
+                }
+            });
+        });
+        });
+    });
+</script>
+
 <script>
     $(document).ready(function(){
         $('select[name="idKategoripres"]').on('change', function(){
@@ -157,6 +259,7 @@
         });
     });
 </script>
+
 <script>
     $(document).ready(function(){
         $('select[name="idJenispresP"]').on('change', function(){

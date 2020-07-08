@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use App\PelanggaranSiswa;
 use Illuminate\Database\Eloquent\Model;
 use DateTime;
+use Illuminate\Support\Facades\URL;
 
 class PrestasiController extends Controller
 {
@@ -30,6 +31,8 @@ class PrestasiController extends Controller
         ->join('master_kategoriprestasi as kp','jp.idKategoripresJP','=','kp.idKategoripres')
         ->get();
 
+        $kelassiswa = DB::table('master_tahunajaran')->
+        get();
 
         $ajax = DB::table('master_kategoriprestasi as jp')
         // ->select('kategoripelanggaran','idKategoripel','poin')
@@ -50,28 +53,42 @@ class PrestasiController extends Controller
         // dd($kategoripres);
         $prestasi = DB::table('prestasi_siswas as ps')
         // ->join('kelassiswas as ks','ps.idKelassiswaPres','=','ks.idKelassiswa')
-        ->join('siswas as s','ps.id_siswa','=','s.id')
+        ->join('kelassiswas as ks','ks.idKelassiswa','=','ps.id_siswa')
+        ->join('siswas as s','ks.idSiswak','=','s.id')
         ->join('master_jenispres as jp','ps.idJenispresP','=','jp.idJenispres')
         ->join('master_kategoriprestasi as kp','jp.idKategoripresJP','=','kp.idKategoripres')
         ->orderBy('idPrestasi','desc')
         ->paginate(6);
         
-
-        // document.getElementById("demo").val = "{{poin}}";
-
-        // $xxx = DB::table('prestasi_siswas as ps')
-        // ->select('ps.idPrestasi')
-        // ->join('kelassiswas as ks','ps.idKelassiswaPres','=','ks.idKelassiswa')
-        // ->join('siswas as s','ks.idSiswak','=','s.id')
-        // ->where('s.id','=','5')
-        // ->get();
-        // ->join('master_jenispres as jp','ps.idJenispresP','=','jp.idJenispres')
-        // ->join('master_kategoriprestasi as kp','jp.idKategoripresJP','=','kp.idKategoripres')
-        // dd($xxx);
-
-        // dd($prestasi);
-        return view('timketertiban.dataprestasi.index',compact('siswas','kategoripres','ajax','prestasi','poin','a'))->with('ajax',$ajax);
+        return view('timketertiban.dataprestasi.index',compact('siswas','kategoripres','ajax','prestasi','poin','a','kelassiswa'))->with('ajax',$ajax);
     }
+    public function findKelas(Request $request){
+				
+		$data=DB::table('kelassiswas as ks')->
+		select('idKelas','kelas')->
+		join('master_kelas as k', 'k.idKelas','=','ks.idKelask')->
+		join('master_tahunajaran as ta', 'ta.idTahunajaran','=','ks.idTahunajarank')->
+		where('idTahunajarank', $request->id)->
+		groupBy('idKelas')->
+		get();
+
+		return response()->json($data);
+	}
+	public function findSiswa(Request $request){
+		
+		$p = DB::table('kelassiswas as ks')->
+		select('s.name','ks.idKelassiswa')->
+		join('master_kelas as k', 'k.idKelas','=','ks.idKelask')->
+		join('siswas as s', 's.id','=','ks.idSiswak')->
+		// where('idKelask', $request->id)->
+		where([
+			['idKelask', $request->id],
+			['idTahunajarank', $request->ids]
+			])->
+		get();
+
+		return response()->json($p);
+	}	
 
     public function btuk($id){
 
