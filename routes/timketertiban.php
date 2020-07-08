@@ -38,6 +38,9 @@ Route::get('/pelsiswa/hapus/{id}', 'PelanggaranController@destroy')->name('hapus
 Route::get('/pelsiswa/bp/{id}','PelanggaranController@btuk');
 Route::get('/pelsiswa/poin/{id}','PelanggaranController@poin');
 Route::post('/pelsiswa/fetch', 'PelanggaranController@fetch')->name('fetch');
+//KELAS SISWA
+Route::get('/pelsiswa/findKelas','PelanggaranController@findKelas');
+Route::get('/pelsiswa/findSiswa', 'PelanggaranController@findSiswa');
 
 //PRESTASI SISWA
 Route::get('/pressiswa','PrestasiController@index');

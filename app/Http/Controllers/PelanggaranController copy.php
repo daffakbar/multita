@@ -8,7 +8,6 @@ use App\PelanggaranSiswa;
 use Illuminate\Database\Eloquent\Model;
 use DateTime;
 use Alert;
-use Illuminate\Support\Facades\URL;
 
 class PelanggaranController extends Controller
 {
@@ -25,81 +24,64 @@ class PelanggaranController extends Controller
         $a = $now->format('Y-m-d H:i:s');
         // dd($a);
 
+
         $siswas = DB::table('kelassiswas as ks')
         ->join('siswas as s','ks.idSiswak','=','s.id')
+        // ->join('walimurids as wm', 'wm.niss', '=','s.id')
         ->get();
-
+        // dd($siswas);
         $kategoripel = DB::table('master_jenispel as jp')
         ->join('master_kategoripelanggaran as kp','jp.idKategoripelJP','=','kp.idKategoripel')
-        ->get();        
-
-        ////SELECT KELAS SISWAAAAAAAAAAAAAAAAAAAAAAA
-        $kelassiswa = DB::table('master_tahunajaran')->
-        get();
-
+        ->get();
+        // dd($kategoripel);
+        // dd($datas);
         $ajax = DB::table('master_kategoripelanggaran as jp')
+        // ->select('kategoripelanggaran','idKategoripel','poin')
         ->join('master_jenispel as kp','kp.idKategoripelJP','=','jp.idKategoripel')
+        // ->groupBy('idKategoripel')
+        // ->orderBy('idKategoripelJP', 'desc')
         ->pluck('kategoripelanggaran','idKategoripel')->all();
-        
+        // ->get()
+        // $ajax->all();
         $poin = DB::table('master_jenispel')
+        // ->select('kategoripelanggaran','idKategoripel','poin')
+        // ->join('master_jenispel as kp','kp.idKategoripelJP','=','jp.idKategoripel')
         ->pluck('poin','idJenispel')->all();
+        // ->get();
+        // dd($poin);
         
         $pelanggaran = DB::table('pelanggaran_siswas as ps')
-        //idKelassiswa === id_siswa tbl.Pelanggaran
-        ->join('kelassiswas as ks','ks.idKelassiswa','=','ps.id_siswa')
-        ->join('siswas as s','ks.idSiswak','=','s.id')
+        // ->join('kelassiswas as ks','ps.idKelassiswaP','=','ks.idKelassiswa')
+        ->join('siswas as s','ps.id_siswa','=','s.id')
         ->join('master_jenispel as jp','ps.idJenispelP','=','jp.idJenispel')
         ->join('master_kategoripelanggaran as kp','jp.idKategoripelJP','=','kp.idKategoripel')
         ->orderBy('idPelanggaran','desc')
         ->paginate(6);
         // dd($pelanggaran);
         
-        return view('timketertiban.datapelanggaran.index',compact('siswas','kategoripel','pelanggaran','poin','a'))->with('ajax',$ajax)->with('kelassiswa', $kelassiswa); 
+        return view('timketertiban.datapelanggaran.index',compact('siswas','kategoripel','ajax','pelanggaran','poin','a'))->with('ajax',$ajax); 
     }
-   
-    public function findKelas(Request $request){
-				
-		$data=DB::table('kelassiswas as ks')->
-		select('idKelas','kelas')->
-		join('master_kelas as k', 'k.idKelas','=','ks.idKelask')->
-		join('master_tahunajaran as ta', 'ta.idTahunajaran','=','ks.idTahunajarank')->
-		where('idTahunajarank', $request->id)->
-		groupBy('idKelas')->
-		get();
-
-		return response()->json($data);
-	}
-	public function findSiswa(Request $request){
-		
-		$p = DB::table('kelassiswas as ks')->
-		select('s.name','ks.idKelassiswa')->
-		join('master_kelas as k', 'k.idKelas','=','ks.idKelask')->
-		join('siswas as s', 's.id','=','ks.idSiswak')->
-		// where('idKelask', $request->id)->
-		where([
-			['idKelask', $request->id],
-			['idTahunajarank', $request->ids]
-			])->
-		get();
-
-		return response()->json($p);
-	}	
     public function btuk($id){
-        
-        $ajax = DB::table('master_jenispel as jp')
-        ->where('jp.idKategoripelJP','=',$id)
-        ->pluck('jenisPelanggaran','idJenispel');
 
+        $ajax = DB::table('master_jenispel as jp')
+        // -select('jenisPelanggaran','idJenispel')
+        // ->join('master_kategoripelanggaran as kp','jp.idKategoripelJP','=','kp.idKategoripel')
+        ->where('jp.idKategoripelJP','=',$id)
+        // ->groupBy('idKategoripel')
+        // ->orderBy('idKategoripelJP', 'desc')
+        ->pluck('jenisPelanggaran','idJenispel');
+        // dd($ajax);
         return json_encode($ajax);
     }
     public function poin($id){
         $poin = DB::table('master_jenispel')->
         where('idJenispel','=',$id)->
         pluck('poin','idJenispel');
-
+        // dd($poin);
         return json_encode($poin);
     }
-    public function fetch(Request $request){
+    public function fetch(Request $request)
+    {
         $select = $request->get('select');
         $value = $request->get('value');
         $dependent = $request->get('dependent');
@@ -121,7 +103,8 @@ class PelanggaranController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request){
+    public function create(Request $request)
+    {
         $datas = new PelanggaranSiswa;
         $datas->idHistorysiswa = $request->namaSiswa;
         $datas->save();
@@ -133,14 +116,16 @@ class PelanggaranController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         DB::table('pelanggaran_siswas')->insert([
-            'id_siswa'          =>$request->idKelassiswaP,
-            'idJenispelP'       => $request->idJenispelP,
-            'tanggalPelanggaran'=> $request->tanggalPelanggaran,
+            'id_siswa' =>$request->idKelassiswaP,
+            'idJenispelP' => $request->idJenispelP,
+            'tanggalPelanggaran' => $request->tanggalPelanggaran,
             'created_at'        => now(),
             'updated_at'        => now()
         ]);
+
 
         $totalpel = DB::table('pelanggaran_siswas as ps')
         ->select(DB::raw('sum(jp.poin) as total_pelanggaran'))
@@ -161,13 +146,23 @@ class PelanggaranController extends Controller
         // dd($totalpeljson);
         // dd($totalpeljson[0]['total_pelanggaran']);
         if($totalpeljson[0]['total_pelanggaran'] >= 75){
-            $totals = $totalpeljson[0]['total_pelanggaran'] - $totalpresjson[0]['total_prestasi'];    
+            $totals = $totalpeljson[0]['total_pelanggaran'] - $totalpresjson[0]['total_prestasi'];
+            
         }else{
             $totals = $totalpeljson[0]['total_pelanggaran'];
         }
+        // dd($totals);
         
+
+
         $batasawal = DB::table('master_sanksi')
+        // ->select('batasAwal','batasAkhir')
         ->get();
+
+        // dd($totals);
+        // dd($batasawal);
+        // dd($batasawal);
+        // $peringatan = 'aaa';
 
         //KODE YG BENARR!!
         //     foreach ($batasawal as $sk){
@@ -230,6 +225,10 @@ class PelanggaranController extends Controller
             $per = json_decode($peringatan,true);
         }
 
+        // dd($peringatan);
+
+        // dd($peringatan);
+        // dd($total,$totalpel,$totalpres);
         $history = DB::table('historysiswas')
         ->updateOrInsert(
             ['id_siswa'=> $request->idKelassiswaP],
@@ -240,8 +239,15 @@ class PelanggaranController extends Controller
             'total'=> $totals,
             'id_sangsi' => $per[0]['idSanksi']
             ]
-         );
-    
+
+            // ['total_pelanggaran'=> $totalpeljson[0]['total_pelanggaran']],
+            // ['total_prestasi'=> $totalpresjson[0]['total_prestasi']],
+            // ['total'=> $totals],
+            // ['id_sangsi' => $peringatan]
+            );
+        // dd($history);
+        // dd($history);
+
         return redirect('timketertiban/pelsiswa')->with('success', 'Data Berhasil di Tambah!');
     }
 

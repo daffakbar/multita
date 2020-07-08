@@ -3,7 +3,6 @@
 @section('content')
 
 <div class="container">
-
     <div class="content-viewport">
         <div class="row">
             <div class="col-lg-4 equel-grid">
@@ -16,11 +15,11 @@
                                 <div class="form-group">
                                     <label> Tahun ajaran</label>
                                     <select class="tahunajaran form-control" id="idTahunajarank" name="tahun" required>
-                                        <option value="0" selected="true"> Pilih </option>
-                                        @foreach ($kelassiswa as $key)
-                                        <option value="{{$key->idTahunajaran}}">{{$key->tahun}}/{{$key->semester}} </option>
-                                        @endforeach
-                                    </select>
+                                    <option value="0" selected="true"> Pilih </option>
+                                    @foreach ($kelassiswa as $key)
+                                    <option value="{{$key->idTahunajaran}}">{{$key->tahun}}/{{$key->semester}} </option>
+                                    @endforeach
+                                </select>
                                 </div>
                                 <div class="form-group">
                                     <label> Kelas</label>
@@ -34,6 +33,16 @@
                                         <option value="0" selected="true"> Pilih </option>
                                     </select>
                                 </div>
+                                
+                                {{-- <div class="form-group">
+                                    <label for="inputPassword1">Nama siswa</label>
+                                    <select class="js-example-basic-single form-control" name="idKelassiswaP" required>
+                                        <option value=""> Pilih </option>
+                                        @foreach ($siswas as $s)
+                                        <option value="{{ $s->id}}">{{$s->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div> --}}
                                 
                                 <div class="form-group">
                                     <label for="inputPassword1">Kategori pelanggaran</label>
@@ -65,7 +74,7 @@
 
                                 <div class="form-group">
                                     <label for="">Tanggal</label>
-                                        <input type="datetime" name="tanggalPelanggaran" class="form-control" readonly
+                                    <input type="datetime" name="tanggalPelanggaran" class="form-control" readonly
                                         value="{{$a}}">
                                 </div>
                                 <button type="submit" class="btn btn-sm btn-primary">Simpan</button>
@@ -84,6 +93,7 @@
                                     <tr>
                                         <th>No</th>
                                         <th style="text-align:left">Nama siswa</th>
+                                        {{-- <th style="text-align:left">Kategori</th> --}}
                                         <th style="text-align:left">Bentuk pelanggaran</th>
                                         <th style="text-align:left">Poin</th>
                                         <th style="text-align:left">Tanggal</th>
@@ -91,12 +101,12 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-
                                     @php $no = 1 @endphp
                                     @foreach ($pelanggaran as $p)
                                     <tr>
                                         <td>{{$no++}}</td>
                                         <td style="text-align:left">{{$p->name}}</td>
+                                        {{-- <td style="text-align:left">{{$p->kategoripelanggaran}}</td> --}}
                                         <td style="text-align:left">{{$p->jenisPelanggaran}}</td>
                                         <td style="text-align:left">{{$p->poin}}</td>
                                         <td style="text-align:left">{{$p->tanggalPelanggaran}}</td>
@@ -108,7 +118,6 @@
                                         </td>
                                     </tr>
                                     @endforeach
-
                                 </tbody>
                             </table>
                             <br>
@@ -221,7 +230,7 @@ $(document).ready(function () {
             var idKategoripel = $(this).val();
             if(idKategoripel){
                 $.ajax({
-                    url: 'bp/'+idKategoripel,
+                    url: 'pelsiswa/bp/'+idKategoripel,
                     type: 'get',
                     dataType: 'json',
                     success:function(data){
@@ -254,7 +263,7 @@ $(document).ready(function () {
 
             if(idJenispelP){
                 $.ajax({
-                    url: 'poin/'+idJenispelP,
+                    url: 'pelsiswa/poin/'+idJenispelP,
                     type: 'get',
                     dataType: 'json',
                     success:function(data){

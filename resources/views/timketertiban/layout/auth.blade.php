@@ -20,7 +20,6 @@
     <link rel="stylesheet" href="{{asset('admin/assets/css/demo_1/style.css')}}">
     <!-- Layout style -->
     {{-- <link rel="shortcut icon" href="{{asset('admin/assets/images/favicon.ico')}}" /> --}}
-
     <script src="{{ asset('js/app.js') }}"></script>
     {{-- SCRIPT TABULATOR DAN DOWNLOAD PDF --}}
     <link href="https://unpkg.com/tabulator-tables@4.7.0/dist/css/tabulator.min.css" rel="stylesheet">
@@ -28,8 +27,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.0.5/jspdf.plugin.autotable.js"></script>
     {{-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> --}}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> --}}
   </head>
   <body class="header-fixed">
+    <select class="kelasiswa">
+      <option value="0" disabled="true" selected="true"> Pilih </option>
+  </select>
     <!-- partial:partials/_header.html -->
     <nav class="t-header">
       <div class="t-header-brand-wrapper">
