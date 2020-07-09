@@ -16,7 +16,7 @@
                     {{ csrf_field() }}
                     <div class="form-group">
                         <label> Tahun ajaran</label>
-                        <select class="tahunajaran form-control" id="idTahunajarank" name="tahun" required>
+                        <select class="tahunajaran form-control js-example-basic-single" id="idTahunajarank" name="tahun" required>
                             <option value="0" selected="true"> Pilih </option>
                             @foreach ($kelassiswa as $key)
                             <option value="{{$key->idTahunajaran}}">{{$key->tahun}}/{{$key->semester}} </option>
@@ -25,13 +25,13 @@
                     </div>
                     <div class="form-group">
                         <label> Kelas</label>
-                        <select class="kelas form-control" id="pilihkelas">
+                        <select class="kelas form-control js-example-basic-single" id="pilihkelas">
                             <option value="0" selected="true"> Pilih </option>
                         </select>
                     </div>
                     <div class="form-group">
                         <label> Nama</label>
-                        <select class="namasiswa form-control" id="pilihsiswa" name="idKelassiswapres" required>
+                        <select class="namasiswa form-control js-example-basic-single" id="pilihsiswa" name="idKelassiswapres" required>
                             <option value="0" selected="true"> Pilih </option>
                         </select>
                     </div>
@@ -148,21 +148,21 @@
 			var cat_id=$(this).val();
 			var test=$(this).parent();
 			var op=" ";
-			console.log(cat_id);
+			// console.log(cat_id);
 
 			$.ajax({
 				type:'get',
 				url:'{!!URL::to('timketertiban/pressiswa/findKelas')!!}',
 				data:{'id':cat_id},
 				success:function(data){
-                    console.log(data);
+                    // console.log(data);
 
 					op+='<option value="0" selected disabled>Pilih kelas</option>';
 					for(var i=0;i<data.length;i++){
                         op+='<option value="'+data[i].idKelas+'">'+data[i].kelas+'</option>';
 				   }
 
-					console.log(op);
+					// console.log(op);
                     $('#pilihkelas').find("option")
                     .not(":first")
                     .remove();
@@ -188,12 +188,12 @@
         $('select[name="tahun"]').on('change', function () {
             
             var baru = $(this).val();
-            console.log("coba:", baru);
+            // console.log("coba:", baru);
             
             $(document).on('change', '.kelas', function () {
                 
                 var idKelas = $(this).val();	
-                console.log("idKelas:", idKelas);
+                // console.log("idKelas:", idKelas);
                 var div = $(this).parent();
                 var op = " ";
             
@@ -202,7 +202,7 @@
                 url: '{!!URL::to('timketertiban/pressiswa/findSiswa')!!}', 
                 data: {'id': idKelas, 'ids' :baru},
                 success: function (data) {
-                    console.log(data);
+                    // console.log(data);
                     // console.log(idKelas);
                     op += '<option value="0" selected disabled>Pilih siswa</option>';
                     for (var i = 0; i < data.length; i++) {
@@ -264,7 +264,7 @@
     $(document).ready(function(){
         $('select[name="idJenispresP"]').on('change', function(){
             var idJenispresP = $(this).val();
-            console.log('callback function invoked')
+            // console.log('callback function invoked')
 
             if(idJenispresP){
                 $.ajax({
@@ -272,7 +272,7 @@
                     type: 'get',
                     dataType: 'json',
                     success:function(data){
-                        console.log(data);
+                        // console.log(data);
                         $('#dummyOption').remove()
                         $("#poin").empty();
                         $.each(data, function(key, value){

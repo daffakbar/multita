@@ -27,7 +27,8 @@ class LaporanpelsiswaController extends Controller
         get();
 
         $datapelsiswa = DB::table('siswas as s')->
-        join('pelanggaran_siswas as ps','s.id','=','ps.id_siswa')->
+        join('kelassiswas as ks','s.id','=','ks.idSiswak')->
+        join('pelanggaran_siswas as ps','ks.idKelassiswa','=','ps.id_siswa')->
         join('master_jenispel as jp','ps.idJenispelP','=','jp.idJenispel')->
         join('master_kategoripelanggaran as kp','kp.idKategoripel','=','jp.idKategoripelJP')->
         where('id','=',$idlogin)->
@@ -36,7 +37,8 @@ class LaporanpelsiswaController extends Controller
         
         $totpel = DB::table('siswas as s')->
         select(DB::raw('SUM(poin) as totpoin'))->
-        join('pelanggaran_siswas as ps','s.id','=','ps.id_siswa')->
+        join('kelassiswas as ks','s.id','=','ks.idSiswak')->
+        join('pelanggaran_siswas as ps','ks.idKelassiswa','=','ps.id_siswa')->
         join('master_jenispel as jp','ps.idJenispelP','=','jp.idJenispel')->
         where('s.id','=',$idlogin)->
         value('totpoin');

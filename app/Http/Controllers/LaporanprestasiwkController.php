@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Pagination\Paginator;
 use PDF;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
 
 class LaporanprestasiwkController extends Controller
 {
@@ -17,15 +19,19 @@ class LaporanprestasiwkController extends Controller
      */
     public function index(Request $request)
     {
+        $idlogin = Auth::user()->id;
+
         $pilihkelas = DB::table('siswas as s')->
         join('kelassiswas as ks', 's.id', '=', 'ks.idSiswak')->
+        join('walikelasses as w', 'w.id', '=', 'ks.idWalikelas')->
         join('master_kelas as k', 'ks.idKelask', '=', 'k.idKelas')->
         // join('master_kelas as k', 'ks.idKelask', '=', 'k.idKelas')->
-        join('prestasi_siswas as p', 's.id', '=', 'p.id_siswa')->
+        join('prestasi_siswas as p', 'ks.idKelassiswa', '=', 'p.id_siswa')->
         join('master_jenispres as jp', 'p.idJenispresP', '=', 'jp.idJenispres')->
         join('master_kategoriprestasi as kp', 'jp.idKategoripresJP', '=', 'kp.idKategoripres')->
         // where('k.idKelas','=',$request->idKelas)->
         join('master_tahunajaran as ta', 'ks.idTahunajarank', '=', 'ta.idTahunajaran')->
+        where('w.id','=', $idlogin)->
         orderBy('s.name','asc','k.kelas')->
         // paginate(10);
         get();

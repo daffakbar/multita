@@ -21,7 +21,7 @@ class LaporanprestasiController extends Controller
         join('kelassiswas as ks', 's.id', '=', 'ks.idSiswak')->
         join('master_kelas as k', 'ks.idKelask', '=', 'k.idKelas')->
         // join('master_kelas as k', 'ks.idKelask', '=', 'k.idKelas')->
-        join('prestasi_siswas as p', 's.id', '=', 'p.id_siswa')->
+        join('prestasi_siswas as p', 'ks.idKelassiswa', '=', 'p.id_siswa')->
         join('master_jenispres as jp', 'p.idJenispresP', '=', 'jp.idJenispres')->
         join('master_kategoriprestasi as kp', 'jp.idKategoripresJP', '=', 'kp.idKategoripres')->
         // where('k.idKelas','=',$request->idKelas)->
@@ -29,6 +29,7 @@ class LaporanprestasiController extends Controller
         orderBy('s.name','asc','k.kelas')->
         get();
         
+        // dd($pilihkelas);
         $kelas = DB::table('master_kelas')->
         get();
         // dd($pilihkelas);

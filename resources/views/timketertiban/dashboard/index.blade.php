@@ -94,14 +94,28 @@
 
 
     <div class="col-md-6">
-      <div class="grid">
-        <div class="grid-body">
-          <h2 class="grid-title">Jumlah Pelanggaran dan Prestasi perkelas</h2>
-          <div class="item-wrapper"><div style="position: absolute; inset: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;" class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
-            <canvas id="chartjs-staked-bar-chart" width="540" height="360" style="display: block; width: 540px; height: 360px;" class="chartjs-render-monitor"></canvas>
-          </div>
+        <div class="grid">
+            <div class="grid-body">
+                <h2 class="grid-title">Jumlah Pelanggaran dan Prestasi perkelas</h2>
+                <div class="item-wrapper">
+                    <div style="position: absolute; inset: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"
+                        class="chartjs-size-monitor">
+                        <div class="chartjs-size-monitor-expand"
+                            style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+                            <div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0">
+                            </div>
+                        </div>
+                        <div class="chartjs-size-monitor-shrink"
+                            style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+                            <div style="position:absolute;width:200%;height:200%;left:0; top:0">
+                            </div>
+                        </div>
+                    </div>
+                    <canvas id="chartjs-staked-bar-chart" width="540" height="360"
+                        style="display: block; width: 540px; height: 360px;" class="chartjs-render-monitor"></canvas>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
     {{-- <div class="col-md-6">
       <div class="grid">

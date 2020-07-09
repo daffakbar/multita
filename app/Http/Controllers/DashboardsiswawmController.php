@@ -20,32 +20,36 @@ class DashboardsiswawmController extends Controller
         $idlogin = Auth::user()->id;
         
         $totpel = DB::table('siswas as s')->
+        join('kelassiswas as ks','ks.idSiswak','=','s.id')->
         join('walimurids as w','s.id','=','w.niss')->
-        join('pelanggaran_siswas as ps','s.id','=','ps.id_siswa')->
+        join('pelanggaran_siswas as ps','ks.idKelassiswa','=','ps.id_siswa')->
         where('w.id','=',$idlogin)->
         count();
         
         $totpres = DB::table('siswas as s')->
+        join('kelassiswas as ks','ks.idSiswak','=','s.id')->
         join('walimurids as w','s.id','=','w.niss')->
-        join('prestasi_siswas as ps','s.id','=','ps.id_siswa')->
+        join('prestasi_siswas as ps','ks.idKelassiswa','=','ps.id_siswa')->
         where('w.id','=',$idlogin)->
         count();
         
         $cekpel = DB::table('siswas as s')->
+        join('kelassiswas as ks','ks.idSiswak','=','s.id')->
         join('walimurids as w','s.id','=','w.niss')->
         // join('prestasi_siswas as ps','s.id','=','ps.id_siswa')->
-        join('pelanggaran_siswas as ps','s.id','=','ps.id_siswa')->
+        join('pelanggaran_siswas as ps','ks.idKelassiswa','=','ps.id_siswa')->
         where('w.id','=',$idlogin)->
         get();
         
         if ($cekpel->isEmpty()) {
-            $seripres = "Tidak ada";
+            $seripel = "Tidak ada";
         }else{
             $pelserin = DB::table('siswas as s')->
             join('walimurids as w','s.id','=','w.niss')->
+            join('kelassiswas as ks','ks.idSiswak','=','s.id')->
             select('jenisPelanggaran')->
             select(DB::raw('count(*) as pelsis, jenisPelanggaran'))->
-            join('pelanggaran_siswas as ps','s.id','=','ps.id_siswa')->
+            join('pelanggaran_siswas as ps','ks.idKelassiswa','=','ps.id_siswa')->
             join('master_jenispel as jp', 'ps.idJenispelP','=','jp.idJenispel')->
             where('w.id','=',$idlogin)->
             groupBy('jenisPelanggaran')->
@@ -63,7 +67,8 @@ class DashboardsiswawmController extends Controller
         
         $cek = DB::table('siswas as s')->
         join('walimurids as w','s.id','=','w.niss')->
-        join('prestasi_siswas as ps','s.id','=','ps.id_siswa')->
+        join('kelassiswas as ks','ks.idSiswak','=','s.id')->
+        join('prestasi_siswas as ps','ks.idKelassiswa','=','ps.id_siswa')->
         where('w.id','=',$idlogin)->
         get();
         
@@ -76,9 +81,10 @@ class DashboardsiswawmController extends Controller
             // $seripres = "ada data"; 
             $presserin = DB::table('siswas as s')->
             join('walimurids as w','s.id','=','w.niss')->
+            join('kelassiswas as ks','ks.idSiswak','=','s.id')->
             select('jenisPrestasi')->
             select(DB::raw('count(*) as pelsis, jenisPrestasi'))->
-            join('prestasi_siswas as ps','s.id','=','ps.id_siswa')->
+            join('prestasi_siswas as ps','ks.idKelassiswa','=','ps.id_siswa')->
             join('master_jenispres as jp', 'ps.idJenispresP','=','jp.idJenispres')->
             where('w.id','=',$idlogin)->
             groupBy('jenisPrestasi')->
@@ -91,8 +97,9 @@ class DashboardsiswawmController extends Controller
         
         $status = DB::table('siswas as s')->
         join('walimurids as w','s.id','=','w.niss')->
+        join('kelassiswas as ks','ks.idSiswak','=','s.id')->
         select('hs.id_sangsi')->
-        join('historysiswas as hs','hs.id_siswa','=','s.id')->
+        join('historysiswas as hs','hs.id_siswa','=','ks.idKelassiswa')->
         join('master_sanksi as ms','hs.id_sangsi','=','ms.idSanksi')->
         where('w.id','=',$idlogin)->
         get();
@@ -103,7 +110,8 @@ class DashboardsiswawmController extends Controller
         
         $historyp = DB::table('siswas as s')->
         join('walimurids as w','s.id','=','w.niss')->
-        join('pelanggaran_siswas as pel','pel.id_siswa','=','s.id')->
+        join('kelassiswas as ks','ks.idSiswak','=','s.id')->
+        join('pelanggaran_siswas as pel','pel.id_siswa','=','ks.idKelassiswa')->
         join('master_jenispel as jpel','pel.idjenispelP','=','jpel.idJenispel')->
         join('master_kategoripelanggaran as kpel','jpel.idKategoripelJP','=','kpel.idKategoripel')->
         where('w.id','=',$idlogin)->
@@ -113,7 +121,8 @@ class DashboardsiswawmController extends Controller
         
         $historypp = DB::table('siswas as s')->
         join('walimurids as w','s.id','=','w.niss')->
-        join('prestasi_siswas as pres','pres.id_siswa','=','s.id')->
+        join('kelassiswas as ks','ks.idSiswak','=','s.id')->
+        join('prestasi_siswas as pres','pres.id_siswa','=','ks.idKelassiswa')->
         join('master_jenispres as jpres','pres.idjenispresP','=','jpres.idJenispres')->
         join('master_kategoriprestasi as kpres','jpres.idKategoripresJP','=','kpres.idKategoripres')->
         where('w.id','=',$idlogin)->

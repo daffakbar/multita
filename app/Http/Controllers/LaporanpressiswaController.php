@@ -26,19 +26,21 @@ class LaporanpressiswaController extends Controller
         join('master_kelas as k','k.idKelas','=','ks.idKelask')->
         where('s.id','=',$idlogin)->
         get();
-
+        
         $datapressiswa = DB::table('siswas as s')->
-        join('prestasi_siswas as ps','s.id','=','ps.id_siswa')->
+        join('kelassiswas as ks','s.id','=','ks.idSiswak')->
+        join('prestasi_siswas as ps','ks.idKelassiswa','=','ps.id_siswa')->
         join('master_jenispres as jp','ps.idJenispresP','=','jp.idJenispres')->
         join('master_kategoriprestasi as kp','kp.idKategoripres','=','jp.idKategoripresJP')->
         where('id','=',$idlogin)->
         orderBy('tanggalprestasi','desc')->
         paginate(5);
         // dd($datapressiswa);
-
+        
         $totpres = DB::table('siswas as s')->
         select(DB::raw('SUM(poin) as totpoin'))->
-        join('prestasi_siswas as ps','s.id','=','ps.id_siswa')->
+        join('kelassiswas as ks','s.id','=','ks.idSiswak')->
+        join('prestasi_siswas as ps','ks.idKelassiswa','=','ps.id_siswa')->
         join('master_jenispres as jp','ps.idJenispresP','=','jp.idJenispres')->
         where('s.id','=',$idlogin)->
         value('totpoin');

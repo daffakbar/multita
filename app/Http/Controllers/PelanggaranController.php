@@ -48,6 +48,7 @@ class PelanggaranController extends Controller
         //idKelassiswa === id_siswa tbl.Pelanggaran
         ->join('kelassiswas as ks','ks.idKelassiswa','=','ps.id_siswa')
         ->join('siswas as s','ks.idSiswak','=','s.id')
+        
         ->join('master_jenispel as jp','ps.idJenispelP','=','jp.idJenispel')
         ->join('master_kategoripelanggaran as kp','jp.idKategoripelJP','=','kp.idKategoripel')
         ->orderBy('idPelanggaran','desc')

@@ -21,7 +21,7 @@ class LaporanpelanggaranController extends Controller
         join('kelassiswas as ks', 's.id', '=', 'ks.idSiswak')->
         join('master_kelas as k', 'ks.idKelask', '=', 'k.idKelas')->
         // join('master_kelas as k', 'ks.idKelask', '=', 'k.idKelas')->
-        join('pelanggaran_siswas as p', 's.id', '=', 'p.id_siswa')->
+        join('pelanggaran_siswas as p', 'ks.idKelassiswa', '=', 'p.id_siswa')->
         join('master_jenispel as jp', 'p.idJenispelP', '=', 'jp.idJenispel')->
         join('master_kategoripelanggaran as kp', 'jp.idKategoripelJP', '=', 'kp.idKategoripel')->
         // where('k.idKelas','=',$request->idKelas)->
@@ -29,7 +29,7 @@ class LaporanpelanggaranController extends Controller
         orderBy('s.name','asc','k.kelas')->
         // paginate(10);
         get();
-        
+        // dd($pilihkelas);
         $kelas = DB::table('master_kelas')->
         get();
 
