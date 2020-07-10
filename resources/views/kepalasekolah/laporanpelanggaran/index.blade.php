@@ -137,7 +137,7 @@
         //   jsPDF:{
         // // unit:"in", //set units to inches
         // },
-        theme:'striped',
+        // theme:'striped',
         autoTable:function(doc){
         //doc - the jsPDF document object
 
